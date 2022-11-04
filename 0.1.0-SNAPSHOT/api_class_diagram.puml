@@ -1,0 +1,90 @@
+@startuml
+title
+    Calypsonet - calypsonet-terminal-calypso-crypto-java-api - 0.1.+ (2022-11-04)
+end title
+
+' == THEME ==
+
+'Couleurs issues de : https://htmlcolorcodes.com/fr/tableau-de-couleur/tableau-de-couleur-design-plat/
+!define C_GREY1 F8F9F9
+!define C_GREY2 F2F3F4
+!define C_GREY3 E5E7E9
+!define C_GREY4 D7DBDD
+!define C_GREY5 CACFD2
+!define C_GREY6 BDC3C7
+!define C_LINK 3498DB
+!define C_USE 27AE60
+
+' -- Styles that don't work with new version of plantuml --
+skinparam stereotypeABorderColor #A9DCDF
+skinparam stereotypeIBorderColor #B4A7E5
+skinparam stereotypeCBorderColor #ADD1B2
+skinparam stereotypeEBorderColor #EB93DF
+' -- END --
+
+skinparam ClassBorderThickness 2
+skinparam ArrowThickness 2
+
+' Yellow
+skinparam ClassBackgroundColor #FEFECE
+skinparam ClassBorderColor #D4AC0D
+' Red
+skinparam ClassBackgroundColor<<red>> #FDEDEC
+skinparam ClassBorderColor<<red>> #E74C3C
+hide <<red>> stereotype
+' Purple
+skinparam ClassBackgroundColor<<purple>> #F4ECF7
+skinparam ClassBorderColor<<purple>> #8E44AD
+hide <<purple>> stereotype
+' blue
+skinparam ClassBackgroundColor<<blue>> #EBF5FB
+skinparam ClassBorderColor<<blue>> #3498DB
+hide <<blue>> stereotype
+' Green
+skinparam ClassBackgroundColor<<green>> #E9F7EF
+skinparam ClassBorderColor<<green>> #27AE60
+hide <<green>> stereotype
+' Grey
+skinparam ClassBackgroundColor<<grey>> #EAECEE
+skinparam ClassBorderColor<<grey>> #2C3E50
+hide <<grey>> stereotype
+
+' == CONTENT ==
+
+legend top
+    __Colors legend__ :
+    * __External public API references__ :
+    ** <back:yellow>**calypsonet-terminal-calypso-java-api**</back>
+end legend
+
+package "org.calypsonet.terminal.calypso.crypto" as api {
+    ' https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/HowToImplAProvider.html#Engine
+    +interface CardCryptoProviderSpi {
+        +byte[] initializeTerminalSecureSessionContext (CalypsoCard.ProductType productType, byte[] cardChallenge, SessionMode sessionMode)
+        +void initializeSecureSession (byte[] openSecureSessionCommandDataOut, byte kif, byte kvc)
+        +byte[] initializeSecureSessionWithAuthentication (byte[] openSecureSessionCommandDataOut, byte kif, byte kvc)
+        +void updateSecureSessionWithCardExchangeData (List<byte[]> apduDataIn, List<byte[]> apduDataOut)
+        +byte[] updateSecureSessionWithEncryptedCardExchangeData (byte[] apduData)
+        +byte[] finalizeSecureSession ()
+        +boolean verifyCardCertificate (byte[] cardCertificate)
+
+        +byte[] computeSvSecurityData(TBD)
+        +boolean verifySvCardCertificate (byte[] svCardCertificate)
+
+        +byte[] cipherPinForPresentation(byte[] pin, byte kif, byte kvc)
+        +byte[] cipherPinForModification(byte[] currentPin, byte[] newPin, byte kif, byte kvc)
+        +byte[] generateCardKey(byte issuerKif, byte issuerKvc, byte kif, byte kvc)
+    }
+}
+
+' Associations
+
+' == LAYOUT ==
+
+'CardSecuritySetting -[hidden]- CalypsoSam
+
+' == STYLE ==
+
+package api #C_GREY1 {}
+
+@enduml
