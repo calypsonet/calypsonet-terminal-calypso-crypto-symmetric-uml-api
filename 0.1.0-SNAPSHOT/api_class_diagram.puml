@@ -60,31 +60,38 @@ end legend
 package "org.calypsonet.terminal.calypso.crypto" as api {
     ' https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/HowToImplAProvider.html#Engine
     +interface CardCryptoServiceSpi {
-        +byte[] processTerminalSecureSessionContextInitialization (CalypsoCard calypsoCard, byte[] cardChallenge)
+        +void setKeyDiversifier (byte[] keyDiversifier)
 
-        +void prepareTerminalSessionMacInit (byte[] openSecureSessionDataOut, byte kif, byte kvc)
-        +void prepareTerminalSessionMacUpdate (byte[] apdu)
-        +byte[] processTerminalSessionMacFinalize ()
+        +byte[] initTerminalSecureSessionContext ()
 
-        +void prepareTerminalSessionMacUpdateEncrypted (byte[] apdu)
-        +byte[] processTerminalSessionMacUpdateEncrypted (byte[] encryptedApdu)
+        +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
+        +byte[] updateTerminalSessionMac (byte[] apdu)
+        +byte[] finalizeTerminalSessionMac ()
 
-        +byte[] processTerminalSessionMacGenerate ()
+        +byte[] generateTerminalSessionMac ()
 
-        +boolean processCardSessionMacVerify (byte[] cardSessionMac)
+        +void activateEncryption()
+        +void deactivateEncryption()
 
-        +byte[] processSvSecurityDataComputation (SvCommandSecurityData svCommandSecurityData)
-        +boolean processSvCardCertificateVerification (byte[] svCardCertificate)
+        +boolean verifyCardSessionMac (byte[] cardSessionMac)
 
-        +byte[] processPinCipheringForPresentation (byte[] pin, byte kif, byte kvc)
-        +byte[] processPinCipheringForModification (byte[] currentPin, byte[] newPin, byte kif, byte kvc)
-        +byte[] processCardKeyGeneration (byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+        +void generateSvCommandSecurityData (SvCommandSecurityData svCommandSecurityData)
+        +boolean verifyCardSvMac (byte[] cardSvMac)
+
+        +byte[] cipherPinForPresentation (byte[] pin, byte kif, byte kvc)
+        +byte[] cipherPinForModification (byte[] currentPin, byte[] newPin, byte kif, byte kvc)
+        +byte[] generateCardKey (byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
     }
 
     +interface SvCommandSecurityData {
-        +SvCommandSecurityData setData (\n\tSvOperation svOperation,\n\tSvAction svAction,\n\tbyte[] svGetHeader,\n\tbyte[] svGetData,\n\tbyte[] svOperationData)
+        +SvCommandSecurityData setSvGetRequest (byte[] svGetRequest)
+        +SvCommandSecurityData setSvGetResponse (byte[] svGetResponse)
+        +SvCommandSecurityData setSvCommandRequest (byte[] svCommandRequest)
 
-        +byte[] getComplementaryData ()
+        +byte[] getSerialNumber ()
+        +byte[] getTransactionNumber ()
+        +byte[] getTerminalChallenge ()
+        +byte[] getTerminalSvMac ()
     }
 }
 
