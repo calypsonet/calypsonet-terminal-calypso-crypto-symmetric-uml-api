@@ -1,6 +1,6 @@
 @startuml
 title
-    Calypsonet - calypsonet-terminal-calypso-crypto-java-api - 0.1.+ (2022-11-04)
+    Calypsonet - calypsonet-terminal-calypso-crypto-symmetric-java-api - 0.1.+ (2022-11-29)
 end title
 
 ' == THEME ==
@@ -51,58 +51,100 @@ hide <<grey>> stereotype
 
 ' == CONTENT ==
 
-legend top
-    __Colors legend__ :
-    * __External public API references__ :
-    ** <back:yellow>**calypsonet-terminal-calypso-java-api**</back>
-end legend
+package "org.calypsonet.terminal.calypso.crypto.symmetric" as api {
+    package spi {
+        +interface SymmetricCryptoTransactionManagerFactorySpi {
+            +boolean isExtendedModeSupported ()
+    
+            +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
+        }
+        +interface SymmetricCryptoTransactionManagerSpi {
+            +byte[] initTerminalSecureSessionContext ()
+    
+            +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
+            +byte[] updateTerminalSessionMac (byte[] cardApdu)
+            +byte[] finalizeTerminalSessionMac ()
+    
+            +byte[] generateTerminalSessionMac ()
+    
+            +void activateEncryption ()
+            +void deactivateEncryption ()
+    
+            +boolean isCardSessionMacValid (byte[] cardSessionMac)
+    
+            +void computeSvCommandSecurityData (SvCommandSecurityDataApi data)
+            +boolean isCardSvMacValid (byte[] cardSvMac)
+    
+            +byte[] cipherPinForPresentation (byte[] cardChallenge, byte[] pin, Byte kif, Byte kvc)
+            +byte[] cipherPinForModification (byte[] cardChallenge, byte[] currentPin, byte[] newPin, Byte kif, Byte kvc)
+            +byte[] generateCipheredCardKey (byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
 
-package "org.calypsonet.terminal.calypso.crypto" as api {
-    ' https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/HowToImplAProvider.html#Engine
-    +interface CardCryptoServiceSpi {
-        +void setKeyDiversifier (byte[] keyDiversifier)
+            +void synchronize ()
+        }
+        +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException {
+            +SymmetricCryptoException (String message)
+            +SymmetricCryptoException (String message, Throwable cause)
+        }
+        +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException {
+            +SymmetricCryptoIOException (String message)
+            +SymmetricCryptoIOException (String message, Throwable cause)
+        }
+    }
+    +interface SvCommandSecurityDataApi {
+        +byte[] getSvGetRequest ()
+        +byte[] getSvGetResponse ()
+        +byte[] getSvCommandPartialRequest ()
 
-        +byte[] initTerminalSecureSessionContext ()
-
-        +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
-        +byte[] updateTerminalSessionMac (byte[] apdu)
-        +byte[] finalizeTerminalSessionMac ()
-
-        +byte[] generateTerminalSessionMac ()
-
-        +void activateEncryption()
-        +void deactivateEncryption()
-
-        +boolean verifyCardSessionMac (byte[] cardSessionMac)
-
-        +void generateSvCommandSecurityData (SvCommandSecurityData svCommandSecurityData)
-        +boolean verifyCardSvMac (byte[] cardSvMac)
-
-        +byte[] cipherPinForPresentation (byte[] pin, byte kif, byte kvc)
-        +byte[] cipherPinForModification (byte[] currentPin, byte[] newPin, byte kif, byte kvc)
-        +byte[] generateCardKey (byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+        +SvCommandSecurityDataApi setSerialNumber (byte[] serialNumber)
+        +SvCommandSecurityDataApi setTransactionNumber (byte[] transactionNumber)
+        +SvCommandSecurityDataApi setTerminalChallenge (byte[] terminalChallenge)
+        +SvCommandSecurityDataApi setTerminalSvMac (byte[] terminalSvMac)
     }
 
-    +interface SvCommandSecurityData {
-        +SvCommandSecurityData setSvGetRequest (byte[] svGetRequest)
-        +SvCommandSecurityData setSvGetResponse (byte[] svGetResponse)
-        +SvCommandSecurityData setSvCommandRequest (byte[] svCommandRequest)
-
-        +byte[] getSerialNumber ()
-        +byte[] getTransactionNumber ()
-        +byte[] getTerminalChallenge ()
-        +byte[] getTerminalSvMac ()
-    }
+'
+'    +interface SymmetricCryptoTransactionManagerFactorySpiDesignByUseCase {
+'        +byte[] initTerminalSecureSessionContext (byte[] keyDiversifier)
+'
+'        +byte[] computeTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc, List<byte[]> cardApdus)
+'        +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
+'        +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc, List<byte[]> cardApdus)
+'        +void updateTerminalSessionMac (List<byte[]> cardApdus)
+'        +byte[] updateTerminalSessionMacEncrypted (byte[] cardApdu)
+'        +byte[] finalizeTerminalSessionMac (List<byte[]> cardApdus)
+'        +byte[] finalizeTerminalSessionMac ()
+'
+'        +<s>byte[] generateTerminalSessionMac ()
+'
+'        +boolean verifyCardSessionMac (byte[] cardSessionMac)
+'
+'        +void generateSvCommandSecurityData (SvCommandSecurityDataApi SvCommandSecurityDataApi)
+'        +void generateSvCommandSecurityData (byte[] cardSerial, SvCommandSecurityDataApi SvCommandSecurityDataApi)
+'        +boolean verifyCardSvMac (byte[] cardSvMac)
+'        +boolean verifyCardSessionAndSvMac (byte[] cardSessionMac, byte[] cardSvMac)
+'
+'        +byte[] cipherPinForPresentation (byte[] openSecureSessionDataOut, byte kif, byte kvc, List<byte[]> cardApdus, byte[] cardSerial, byte[] cardChallenge, byte[] pin, byte kif, byte kvc)
+'        +byte[] cipherPinForPresentation (byte[] cardSerial, byte[] cardChallenge, byte[] pin, byte kif, byte kvc)
+'        +byte[] cipherPinForModification (byte[] cardSerial, byte[] cardChallenge, byte[] currentPin, byte[] newPin, byte kif, byte kvc)
+'        +byte[] generateCardKey (byte[] cardSerial, byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+'    }
 }
 
 ' Associations
 
+SymmetricCryptoTransactionManagerFactorySpi ..> SymmetricCryptoTransactionManagerSpi #C_LINK : provide >
+
+SymmetricCryptoTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
+
 ' == LAYOUT ==
 
-'CardSecuritySetting -[hidden]- CalypsoSam
+SymmetricCryptoTransactionManagerSpi -[hidden]- SymmetricCryptoException
+SymmetricCryptoTransactionManagerSpi -[hidden]- SymmetricCryptoIOException
 
 ' == STYLE ==
 
 package api #C_GREY1 {}
+package spi #C_GREY2 {}
+
+interface SvCommandSecurityDataApi <<purple>>
 
 @enduml
