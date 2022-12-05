@@ -59,8 +59,7 @@ package "org.calypsonet.terminal.calypso.crypto.symmetric" as api {
             +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
         }
         +interface SymmetricCryptoTransactionManagerSpi {
-            +byte[] initTerminalSecureSessionContext ()
-    
+            +byte[] initTerminalSessionContext ()
             +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
             +byte[] updateTerminalSessionMac (byte[] cardApdu)
             +byte[] finalizeTerminalSessionMac ()
@@ -81,14 +80,14 @@ package "org.calypsonet.terminal.calypso.crypto.symmetric" as api {
 
             +void synchronize ()
         }
-        +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException {
-            +SymmetricCryptoException (String message)
-            +SymmetricCryptoException (String message, Throwable cause)
-        }
-        +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException {
-            +SymmetricCryptoIOException (String message)
-            +SymmetricCryptoIOException (String message, Throwable cause)
-        }
+    }
+    +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException {
+        +SymmetricCryptoException (String message)
+        +SymmetricCryptoException (String message, Throwable cause)
+    }
+    +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException {
+        +SymmetricCryptoIOException (String message)
+        +SymmetricCryptoIOException (String message, Throwable cause)
     }
     +interface SvCommandSecurityDataApi {
         +byte[] getSvGetRequest ()
@@ -135,10 +134,10 @@ SymmetricCryptoTransactionManagerFactorySpi ..> SymmetricCryptoTransactionManage
 
 SymmetricCryptoTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
 
-' == LAYOUT ==
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoException #C_USE : throws >
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #C_USE : throws >
 
-SymmetricCryptoTransactionManagerSpi -[hidden]- SymmetricCryptoException
-SymmetricCryptoTransactionManagerSpi -[hidden]- SymmetricCryptoIOException
+' == LAYOUT ==
 
 ' == STYLE ==
 
@@ -146,5 +145,7 @@ package api #C_GREY1 {}
 package spi #C_GREY2 {}
 
 interface SvCommandSecurityDataApi <<purple>>
+interface SymmetricCryptoException <<purple>>
+interface SymmetricCryptoIOException <<purple>>
 
 @enduml
