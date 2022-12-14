@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="952px" preserveAspectRatio="none" style="width:1651px;height:952px;background:#FFFFFF;" version="1.1" viewBox="0 0 1651 952" width="1651px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="605" x="516" y="25.1074">Calypsonet - calypsonet-terminal-calypso-crypto-symmetric-java-api - 0.1.+ (2022-11-29)</text><!--MD5=[7442f3b126ee602ae02566c1a49e158a]
+cluster api--><g id="cluster_api"><path d="M8.5,45.6348 L354.5,45.6348 A3.75,3.75 0 0 1 357,48.1348 L364,70.2559 L1641.5,70.2559 A2.5,2.5 0 0 1 1644,72.7559 L1644,943.1348 A2.5,2.5 0 0 1 1641.5,945.6348 L8.5,945.6348 A2.5,2.5 0 0 1 6,943.1348 L6,48.1348 A2.5,2.5 0 0 1 8.5,45.6348 " fill="#F8F9F9" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="6" x2="364" y1="70.2559" y2="70.2559"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="345" x="10" y="62.7422">org.calypsonet.terminal.calypso.crypto.symmetric</text></g><!--MD5=[f7e0e2453c87923036c1ac2adfb9cbf0]
+cluster spi--><g id="cluster_spi"><path d="M566.5,90.6348 L588.5,90.6348 A3.75,3.75 0 0 1 591,93.1348 L598,115.2559 L1617.5,115.2559 A2.5,2.5 0 0 1 1620,117.7559 L1620,762.1348 A2.5,2.5 0 0 1 1617.5,764.6348 L566.5,764.6348 A2.5,2.5 0 0 1 564,762.1348 L564,93.1348 A2.5,2.5 0 0 1 566.5,90.6348 " fill="#F2F3F4" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="564" x2="598" y1="115.2559" y2="115.2559"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="21" x="568" y="107.7422">spi</text></g><!--MD5=[120218adfd8782b0057db0a1b8294250]
+class ApiProperties--><g id="elem_ApiProperties"><rect codeLine="54" fill="#FEFECE" height="66.6211" id="ApiProperties" rx="2.5" ry="2.5" style="stroke:#D4AC0D;stroke-width:2.0;" width="269" x="148.5" y="155.1348"/><ellipse cx="163.5" cy="171.1348" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M166.2656,167.0098 Q166.4219,166.791 166.6094,166.6816 Q166.7969,166.5723 167.0156,166.5723 Q167.3906,166.5723 167.625,166.8379 Q167.8594,167.0879 167.8594,167.6973 L167.8594,169.1504 Q167.8594,169.7598 167.625,170.0254 Q167.3906,170.291 167.0156,170.291 Q166.6719,170.291 166.4688,170.0879 Q166.2656,169.9004 166.1563,169.3848 Q166.1094,169.0254 165.9219,168.8379 Q165.5938,168.4629 164.9844,168.2441 Q164.375,168.0254 163.75,168.0254 Q162.9844,168.0254 162.3438,168.3535 Q161.7188,168.6816 161.2188,169.4316 Q160.7344,170.1816 160.7344,171.2129 L160.7344,172.3066 Q160.7344,173.541 161.625,174.3691 Q162.5156,175.1816 164.1094,175.1816 Q165.0469,175.1816 165.7031,174.9316 Q166.0938,174.7754 166.5156,174.3379 Q166.7813,174.0723 166.9219,173.9941 Q167.0781,173.916 167.2813,173.916 Q167.6094,173.916 167.8594,174.1816 Q168.125,174.4316 168.125,174.7754 Q168.125,175.1191 167.7813,175.5254 Q167.2813,176.1035 166.4844,176.4316 Q165.4063,176.8848 164.1094,176.8848 Q162.5938,176.8848 161.3906,176.2598 Q160.4063,175.7598 159.7188,174.6973 Q159.0313,173.6191 159.0313,172.3379 L159.0313,171.1816 Q159.0313,169.8535 159.6406,168.7129 Q160.2656,167.5566 161.3594,166.9473 Q162.4531,166.3223 163.6875,166.3223 Q164.4219,166.3223 165.0625,166.4941 Q165.7188,166.6504 166.2656,167.0098 Z " fill="#000000"/><ellipse cx="182.5" cy="170.6348" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="30" x="188.5" y="176.9316">final</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="192" x="222.5" y="176.9316">CryptoSymmetricApiProperties</text><line style="stroke:#D4AC0D;stroke-width:2.0;" x1="149.5" x2="416.5" y1="187.1348" y2="187.1348"/><ellipse cx="159.5" cy="201.9453" fill="none" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="30" x="168.5" y="206.2422">final</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="101" x="202.5" y="206.2422">String VERSION</text><line style="stroke:#D4AC0D;stroke-width:2.0;" x1="149.5" x2="416.5" y1="213.7559" y2="213.7559"/></g><!--MD5=[ed6cd72910c1e7c5421683689620b946]
+class SymmetricCryptoException--><g id="elem_SymmetricCryptoException"><rect codeLine="124" fill="#F4ECF7" height="100.4844" id="SymmetricCryptoException" rx="2.5" ry="2.5" style="stroke:#8E44AD;stroke-width:2.0;" width="422" x="647" y="829.6348"/><ellipse cx="764.25" cy="853.2559" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M767.0156,849.1309 Q767.1719,848.9121 767.3594,848.8027 Q767.5469,848.6934 767.7656,848.6934 Q768.1406,848.6934 768.375,848.959 Q768.6094,849.209 768.6094,849.8184 L768.6094,851.2715 Q768.6094,851.8809 768.375,852.1465 Q768.1406,852.4121 767.7656,852.4121 Q767.4219,852.4121 767.2188,852.209 Q767.0156,852.0215 766.9063,851.5059 Q766.8594,851.1465 766.6719,850.959 Q766.3438,850.584 765.7344,850.3652 Q765.125,850.1465 764.5,850.1465 Q763.7344,850.1465 763.0938,850.4746 Q762.4688,850.8027 761.9688,851.5527 Q761.4844,852.3027 761.4844,853.334 L761.4844,854.4277 Q761.4844,855.6621 762.375,856.4902 Q763.2656,857.3027 764.8594,857.3027 Q765.7969,857.3027 766.4531,857.0527 Q766.8438,856.8965 767.2656,856.459 Q767.5313,856.1934 767.6719,856.1152 Q767.8281,856.0371 768.0313,856.0371 Q768.3594,856.0371 768.6094,856.3027 Q768.875,856.5527 768.875,856.8965 Q768.875,857.2402 768.5313,857.6465 Q768.0313,858.2246 767.2344,858.5527 Q766.1563,859.0059 764.8594,859.0059 Q763.3438,859.0059 762.1406,858.3809 Q761.1563,857.8809 760.4688,856.8184 Q759.7813,855.7402 759.7813,854.459 L759.7813,853.3027 Q759.7813,851.9746 760.3906,850.834 Q761.0156,849.6777 762.1094,849.0684 Q763.2031,848.4434 764.4375,848.4434 Q765.1719,848.4434 765.8125,848.6152 Q766.4688,848.7715 767.0156,849.1309 Z " fill="#000000"/><ellipse cx="789.75" cy="852.7559" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="841.25" y="849.7422">«Exception»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="168" x="795.75" y="868.3633">SymmetricCryptoException</text><line style="stroke:#8E44AD;stroke-width:2.0;" x1="648" x2="1068" y1="876.877" y2="876.877"/><line style="stroke:#8E44AD;stroke-width:2.0;" x1="648" x2="1068" y1="884.877" y2="884.877"/><ellipse cx="658" cy="899.6875" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="280" x="667" y="903.9844">SymmetricCryptoException (String message)</text><ellipse cx="658" cy="918.3086" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="396" x="667" y="922.6055">SymmetricCryptoException (String message, Throwable cause)</text></g><!--MD5=[dc78e81cea955f8614ec1504e52d6421]
+class SymmetricCryptoIOException--><g id="elem_SymmetricCryptoIOException"><rect codeLine="125" fill="#F4ECF7" height="100.4844" id="SymmetricCryptoIOException" rx="2.5" ry="2.5" style="stroke:#8E44AD;stroke-width:2.0;" width="436" x="1104" y="829.6348"/><ellipse cx="1221.25" cy="853.2559" fill="#ADD1B2" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M1224.0156,849.1309 Q1224.1719,848.9121 1224.3594,848.8027 Q1224.5469,848.6934 1224.7656,848.6934 Q1225.1406,848.6934 1225.375,848.959 Q1225.6094,849.209 1225.6094,849.8184 L1225.6094,851.2715 Q1225.6094,851.8809 1225.375,852.1465 Q1225.1406,852.4121 1224.7656,852.4121 Q1224.4219,852.4121 1224.2188,852.209 Q1224.0156,852.0215 1223.9063,851.5059 Q1223.8594,851.1465 1223.6719,850.959 Q1223.3438,850.584 1222.7344,850.3652 Q1222.125,850.1465 1221.5,850.1465 Q1220.7344,850.1465 1220.0938,850.4746 Q1219.4688,850.8027 1218.9688,851.5527 Q1218.4844,852.3027 1218.4844,853.334 L1218.4844,854.4277 Q1218.4844,855.6621 1219.375,856.4902 Q1220.2656,857.3027 1221.8594,857.3027 Q1222.7969,857.3027 1223.4531,857.0527 Q1223.8438,856.8965 1224.2656,856.459 Q1224.5313,856.1934 1224.6719,856.1152 Q1224.8281,856.0371 1225.0313,856.0371 Q1225.3594,856.0371 1225.6094,856.3027 Q1225.875,856.5527 1225.875,856.8965 Q1225.875,857.2402 1225.5313,857.6465 Q1225.0313,858.2246 1224.2344,858.5527 Q1223.1563,859.0059 1221.8594,859.0059 Q1220.3438,859.0059 1219.1406,858.3809 Q1218.1563,857.8809 1217.4688,856.8184 Q1216.7813,855.7402 1216.7813,854.459 L1216.7813,853.3027 Q1216.7813,851.9746 1217.3906,850.834 Q1218.0156,849.6777 1219.1094,849.0684 Q1220.2031,848.4434 1221.4375,848.4434 Q1222.1719,848.4434 1222.8125,848.6152 Q1223.4688,848.7715 1224.0156,849.1309 Z " fill="#000000"/><ellipse cx="1246.75" cy="852.7559" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="77" x="1305.25" y="849.7422">«Exception»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="182" x="1252.75" y="868.3633">SymmetricCryptoIOException</text><line style="stroke:#8E44AD;stroke-width:2.0;" x1="1105" x2="1539" y1="876.877" y2="876.877"/><line style="stroke:#8E44AD;stroke-width:2.0;" x1="1105" x2="1539" y1="884.877" y2="884.877"/><ellipse cx="1115" cy="899.6875" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="294" x="1124" y="903.9844">SymmetricCryptoIOException (String message)</text><ellipse cx="1115" cy="918.3086" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="410" x="1124" y="922.6055">SymmetricCryptoIOException (String message, Throwable cause)</text></g><!--MD5=[b603a74dfece547939852eca9002246b]
+class SvCommandSecurityDataApi--><g id="elem_SvCommandSecurityDataApi"><rect codeLine="123" fill="#F4ECF7" height="196.9688" id="SvCommandSecurityDataApi" rx="2.5" ry="2.5" style="stroke:#8E44AD;stroke-width:2.0;" width="526" x="22" y="440.1348"/><ellipse cx="185.25" cy="456.1348" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M186.2031,452.7754 L186.2031,459.4316 L187.9219,459.4316 Q188.5313,459.4316 188.7969,459.666 Q189.0625,459.9004 189.0625,460.291 Q189.0625,460.666 188.7969,460.9004 Q188.5313,461.1348 187.9219,461.1348 L182.7813,461.1348 Q182.1719,461.1348 181.9063,460.9004 Q181.6406,460.666 181.6406,460.2754 Q181.6406,459.9004 181.9063,459.666 Q182.1719,459.4316 182.7813,459.4316 L184.5,459.4316 L184.5,452.7754 L182.7813,452.7754 Q182.1719,452.7754 181.9063,452.541 Q181.6406,452.3066 181.6406,451.916 Q181.6406,451.541 181.9063,451.3066 Q182.1719,451.0723 182.7813,451.0723 L187.9219,451.0723 Q188.5313,451.0723 188.7969,451.3066 Q189.0625,451.541 189.0625,451.916 Q189.0625,452.3066 188.7969,452.541 Q188.5313,452.7754 187.9219,452.7754 L186.2031,452.7754 Z " fill="#000000"/><ellipse cx="210.75" cy="455.6348" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="180" x="216.75" y="461.9316">SvCommandSecurityDataApi</text><line style="stroke:#8E44AD;stroke-width:2.0;" x1="23" x2="547" y1="472.1348" y2="472.1348"/><line style="stroke:#8E44AD;stroke-width:2.0;" x1="23" x2="547" y1="480.1348" y2="480.1348"/><ellipse cx="33" cy="494.9453" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="165" x="42" y="499.2422">byte[] getSvGetRequest ()</text><ellipse cx="33" cy="513.5664" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="176" x="42" y="517.8633">byte[] getSvGetResponse ()</text><ellipse cx="33" cy="532.1875" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="246" x="42" y="536.4844">byte[] getSvCommandPartialRequest ()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="42" y="555.1055"> </text><ellipse cx="33" cy="569.4297" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="425" x="42" y="573.7266">SvCommandSecurityDataApi setSerialNumber (byte[] serialNumber)</text><ellipse cx="33" cy="588.0508" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="500" x="42" y="592.3477">SvCommandSecurityDataApi setTransactionNumber (byte[] transactionNumber)</text><ellipse cx="33" cy="606.6719" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="490" x="42" y="610.9688">SvCommandSecurityDataApi setTerminalChallenge (byte[] terminalChallenge)</text><ellipse cx="33" cy="625.293" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="446" x="42" y="629.5898">SvCommandSecurityDataApi setTerminalSvMac (byte[] terminalSvMac)</text></g><!--MD5=[bb3fae334104f06ba0a4414ece7963c2]
+class SymmetricCryptoTransactionManagerFactorySpi--><g id="elem_SymmetricCryptoTransactionManagerFactorySpi"><rect codeLine="58" fill="#FEFECE" height="122.4844" id="SymmetricCryptoTransactionManagerFactorySpi" rx="2.5" ry="2.5" style="stroke:#D4AC0D;stroke-width:2.0;" width="1024" x="580" y="127.6348"/><ellipse cx="928.75" cy="143.6348" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M929.7031,140.2754 L929.7031,146.9316 L931.4219,146.9316 Q932.0313,146.9316 932.2969,147.166 Q932.5625,147.4004 932.5625,147.791 Q932.5625,148.166 932.2969,148.4004 Q932.0313,148.6348 931.4219,148.6348 L926.2813,148.6348 Q925.6719,148.6348 925.4063,148.4004 Q925.1406,148.166 925.1406,147.7754 Q925.1406,147.4004 925.4063,147.166 Q925.6719,146.9316 926.2813,146.9316 L928,146.9316 L928,140.2754 L926.2813,140.2754 Q925.6719,140.2754 925.4063,140.041 Q925.1406,139.8066 925.1406,139.416 Q925.1406,139.041 925.4063,138.8066 Q925.6719,138.5723 926.2813,138.5723 L931.4219,138.5723 Q932.0313,138.5723 932.2969,138.8066 Q932.5625,139.041 932.5625,139.416 Q932.5625,139.8066 932.2969,140.041 Q932.0313,140.2754 931.4219,140.2754 L929.7031,140.2754 Z " fill="#000000"/><ellipse cx="954.25" cy="143.1348" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="307" x="960.25" y="149.4316">SymmetricCryptoTransactionManagerFactorySpi</text><line style="stroke:#D4AC0D;stroke-width:2.0;" x1="581" x2="1603" y1="159.6348" y2="159.6348"/><line style="stroke:#D4AC0D;stroke-width:2.0;" x1="581" x2="1603" y1="167.6348" y2="167.6348"/><ellipse cx="591" cy="182.4453" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="239" x="600" y="186.7422">boolean isExtendedModeSupported ()</text><ellipse cx="591" cy="201.0664" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="252" x="600" y="205.3633">int getMaxCardApduLengthSupported ()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="600" y="223.9844"> </text><ellipse cx="591" cy="238.3086" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="998" x="600" y="242.6055">SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List&lt;byte[]&gt; transactionAuditData)</text></g><!--MD5=[1faf4190d52f0dec5aa33ffdfed48092]
+class SymmetricCryptoTransactionManagerSpi--><g id="elem_SymmetricCryptoTransactionManagerSpi"><rect codeLine="64" fill="#FEFECE" height="420.4219" id="SymmetricCryptoTransactionManagerSpi" rx="2.5" ry="2.5" style="stroke:#D4AC0D;stroke-width:2.0;" width="860" x="630" y="328.6348"/><ellipse cx="920.75" cy="344.6348" fill="#B4A7E5" rx="11" ry="11" style="stroke:#181818;stroke-width:1.0;"/><path d="M921.7031,341.2754 L921.7031,347.9316 L923.4219,347.9316 Q924.0313,347.9316 924.2969,348.166 Q924.5625,348.4004 924.5625,348.791 Q924.5625,349.166 924.2969,349.4004 Q924.0313,349.6348 923.4219,349.6348 L918.2813,349.6348 Q917.6719,349.6348 917.4063,349.4004 Q917.1406,349.166 917.1406,348.7754 Q917.1406,348.4004 917.4063,348.166 Q917.6719,347.9316 918.2813,347.9316 L920,347.9316 L920,341.2754 L918.2813,341.2754 Q917.6719,341.2754 917.4063,341.041 Q917.1406,340.8066 917.1406,340.416 Q917.1406,340.041 917.4063,339.8066 Q917.6719,339.5723 918.2813,339.5723 L923.4219,339.5723 Q924.0313,339.5723 924.2969,339.8066 Q924.5625,340.041 924.5625,340.416 Q924.5625,340.8066 924.2969,341.041 Q924.0313,341.2754 923.4219,341.2754 L921.7031,341.2754 Z " fill="#000000"/><ellipse cx="946.25" cy="344.1348" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="259" x="952.25" y="350.4316">SymmetricCryptoTransactionManagerSpi</text><line style="stroke:#D4AC0D;stroke-width:2.0;" x1="631" x2="1489" y1="360.6348" y2="360.6348"/><line style="stroke:#D4AC0D;stroke-width:2.0;" x1="631" x2="1489" y1="368.6348" y2="368.6348"/><ellipse cx="641" cy="383.4453" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="224" x="650" y="387.7422">byte[] initTerminalSessionContext ()</text><ellipse cx="641" cy="402.0664" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="525" x="650" y="406.3633">void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)</text><ellipse cx="641" cy="420.6875" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="328" x="650" y="424.9844">byte[] updateTerminalSessionMac (byte[] cardApdu)</text><ellipse cx="641" cy="439.3086" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="227" x="650" y="443.6055">byte[] finalizeTerminalSessionMac ()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="650" y="462.2266"> </text><ellipse cx="641" cy="476.5508" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="241" x="650" y="480.8477">byte[] generateTerminalSessionMac ()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="650" y="499.4688"> </text><ellipse cx="641" cy="513.793" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="650" y="518.0898">void activateEncryption ()</text><ellipse cx="641" cy="532.4141" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="176" x="650" y="536.7109">void deactivateEncryption ()</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="650" y="555.332"> </text><ellipse cx="641" cy="569.6563" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="360" x="650" y="573.9531">boolean isCardSessionMacValid (byte[] cardSessionMac)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="650" y="592.5742"> </text><ellipse cx="641" cy="606.8984" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="472" x="650" y="611.1953">void computeSvCommandSecurityData (SvCommandSecurityDataApi data)</text><ellipse cx="641" cy="625.5195" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="292" x="650" y="629.8164">boolean isCardSvMacValid (byte[] cardSvMac)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="650" y="648.4375"> </text><ellipse cx="641" cy="662.7617" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="526" x="650" y="667.0586">byte[] cipherPinForPresentation (byte[] cardChallenge, byte[] pin, Byte kif, Byte kvc)</text><ellipse cx="641" cy="681.3828" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="659" x="650" y="685.6797">byte[] cipherPinForModification (byte[] cardChallenge, byte[] currentPin, byte[] newPin, Byte kif, Byte kvc)</text><ellipse cx="641" cy="700.0039" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="834" x="650" y="704.3008">byte[] generateCipheredCardKey (byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="650" y="722.9219"> </text><ellipse cx="641" cy="737.2461" fill="#84BE84" rx="3" ry="3" style="stroke:#038048;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="119" x="650" y="741.543">void synchronize ()</text></g><!--MD5=[de96a5dbaa5c5ef9677e1bc26a5a7473]
+link SymmetricCryptoTransactionManagerFactorySpi to SymmetricCryptoTransactionManagerSpi--><g id="link_SymmetricCryptoTransactionManagerFactorySpi_SymmetricCryptoTransactionManagerSpi"><path codeLine="109" d="M1086.46,249.8548 C1084.5,271.1898 1082.17,296.5898 1079.71,323.3338 " fill="none" id="SymmetricCryptoTransactionManagerFactorySpi-to-SymmetricCryptoTransactionManagerSpi" style="stroke:#3498DB;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#3498DB" points="1079.25,328.3418,1084.0575,319.746,1079.708,323.3628,1076.0911,319.0132,1079.25,328.3418" style="stroke:#3498DB;stroke-width:2.0;"/><polygon fill="#000000" points="1087.5426,294.2593,1091.2966,285.521,1085.4434,284.9833,1087.5426,294.2593" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="1097" y="294.6631">provide</text></g><!--MD5=[7e5f7722ad5fb9718b512270be165506]
+reverse link SvCommandSecurityDataApi to SymmetricCryptoTransactionManagerSpi--><g id="link_SvCommandSecurityDataApi_SymmetricCryptoTransactionManagerSpi"><path codeLine="111" d="M553.492,538.6348 C578.387,538.6348 604.009,538.6348 629.886,538.6348 " fill="none" id="SvCommandSecurityDataApi-backto-SymmetricCryptoTransactionManagerSpi" style="stroke:#27AE60;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#27AE60" points="548.191,538.6348,557.191,542.6348,553.191,538.6348,557.191,534.6348,548.191,538.6348" style="stroke:#27AE60;stroke-width:2.0;"/><polygon fill="#000000" points="571,526.2803,580.0451,529.2192,580.0451,523.3413,571,526.2803" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="585" y="531.6631">use</text></g><!--MD5=[20df3513a866a92a4fec23a94209879e]
+link SymmetricCryptoTransactionManagerSpi to SymmetricCryptoException--><g id="link_SymmetricCryptoTransactionManagerSpi_SymmetricCryptoException"><path codeLine="113" d="M935.232,749.0228 C918.606,776.9248 902.89,803.2988 890.03,824.8808 " fill="none" id="SymmetricCryptoTransactionManagerSpi-to-SymmetricCryptoException" style="stroke:#27AE60;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#27AE60" points="887.33,829.4118,895.3735,823.7282,889.8897,825.1166,888.5013,819.6328,887.33,829.4118" style="stroke:#27AE60;stroke-width:2.0;"/><polygon fill="#000000" points="914.4406,794.5755,921.5953,788.3097,916.5459,785.3009,914.4406,794.5755" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38" x="926" y="795.6631">throws</text></g><!--MD5=[5a9de831ed687af60f8ef6770f3cfd28]
+link SymmetricCryptoTransactionManagerSpi to SymmetricCryptoIOException--><g id="link_SymmetricCryptoTransactionManagerSpi_SymmetricCryptoIOException"><path codeLine="114" d="M1221.83,749.0228 C1243.57,777.1588 1264.12,803.7408 1280.87,825.4218 " fill="none" id="SymmetricCryptoTransactionManagerSpi-to-SymmetricCryptoIOException" style="stroke:#27AE60;stroke-width:2.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#27AE60" points="1283.96,829.4118,1281.6064,819.8483,1280.8962,825.4604,1275.2841,824.7503,1283.96,829.4118" style="stroke:#27AE60;stroke-width:2.0;"/><polygon fill="#000000" points="1266.0574,794.2366,1262.852,785.2825,1258.2011,788.8766,1266.0574,794.2366" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="38" x="1272" y="795.6631">throws</text></g><!--MD5=[1a0c889105f8dc6eb911bfde21a469d5]
+@startuml
+title
+    Calypsonet - calypsonet-terminal-calypso-crypto-symmetric-java-api - 0.1.+ (2022-11-29)
+end title
+
+' == THEME ==
+
+'Couleurs issues de : https://htmlcolorcodes.com/fr/tableau-de-couleur/tableau-de-couleur-design-plat/
+!define C_GREY1 F8F9F9
+!define C_GREY2 F2F3F4
+!define C_GREY3 E5E7E9
+!define C_GREY4 D7DBDD
+!define C_GREY5 CACFD2
+!define C_GREY6 BDC3C7
+!define C_LINK 3498DB
+!define C_USE 27AE60
+
+' - - Styles that don't work with new version of plantuml - -
+skinparam stereotypeABorderColor #A9DCDF
+skinparam stereotypeIBorderColor #B4A7E5
+skinparam stereotypeCBorderColor #ADD1B2
+skinparam stereotypeEBorderColor #EB93DF
+' - - END - -
+
+skinparam ClassBorderThickness 2
+skinparam ArrowThickness 2
+
+' Yellow
+skinparam ClassBackgroundColor #FEFECE
+skinparam ClassBorderColor #D4AC0D
+' Red
+skinparam ClassBackgroundColor<<red>> #FDEDEC
+skinparam ClassBorderColor<<red>> #E74C3C
+hide <<red>> stereotype
+' Purple
+skinparam ClassBackgroundColor<<purple>> #F4ECF7
+skinparam ClassBorderColor<<purple>> #8E44AD
+hide <<purple>> stereotype
+' blue
+skinparam ClassBackgroundColor<<blue>> #EBF5FB
+skinparam ClassBorderColor<<blue>> #3498DB
+hide <<blue>> stereotype
+' Green
+skinparam ClassBackgroundColor<<green>> #E9F7EF
+skinparam ClassBorderColor<<green>> #27AE60
+hide <<green>> stereotype
+' Grey
+skinparam ClassBackgroundColor<<grey>> #EAECEE
+skinparam ClassBorderColor<<grey>> #2C3E50
+hide <<grey>> stereotype
+
+' == CONTENT ==
+
+package "org.calypsonet.terminal.calypso.crypto.symmetric" as api {
+    +class "**final** CryptoSymmetricApiProperties" as ApiProperties {
+        +{static} **final** String VERSION
+    }
+    package spi {
+        +interface SymmetricCryptoTransactionManagerFactorySpi {
+            +boolean isExtendedModeSupported ()
+            +int getMaxCardApduLengthSupported ()
+    
+            +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
+        }
+        +interface SymmetricCryptoTransactionManagerSpi {
+            +byte[] initTerminalSessionContext ()
+            +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
+            +byte[] updateTerminalSessionMac (byte[] cardApdu)
+            +byte[] finalizeTerminalSessionMac ()
+    
+            +byte[] generateTerminalSessionMac ()
+    
+            +void activateEncryption ()
+            +void deactivateEncryption ()
+    
+            +boolean isCardSessionMacValid (byte[] cardSessionMac)
+    
+            +void computeSvCommandSecurityData (SvCommandSecurityDataApi data)
+            +boolean isCardSvMacValid (byte[] cardSvMac)
+    
+            +byte[] cipherPinForPresentation (byte[] cardChallenge, byte[] pin, Byte kif, Byte kvc)
+            +byte[] cipherPinForModification (byte[] cardChallenge, byte[] currentPin, byte[] newPin, Byte kif, Byte kvc)
+            +byte[] generateCipheredCardKey (byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+
+            +void synchronize ()
+        }
+    }
+    +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException {
+        +SymmetricCryptoException (String message)
+        +SymmetricCryptoException (String message, Throwable cause)
+    }
+    +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException {
+        +SymmetricCryptoIOException (String message)
+        +SymmetricCryptoIOException (String message, Throwable cause)
+    }
+    +interface SvCommandSecurityDataApi {
+        +byte[] getSvGetRequest ()
+        +byte[] getSvGetResponse ()
+        +byte[] getSvCommandPartialRequest ()
+
+        +SvCommandSecurityDataApi setSerialNumber (byte[] serialNumber)
+        +SvCommandSecurityDataApi setTransactionNumber (byte[] transactionNumber)
+        +SvCommandSecurityDataApi setTerminalChallenge (byte[] terminalChallenge)
+        +SvCommandSecurityDataApi setTerminalSvMac (byte[] terminalSvMac)
+    }
+}
+
+' Associations
+
+SymmetricCryptoTransactionManagerFactorySpi ..> SymmetricCryptoTransactionManagerSpi #C_LINK : provide >
+
+SymmetricCryptoTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
+
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoException #C_USE : throws >
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #C_USE : throws >
+
+' == LAYOUT ==
+
+' == STYLE ==
+
+package api #C_GREY1 {}
+package spi #C_GREY2 {}
+
+interface SvCommandSecurityDataApi <<purple>>
+class SymmetricCryptoException <<purple>>
+class SymmetricCryptoIOException <<purple>>
+
+@enduml
+
+@startuml
+title
+    Calypsonet - calypsonet-terminal-calypso-crypto-symmetric-java-api - 0.1.+ (2022-11-29)
+end title
+
+
+
+skinparam stereotypeABorderColor #A9DCDF
+skinparam stereotypeIBorderColor #B4A7E5
+skinparam stereotypeCBorderColor #ADD1B2
+skinparam stereotypeEBorderColor #EB93DF
+
+skinparam ClassBorderThickness 2
+skinparam ArrowThickness 2
+
+skinparam ClassBackgroundColor #FEFECE
+skinparam ClassBorderColor #D4AC0D
+skinparam ClassBackgroundColor<<red>> #FDEDEC
+skinparam ClassBorderColor<<red>> #E74C3C
+hide <<red>> stereotype
+skinparam ClassBackgroundColor<<purple>> #F4ECF7
+skinparam ClassBorderColor<<purple>> #8E44AD
+hide <<purple>> stereotype
+skinparam ClassBackgroundColor<<blue>> #EBF5FB
+skinparam ClassBorderColor<<blue>> #3498DB
+hide <<blue>> stereotype
+skinparam ClassBackgroundColor<<green>> #E9F7EF
+skinparam ClassBorderColor<<green>> #27AE60
+hide <<green>> stereotype
+skinparam ClassBackgroundColor<<grey>> #EAECEE
+skinparam ClassBorderColor<<grey>> #2C3E50
+hide <<grey>> stereotype
+
+
+package "org.calypsonet.terminal.calypso.crypto.symmetric" as api {
+    +class "**final** CryptoSymmetricApiProperties" as ApiProperties {
+        +{static} **final** String VERSION
+    }
+    package spi {
+        +interface SymmetricCryptoTransactionManagerFactorySpi {
+            +boolean isExtendedModeSupported ()
+            +int getMaxCardApduLengthSupported ()
+    
+            +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
+        }
+        +interface SymmetricCryptoTransactionManagerSpi {
+            +byte[] initTerminalSessionContext ()
+            +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
+            +byte[] updateTerminalSessionMac (byte[] cardApdu)
+            +byte[] finalizeTerminalSessionMac ()
+    
+            +byte[] generateTerminalSessionMac ()
+    
+            +void activateEncryption ()
+            +void deactivateEncryption ()
+    
+            +boolean isCardSessionMacValid (byte[] cardSessionMac)
+    
+            +void computeSvCommandSecurityData (SvCommandSecurityDataApi data)
+            +boolean isCardSvMacValid (byte[] cardSvMac)
+    
+            +byte[] cipherPinForPresentation (byte[] cardChallenge, byte[] pin, Byte kif, Byte kvc)
+            +byte[] cipherPinForModification (byte[] cardChallenge, byte[] currentPin, byte[] newPin, Byte kif, Byte kvc)
+            +byte[] generateCipheredCardKey (byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+
+            +void synchronize ()
+        }
+    }
+    +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException {
+        +SymmetricCryptoException (String message)
+        +SymmetricCryptoException (String message, Throwable cause)
+    }
+    +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException {
+        +SymmetricCryptoIOException (String message)
+        +SymmetricCryptoIOException (String message, Throwable cause)
+    }
+    +interface SvCommandSecurityDataApi {
+        +byte[] getSvGetRequest ()
+        +byte[] getSvGetResponse ()
+        +byte[] getSvCommandPartialRequest ()
+
+        +SvCommandSecurityDataApi setSerialNumber (byte[] serialNumber)
+        +SvCommandSecurityDataApi setTransactionNumber (byte[] transactionNumber)
+        +SvCommandSecurityDataApi setTerminalChallenge (byte[] terminalChallenge)
+        +SvCommandSecurityDataApi setTerminalSvMac (byte[] terminalSvMac)
+    }
+}
+
+
+SymmetricCryptoTransactionManagerFactorySpi ..> SymmetricCryptoTransactionManagerSpi #3498DB : provide >
+
+SymmetricCryptoTransactionManagerSpi .left.> SvCommandSecurityDataApi #27AE60 : use >
+
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoException #27AE60 : throws >
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #27AE60 : throws >
+
+
+
+package api #F8F9F9 {}
+package spi #F2F3F4 {}
+
+interface SvCommandSecurityDataApi <<purple>>
+class SymmetricCryptoException <<purple>>
+class SymmetricCryptoIOException <<purple>>
+
+@enduml
+
+PlantUML version 1.2022.13(Sat Nov 19 14:22:17 CET 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: fr
+Country: FR
+--></g></svg>
