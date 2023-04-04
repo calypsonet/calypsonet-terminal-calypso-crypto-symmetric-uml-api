@@ -1,6 +1,6 @@
 @startuml
 title
-    Calypsonet - calypsonet-terminal-calypso-crypto-symmetric-java-api - 0.1.+ (2022-11-29)
+    Calypsonet - calypsonet-terminal-calypso-crypto-symmetric-java-api - 0.1.+ (2023-03-13)
 end title
 
 ' == THEME ==
@@ -63,6 +63,7 @@ package "org.calypsonet.terminal.calypso.crypto.symmetric" as api {
             +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
         }
         +interface SymmetricCryptoTransactionManagerSpi {
+            +void preInitTerminalSessionContext ()
             +byte[] initTerminalSessionContext ()
             +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
             +byte[] updateTerminalSessionMac (byte[] cardApdu)
@@ -119,10 +120,10 @@ SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #C_USE : thr
 ' == STYLE ==
 
 package api #C_GREY1 {}
-package spi #C_GREY2 {}
+package api.spi #C_GREY2 {}
 
-interface SvCommandSecurityDataApi <<purple>>
-class SymmetricCryptoException <<purple>>
-class SymmetricCryptoIOException <<purple>>
+interface api.SvCommandSecurityDataApi <<purple>>
+class api.SymmetricCryptoException <<purple>>
+class api.SymmetricCryptoIOException <<purple>>
 
 @enduml
