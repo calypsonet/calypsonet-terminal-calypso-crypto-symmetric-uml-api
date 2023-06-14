@@ -1,6 +1,8 @@
 @startuml
 title
-    Calypsonet - calypsonet-terminal-calypso-crypto-symmetric-java-api - 0.1.+ (2023-03-13)
+    <img:../assets/logo.png>
+
+    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-06-13)
 end title
 
 ' == THEME ==
@@ -51,7 +53,7 @@ hide <<grey>> stereotype
 
 ' == CONTENT ==
 
-package "org.calypsonet.terminal.calypso.crypto.symmetric" as api {
+package "calypso.crypto.symmetric" as api {
     +class "**final** CryptoSymmetricApiProperties" as ApiProperties {
         +{static} **final** String VERSION
     }
