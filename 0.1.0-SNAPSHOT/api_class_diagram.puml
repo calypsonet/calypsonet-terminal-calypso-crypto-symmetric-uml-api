@@ -1,8 +1,8 @@
 @startuml
 title
-    <img:../assets/logo.png>
+    <img:../assets/logo.svg{scale=0.2}>
 
-    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-06-13)
+    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-06-19)
 end title
 
 ' == THEME ==
@@ -16,6 +16,7 @@ end title
 !define C_GREY6 BDC3C7
 !define C_LINK 3498DB
 !define C_USE 27AE60
+!define C_THROW 2C3E50
 
 ' -- Styles that don't work with new version of plantuml --
 skinparam stereotypeABorderColor #A9DCDF
@@ -54,17 +55,17 @@ hide <<grey>> stereotype
 ' == CONTENT ==
 
 package "calypso.crypto.symmetric" as api {
-    +class "**final** CryptoSymmetricApiProperties" as ApiProperties {
+    +class "**final** SymmetricCryptoApiProperties" as ApiProperties <<green>> {
         +{static} **final** String VERSION
     }
     package spi {
-        +interface SymmetricCryptoTransactionManagerFactorySpi {
+        +interface SymmetricCryptoTransactionManagerFactorySpi <<red>> {
             +boolean isExtendedModeSupported ()
             +int getMaxCardApduLengthSupported ()
     
             +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
         }
-        +interface SymmetricCryptoTransactionManagerSpi {
+        +interface SymmetricCryptoTransactionManagerSpi <<red>> {
             +void preInitTerminalSessionContext ()
             +byte[] initTerminalSessionContext ()
             +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
@@ -88,11 +89,11 @@ package "calypso.crypto.symmetric" as api {
             +void synchronize ()
         }
     }
-    +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException {
+    +class "<<Exception>>\n**final** SymmetricCryptoException" as SymmetricCryptoException <<green>> {
         +SymmetricCryptoException (String message)
         +SymmetricCryptoException (String message, Throwable cause)
     }
-    +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException {
+    +class "<<Exception>>\n**final** SymmetricCryptoIOException" as SymmetricCryptoIOException <<green>> {
         +SymmetricCryptoIOException (String message)
         +SymmetricCryptoIOException (String message, Throwable cause)
     }
@@ -114,8 +115,8 @@ SymmetricCryptoTransactionManagerFactorySpi ..> SymmetricCryptoTransactionManage
 
 SymmetricCryptoTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
 
-SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoException #C_USE : throws >
-SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #C_USE : throws >
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoException #C_THROW : throw >
+SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #C_THROW : throw >
 
 ' == LAYOUT ==
 
@@ -123,9 +124,5 @@ SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #C_USE : thr
 
 package api #C_GREY1 {}
 package api.spi #C_GREY2 {}
-
-interface api.SvCommandSecurityDataApi <<purple>>
-class api.SymmetricCryptoException <<purple>>
-class api.SymmetricCryptoIOException <<purple>>
 
 @enduml
