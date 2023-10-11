@@ -2,7 +2,7 @@
 title
     <img:../assets/logo.svg{scale=0.2}>
 
-    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-06-19)
+    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-10-11)
 end title
 
 ' == THEME ==
@@ -62,11 +62,12 @@ package "calypso.crypto.symmetric" as api {
         +interface SymmetricCryptoTransactionManagerFactorySpi <<red>> {
             +boolean isExtendedModeSupported ()
             +int getMaxCardApduLengthSupported ()
+
+            +void preInitTerminalSessionContext ()
     
             +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
         }
         +interface SymmetricCryptoTransactionManagerSpi <<red>> {
-            +void preInitTerminalSessionContext ()
             +byte[] initTerminalSessionContext ()
             +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
             +byte[] updateTerminalSessionMac (byte[] cardApdu)
