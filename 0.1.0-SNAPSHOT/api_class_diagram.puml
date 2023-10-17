@@ -2,7 +2,7 @@
 title
     <img:../assets/logo.svg{scale=0.2}>
 
-    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-10-11)
+    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-10-17)
 end title
 
 ' == THEME ==
@@ -116,10 +116,10 @@ SymmetricCryptoTransactionManagerFactorySpi ..> SymmetricCryptoTransactionManage
 
 SymmetricCryptoTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
 
-SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoException #C_THROW : throw >
-SymmetricCryptoTransactionManagerSpi ..> SymmetricCryptoIOException #C_THROW : throw >
-
 ' == LAYOUT ==
+
+SymmetricCryptoTransactionManagerSpi .[hidden]. SymmetricCryptoException
+SymmetricCryptoTransactionManagerSpi .[hidden]. SymmetricCryptoIOException
 
 ' == STYLE ==
 
