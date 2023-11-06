@@ -2,7 +2,7 @@
 title
     <img:../assets/logo.svg{scale=0.2}>
 
-    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-10-17)
+    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-11-06)
 end title
 
 ' == THEME ==
@@ -59,15 +59,15 @@ package "calypso.crypto.symmetric" as api {
         +{static} **final** String VERSION
     }
     package spi {
-        +interface SymmetricCryptoTransactionManagerFactorySpi <<red>> {
+        +interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
             +boolean isExtendedModeSupported ()
             +int getMaxCardApduLengthSupported ()
 
             +void preInitTerminalSessionContext ()
     
-            +SymmetricCryptoTransactionManagerSpi createTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
+            +SymmetricCryptoCardTransactionManagerSpi createCardTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
         }
-        +interface SymmetricCryptoTransactionManagerSpi <<red>> {
+        +interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
             +byte[] initTerminalSessionContext ()
             +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
             +byte[] updateTerminalSessionMac (byte[] cardApdu)
@@ -112,14 +112,14 @@ package "calypso.crypto.symmetric" as api {
 
 ' Associations
 
-SymmetricCryptoTransactionManagerFactorySpi ..> SymmetricCryptoTransactionManagerSpi #C_LINK : provide >
+SymmetricCryptoCardTransactionManagerFactorySpi ..> SymmetricCryptoCardTransactionManagerSpi #C_LINK : provide >
 
-SymmetricCryptoTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
+SymmetricCryptoCardTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
 
 ' == LAYOUT ==
 
-SymmetricCryptoTransactionManagerSpi .[hidden]. SymmetricCryptoException
-SymmetricCryptoTransactionManagerSpi .[hidden]. SymmetricCryptoIOException
+SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCryptoException
+SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCryptoIOException
 
 ' == STYLE ==
 
