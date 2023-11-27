@@ -1,0 +1,129 @@
+@startuml
+title
+    <img:../assets/logo.svg{scale=0.2}>
+
+    Terminal Calypso Crypto Symmetric API 0.2.+ (2023-11-06)
+end title
+
+' == THEME ==
+
+'Couleurs issues de : https://htmlcolorcodes.com/fr/tableau-de-couleur/tableau-de-couleur-design-plat/
+!define C_GREY1 F8F9F9
+!define C_GREY2 F2F3F4
+!define C_GREY3 E5E7E9
+!define C_GREY4 D7DBDD
+!define C_GREY5 CACFD2
+!define C_GREY6 BDC3C7
+!define C_LINK 3498DB
+!define C_USE 27AE60
+!define C_THROW 2C3E50
+
+' -- Styles that don't work with new version of plantuml --
+skinparam stereotypeABorderColor #A9DCDF
+skinparam stereotypeIBorderColor #B4A7E5
+skinparam stereotypeCBorderColor #ADD1B2
+skinparam stereotypeEBorderColor #EB93DF
+' -- END --
+
+skinparam ClassBorderThickness 2
+skinparam ArrowThickness 2
+
+' Yellow
+skinparam ClassBackgroundColor #FEFECE
+skinparam ClassBorderColor #D4AC0D
+' Red
+skinparam ClassBackgroundColor<<red>> #FDEDEC
+skinparam ClassBorderColor<<red>> #E74C3C
+hide <<red>> stereotype
+' Purple
+skinparam ClassBackgroundColor<<purple>> #F4ECF7
+skinparam ClassBorderColor<<purple>> #8E44AD
+hide <<purple>> stereotype
+' blue
+skinparam ClassBackgroundColor<<blue>> #EBF5FB
+skinparam ClassBorderColor<<blue>> #3498DB
+hide <<blue>> stereotype
+' Green
+skinparam ClassBackgroundColor<<green>> #E9F7EF
+skinparam ClassBorderColor<<green>> #27AE60
+hide <<green>> stereotype
+' Grey
+skinparam ClassBackgroundColor<<grey>> #EAECEE
+skinparam ClassBorderColor<<grey>> #2C3E50
+hide <<grey>> stereotype
+
+' == CONTENT ==
+
+package "calypso.crypto.symmetric" as api {
+    +class "**final** SymmetricCryptoApiProperties" as ApiProperties <<green>> {
+        +{static} **final** String VERSION
+    }
+    package spi {
+        +interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
+            +boolean isExtendedModeSupported ()
+            +int getMaxCardApduLengthSupported ()
+
+            +void preInitTerminalSessionContext ()
+    
+            +SymmetricCryptoCardTransactionManagerSpi createCardTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
+        }
+        +interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
+            +byte[] initTerminalSessionContext ()
+            +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
+            +byte[] updateTerminalSessionMac (byte[] cardApdu)
+            +byte[] finalizeTerminalSessionMac ()
+    
+            +byte[] generateTerminalSessionMac ()
+    
+            +void activateEncryption ()
+            +void deactivateEncryption ()
+    
+            +boolean isCardSessionMacValid (byte[] cardSessionMac)
+    
+            +void computeSvCommandSecurityData (SvCommandSecurityDataApi data)
+            +boolean isCardSvMacValid (byte[] cardSvMac)
+    
+            +byte[] cipherPinForPresentation (byte[] cardChallenge, byte[] pin, Byte kif, Byte kvc)
+            +byte[] cipherPinForModification (byte[] cardChallenge, byte[] currentPin, byte[] newPin, Byte kif, Byte kvc)
+            +byte[] generateCipheredCardKey (byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+
+            +void synchronize ()
+        }
+    }
+    +class "<<Exception>>\n**final** SymmetricCryptoException" as SymmetricCryptoException <<green>> {
+        +SymmetricCryptoException (String message)
+        +SymmetricCryptoException (String message, Throwable cause)
+    }
+    +class "<<Exception>>\n**final** SymmetricCryptoIOException" as SymmetricCryptoIOException <<green>> {
+        +SymmetricCryptoIOException (String message)
+        +SymmetricCryptoIOException (String message, Throwable cause)
+    }
+    +interface SvCommandSecurityDataApi {
+        +byte[] getSvGetRequest ()
+        +byte[] getSvGetResponse ()
+        +byte[] getSvCommandPartialRequest ()
+
+        +SvCommandSecurityDataApi setSerialNumber (byte[] serialNumber)
+        +SvCommandSecurityDataApi setTransactionNumber (byte[] transactionNumber)
+        +SvCommandSecurityDataApi setTerminalChallenge (byte[] terminalChallenge)
+        +SvCommandSecurityDataApi setTerminalSvMac (byte[] terminalSvMac)
+    }
+}
+
+' Associations
+
+SymmetricCryptoCardTransactionManagerFactorySpi ..> SymmetricCryptoCardTransactionManagerSpi #C_LINK : provide >
+
+SymmetricCryptoCardTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
+
+' == LAYOUT ==
+
+SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCryptoException
+SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCryptoIOException
+
+' == STYLE ==
+
+package api #C_GREY1 {}
+package api.spi #C_GREY2 {}
+
+@enduml
