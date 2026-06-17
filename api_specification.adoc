@@ -1,0 +1,634 @@
+= Terminal Calypso Crypto Symmetric API -- Technical Specification
+Calypso Networks Association <https://calypsonet.org>
+v0.1.0-SNAPSHOT, {docdate}
+:doctype: book
+:toc: left
+:toclevels: 4
+:sectnums:
+:sectnumlevels: 4
+:sectanchors:
+:sectlinks:
+:data-uri:
+:icons: font
+:rouge-style: github
+:source-highlighter: rouge
+:docinfodir: {docdir}/assets
+:docinfo: shared
+:imagesoutdir: {docdir}/gen
+:pdf-themesdir: {docdir}/assets
+:pdf-theme: calypso
+:pdf-fontsdir: {docdir}/assets/fonts
+:experimental:
+:xrefstyle: short
+:figure-caption: Figure
+:table-caption: Table
+:example-caption: Example
+:appendix-caption: Appendix
+:organization: Calypso Networks Association
+:short-name: CNA
+:spec-name: Terminal Calypso Crypto Symmetric API
+:spec-id: CNA-TCCS-API
+:spec-version: 0.1.0-SNAPSHOT
+
+[abstract]
+== Abstract
+
+This document is the official technical specification of the **{spec-name}** standardised
+by the **{organization}** ({short-name}).
+It defines, in a language-agnostic way, the interfaces, classes, enumerations, exceptions, structural
+relationships and behavioural requirements that any conforming implementation of the {spec-name} MUST satisfy.
+
+The {spec-name} is part of the broader CNA *Terminal API* family. It is the SPI through which the *Terminal Calypso
+Card API* delegates every symmetric-key cryptographic operation required to operate Calypso secure sessions, SV
+commands, PIN ciphering and key loading.
+
+[discrete]
+== Document Status
+
+[cols="1h,3", grid=rows, frame=ends]
+|===
+| Specification ID    | {spec-id}
+| Version             | {spec-version}
+| Status              | Working Draft
+| Editor              | {organization}
+| Reference model     | link:api_class_diagram.puml[`api_class_diagram.puml`] / link:api_class_diagram.svg[`api_class_diagram.svg`]
+| Reference license   | Eclipse Public License -- v 2.0 (EPL-2.0)
+|===
+
+[discrete]
+== Revision History
+
+[cols="1,2,2,5", options="header"]
+|===
+| Version | Date | Editor | Description
+| {spec-version} | _TBD_ | CNA  | _Initial working draft._
+|===
+
+// =============================================================================
+== Introduction
+
+=== Purpose
+
+The {spec-name} defines the contract that a *symmetric-key crypto module* MUST expose so that a Calypso
+transaction manager can delegate the cryptographic computations required by a Calypso card. The module is
+typically backed by a SAM (Secure Application Module) but the API is intentionally agnostic to the underlying
+implementation: any component capable of producing the required MACs, signatures and ciphered blocks SHALL be
+acceptable.
+
+The contract covers:
+
+* the lifecycle of a Calypso secure session (initialisation, digest update, finalisation, mutual authentication),
+* the encryption/decryption of session data,
+* the computation of the security data exchanged during Stored Value (SV) operations,
+* the ciphering of PIN values for presentation or modification,
+* the generation of ciphered key blocks for card key loading.
+
+=== Scope
+
+This specification covers:
+
+* the factory used by the upstream layer to instantiate a transaction-manager SPI,
+* the transaction-manager SPI exposing the cryptographic primitives,
+* the data container used to carry SV security data,
+* the exceptions raised by the SPI.
+
+The following topics are *out of scope*:
+
+* the wire-level dialogue between the terminal and any underlying SAM,
+* the management of key material,
+* the cryptographic algorithms themselves -- only the input/output contract is normative.
+
+=== Conformance
+
+A software product conforms to this specification if and only if:
+
+. it implements every interface and class defined in <<sec_specification>> with the operations and semantics
+  prescribed in this document,
+. it raises exceptions exclusively of the types defined in <<sec_exceptions>> for the situations described.
+
+Throughout this specification, the key words **MUST**, **MUST NOT**, **SHALL**, **SHALL NOT**, **SHOULD**,
+**SHOULD NOT**, **RECOMMENDED**, **MAY** and **OPTIONAL** are to be interpreted as described in **RFC 2119** and
+**RFC 8174** when, and only when, they appear in all capitals.
+
+=== Document Conventions
+
+==== Naming
+
+Type names follow `UpperCamelCase`; operation, parameter and enumeration-member names follow `lowerCamelCase`.
+SPI types are suffixed with `Spi`. Names defined by this specification are reproduced exactly as they appear in
+the reference UML class diagram (<<sec_class_diagram>>).
+
+==== Language-agnostic types
+
+[cols="1,3,3", options="header"]
+|===
+| Symbolic type   | Description                                                     | Typical bindings
+| `string`        | Sequence of characters, UTF-8 encoded by default.                | `String`, `string`, `str`.
+| `boolean`       | Two-state truth value.                                           | `boolean`, `bool`.
+| `integer`       | Signed 32-bit integer.                                           | `int`, `Int32`.
+| `byte`          | Signed 8-bit value.                                              | `byte`, `i8`.
+| `byte array`    | Ordered sequence of octets.                                      | `byte[]`, `[u8]`, `bytes`.
+| `list<T>`       | Ordered collection of `T` values.                                | `List<T>`, `Vec<T>`.
+| `void`          | Indicates that an operation returns no value.                    | `void`, `Unit`, `None`.
+|===
+
+=== References
+
+[cols="1,1,4", options="header"]
+|===
+| Reference | Identifier | Title
+
+| [[ref_rfc2119]] [RFC 2119]
+| RFC 2119
+| _Key words for use in RFCs to Indicate Requirement Levels_, S. Bradner, March 1997.
+
+| [[ref_rfc8174]] [RFC 8174]
+| RFC 8174
+| _Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words_, B. Leiba, May 2017.
+
+| [[ref_cna_tcc]] [CNA-TCC-API]
+| CNA-TCC-API
+| _Terminal Calypso Card API Specification_, {organization}.
+|===
+
+// =============================================================================
+== Terms, Definitions and Abbreviations
+
+=== Terms and Definitions
+
+[cols="1,4", options="header"]
+|===
+| Term              | Definition
+
+| Crypto Module     | Component capable of performing the cryptographic operations described by this specification. Typically backed by a SAM but not required to be.
+| Extended Mode     | Operating mode that supports additional capabilities (such as larger APDUs or longer challenges) compared to the standard Calypso secure session.
+| Secure Session    | Calypso authenticated and integrity-protected exchange between the terminal and the card.
+| Session MAC       | Message Authentication Code computed over the data exchanged during a Calypso secure session.
+| SV Command        | Stored Value command (Load, Debit, Undebit) operating on a Calypso card SV counter.
+| SV MAC            | Message Authentication Code protecting an SV command exchange.
+| SPI               | Service Provider Interface -- an interface designed to be implemented by an extension module.
+|===
+
+=== Abbreviations
+
+[cols="1,4", options="header"]
+|===
+| Abbreviation | Expansion
+
+| APDU | Application Protocol Data Unit
+| CNA  | Calypso Networks Association
+| KIF  | Key Identifier
+| KVC  | Key Version Code
+| MAC  | Message Authentication Code
+| PIN  | Personal Identification Number
+| SAM  | Secure Application Module
+| SPI  | Service Provider Interface
+| SV   | Stored Value
+| UML  | Unified Modelling Language
+|===
+
+// =============================================================================
+[[sec_architecture]]
+== Architectural Overview
+
+=== Functional positioning
+
+[plantuml, target=architecture-overview, format=svg]
+....
+@startuml
+skinparam shadowing false
+skinparam roundCorner 8
+skinparam ArrowColor #2C3E50
+
+component "Terminal Calypso Card API\n[CNA-TCC-API]" as TCC
+component "Terminal Calypso Crypto\nSymmetric API (this spec)" as TCCS
+component "Symmetric Crypto Module\n(SAM or equivalent)" as Mod
+
+TCC --> TCCS : delegates crypto
+TCCS --> Mod : implemented by
+@enduml
+....
+
+=== Logical packages
+
+[cols="1,1,4", options="header"]
+|===
+| Package                                         | Role     | Summary
+
+| `calypso.crypto.symmetric`                      | Public API
+| Properties, data carrier and exceptions consumed by both sides of the SPI.
+
+| `calypso.crypto.symmetric.spi`                  | SPI
+| Interfaces implemented by the symmetric crypto module.
+|===
+
+[[sec_class_diagram]]
+=== Reference class diagram
+
+* link:api_class_diagram.puml[`api_class_diagram.puml`] -- canonical UML model,
+* link:api_class_diagram.svg[`api_class_diagram.svg`]   -- rendered representation,
+* link:api_class_diagram_diff.puml[`api_class_diagram_diff.puml`] -- delta against the previous version.
+
+image::../api_class_diagram.svg[Terminal Calypso Crypto Symmetric API class diagram, align=center]
+
+// =============================================================================
+[[sec_specification]]
+== API Specification
+
+=== Package calypso.crypto.symmetric
+
+[[type_SymmetricCryptoApiProperties]]
+==== SymmetricCryptoApiProperties
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Kind     | Final class
+| Package  | `calypso.crypto.symmetric`
+| Since    | 0.1.0
+| Purpose  | Exposes the immutable properties of the {spec-name}.
+|===
+
+===== Constants
+
+[cols="1,1,1,4", options="header"]
+|===
+| Name      | Type     | Since  | Description
+
+| `VERSION` | `string` | 0.1.0  | String representation of the version of the API implemented by the conforming binding (e.g. `"0.1"`). The value MUST be a dotted decimal of the form `MAJOR.MINOR`.
+|===
+
+[NOTE]
+====
+The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
+====
+
+[[type_SvCommandSecurityDataApi]]
+==== SvCommandSecurityDataApi
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Kind     | Interface
+| Package  | `calypso.crypto.symmetric`
+| Since    | 0.1.0
+| Purpose  | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
+|===
+
+===== Operations
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `getSvGetRequest() -> byte array`
+| Since       | 0.1.0
+| Description | Returns the *SV Get* ingoing command data.
+| Returns     | A non-empty `byte array` containing the *SV Get* APDU request data.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `getSvGetResponse() -> byte array`
+| Since       | 0.1.0
+| Description | Returns the *SV Get* outgoing command data.
+| Returns     | A non-empty `byte array` containing the *SV Get* APDU response data.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `getSvCommandPartialRequest() -> byte array`
+| Since       | 0.1.0
+| Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module MUST later be appended.
+| Returns     | A non-empty `byte array` containing the *SV Load/Debit/Undebit* APDU partial request.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1.0
+| Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `serialNumber` -- the serial number to be used.
+| Returns     | The current instance, to allow fluent composition.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1.0
+| Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `transactionNumber` -- the transaction number to be used.
+| Returns     | The current instance.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1.0
+| Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `terminalChallenge` -- the terminal challenge to be used.
+| Returns     | The current instance.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1.0
+| Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
+| Returns     | The current instance.
+| Throws      | None.
+|===
+
+=== Package calypso.crypto.symmetric.spi
+
+[[type_SymmetricCryptoCardTransactionManagerFactorySpi]]
+==== SymmetricCryptoCardTransactionManagerFactorySpi
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Kind     | Interface (SPI)
+| Package  | `calypso.crypto.symmetric.spi`
+| Since    | 0.1.0
+| Purpose  | Factory of <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>. Implemented by the crypto module.
+|===
+
+===== Operations
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `isExtendedModeSupported() -> boolean`
+| Since       | 0.1.0
+| Description | Indicates whether the *extended* mode is supported by the crypto module.
+| Returns     | `true` if the extended mode is supported, `false` otherwise.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `getMaxCardApduLengthSupported() -> integer`
+| Since       | 0.1.0
+| Description | Returns the maximum card APDU length supported by the crypto module.
+| Returns     | A positive `integer`.
+| Throws      | None.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `preInitTerminalSessionContext() -> void`
+| Since       | 0.1.0
+| Description | Retrieves and stores the terminal challenge in the crypto module image for later use.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature
+| `createCardTransactionManager(cardKeyDiversifier: byte array, useExtendedMode: boolean, transactionAuditData: list<byte array>) -> SymmetricCryptoCardTransactionManagerSpi`
+| Since       | 0.1.0
+| Description | Returns a new <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
+| Parameters
+| `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
+  `useExtendedMode`      -- requests the use of the extended mode if supported by the crypto module. +
+  `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
+| Returns     | A non-`null` <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
+| Throws      | `IllegalStateException` -- if the extended mode is requested but not supported.
+|===
+
+[[type_SymmetricCryptoCardTransactionManagerSpi]]
+==== SymmetricCryptoCardTransactionManagerSpi
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Kind     | Interface (SPI)
+| Package  | `calypso.crypto.symmetric.spi`
+| Since    | 0.1.0
+| Purpose  | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<type_SymmetricCryptoCardTransactionManagerFactorySpi,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
+|===
+
+Every operation MUST raise either `SymmetricCryptoException` (internal error) or `SymmetricCryptoIOException`
+(communication-level error) when the cryptographic computation cannot be completed.
+
+===== Operations
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `initTerminalSecureSessionContext() -> byte array`
+| Since       | 0.1.0
+| Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
+| Returns     | The terminal challenge.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `initTerminalSessionMac(openSecureSessionDataOut: byte array, kif: byte, kvc: byte) -> void`
+| Since       | 0.1.0
+| Description | Stores the data needed to initialise the session MAC computation for a *Secure Session*.
+| Parameters
+| `openSecureSessionDataOut` -- the data out from the card *Open Secure Session* command. +
+  `kif` -- the card KIF. +
+  `kvc` -- the card KVC.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `updateTerminalSessionMac(cardApdu: byte array) -> byte array`
+| Since       | 0.1.0
+| Description
+| Updates the digest computation with data sent or received from the card. Returns the encrypted/decrypted data
+  when the encryption is active.
+| Parameters  | `cardApdu` -- a `byte array` containing either the input or output data of a card command APDU.
+| Returns     | `null` if the encryption is not active; the ciphered or deciphered command data otherwise.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `finalizeTerminalSessionMac() -> byte array`
+| Since       | 0.1.0
+| Description | Finalises the digest computation and returns the terminal part of the session MAC.
+| Returns     | A `byte array` containing the terminal session MAC.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `generateTerminalSessionMac() -> byte array`
+| Since       | 0.1.0
+| Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
+| Returns     | A `byte array` containing the terminal session MAC.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `activateEncryption() -> void`
+| Since       | 0.1.0
+| Description | Activates the encryption/decryption of the data sent/received during the secure session.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `deactivateEncryption() -> void`
+| Since       | 0.1.0
+| Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `isCardSessionMacValid(cardSessionMac: byte array) -> boolean`
+| Since       | 0.1.0
+| Description | Verifies the card part of the session MAC, finalising the mutual authentication process.
+| Parameters  | `cardSessionMac` -- the card session MAC to verify.
+| Returns     | `true` if the card session MAC is validated, `false` otherwise.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
+| Since       | 0.1.0
+| Description | Computes the data needed to operate SV card commands and writes it back to the provided container.
+| Parameters  | `data` -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `isCardSvMacValid(cardSvMac: byte array) -> boolean`
+| Since       | 0.1.0
+| Description | Verifies the SV card MAC.
+| Parameters  | `cardSvMac` -- the card SV MAC to verify.
+| Returns     | `true` if the card SV MAC is validated, `false` otherwise.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `cipherPinForPresentation(cardChallenge: byte array, pin: byte array, kif: byte, kvc: byte) -> byte array`
+| Since       | 0.1.0
+| Description
+| Computes a block of encrypted data to be sent to the card for an enciphered PIN presentation.
+
+  *Note:* the `kif` and `kvc` parameters MUST be ignored when PIN verification is performed within a Secure Session.
+| Parameters
+| `cardChallenge` -- the card challenge. +
+  `pin`           -- the 4-byte PIN value. +
+  `kif`           -- the PIN encryption key KIF. +
+  `kvc`           -- the PIN encryption key KVC.
+| Returns     | A `byte array` containing the encrypted data block to send to the card.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `cipherPinForModification(cardChallenge: byte array, currentPin: byte array, newPin: byte array, kif: byte, kvc: byte) -> byte array`
+| Since       | 0.1.0
+| Description
+| Computes a block of encrypted data to be sent to the card for a PIN modification.
+
+  *Note:* the `kif` and `kvc` parameters MUST be ignored when PIN modification is performed within a Secure Session.
+| Parameters
+| `cardChallenge` -- the card challenge. +
+  `currentPin`    -- the 4-byte current PIN value. +
+  `newPin`        -- the 4-byte new PIN value. +
+  `kif`           -- the PIN encryption key KIF. +
+  `kvc`           -- the PIN encryption key KVC.
+| Returns     | A `byte array` containing the encrypted data block to send to the card.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `generateCipheredCardKey(cardChallenge: byte array, issuerKeyKif: byte, issuerKeyKvc: byte, targetKeyKif: byte, targetKeyKvc: byte) -> byte array`
+| Since       | 0.1.0
+| Description | Generates an encrypted key data block for loading a key into a card.
+| Parameters
+| `cardChallenge` -- the card challenge. +
+  `issuerKeyKif`  -- the issuer key KIF. +
+  `issuerKeyKvc`  -- the issuer key KVC. +
+  `targetKeyKif`  -- the target key KIF. +
+  `targetKeyKvc`  -- the target key KVC.
+| Returns     | A `byte array` containing the encrypted data block to send to the card.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Signature   | `synchronize() -> void`
+| Since       | 0.1.0
+| Description | Synchronises data of the associated card transaction crypto extension if needed.
+| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+|===
+
+// =============================================================================
+[[sec_exceptions]]
+== Exceptions
+
+All exception types defined by this specification are *checked* (they extend the language's base `Exception`
+class) and MUST be declared by the operations that may raise them.
+
+[[type_SymmetricCryptoException]]
+=== SymmetricCryptoException
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Kind     | Checked exception (final)
+| Package  | `calypso.crypto.symmetric`
+| Since    | 0.1.0
+| Purpose  | Indicates that an internal error occurred when processing a command.
+|===
+
+===== Constructors
+
+* `SymmetricCryptoException(message: string)` -- _since 0.1.0_.
+* `SymmetricCryptoException(message: string, cause: throwable)` -- _since 0.1.0_.
+
+[[type_SymmetricCryptoIOException]]
+=== SymmetricCryptoIOException
+
+[cols="1h,4", grid=rows, frame=ends]
+|===
+| Kind     | Checked exception (final)
+| Package  | `calypso.crypto.symmetric`
+| Since    | 0.1.0
+| Purpose  | Indicates that an IO error occurred when processing a command.
+|===
+
+===== Constructors
+
+* `SymmetricCryptoIOException(message: string)` -- _since 0.1.0_.
+* `SymmetricCryptoIOException(message: string, cause: throwable)` -- _since 0.1.0_.
+
+// =============================================================================
+[[sec_behaviours]]
+== Behavioural Requirements
+
+. The crypto module MUST preserve the order in which `updateTerminalSessionMac` is invoked: the digest is updated
+  incrementally and depends on the sequence of inputs.
+. `finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be called *after* every `updateTerminalSessionMac`
+  call corresponding to APDUs exchanged during the secure session.
+. After `activateEncryption` has been called, every subsequent `updateTerminalSessionMac` invocation MUST return
+  the ciphered or deciphered counterpart of the supplied data.
+. After `deactivateEncryption` has been called, encryption MUST stop and `updateTerminalSessionMac` MUST again
+  return `null`.
+. `computeSvCommandSecurityData` MUST populate every field of the supplied <<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>
+  required to assemble the complete SV command APDU.
+
+// =============================================================================
+[appendix]
+== Copyright and License
+
+Copyright (c) {organization}, https://calypsonet.org.
+
+This specification is distributed under the terms of the *Eclipse Public License -- v 2.0* (EPL-2.0). A copy of the
+license is available in the link:LICENSE[`LICENSE`] file alongside this document and at
+https://www.eclipse.org/legal/epl-2.0/.
