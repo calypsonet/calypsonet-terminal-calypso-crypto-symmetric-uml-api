@@ -114,8 +114,8 @@ Throughout this specification, the key words **MUST**, **MUST NOT**, **SHALL**, 
 ==== Naming
 
 Type names follow `UpperCamelCase`; operation, parameter and enumeration-member names follow `lowerCamelCase`.
-SPI types are suffixed with `Spi`. Names defined by this specification are reproduced exactly as they appear in
-the reference UML class diagram (<<sec_class_diagram>>).
+SPI types are suffixed with `Spi`. Names defined by this specification are reproduced as-is in the UML class
+diagram (<<sec_class_diagram>>), which provides a visual representation of the specification.
 
 ==== Language-agnostic types
 
@@ -223,6 +223,9 @@ TCCS --> Mod : implemented by
 
 [[sec_class_diagram]]
 === UML class diagram
+
+The following UML class diagram provides a visual representation of the types and relationships defined by this specification:
+
 
 
 [plantuml, target="api_class_diagram", format="svg"]
