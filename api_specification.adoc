@@ -1,4 +1,4 @@
-= Terminal Calypso Crypto Symmetric API -- Technical Specification
+= Terminal Calypso Crypto Symmetric API -- Specification
 Calypso Networks Association <https://calypsonet.org>
 v0.1.0-SNAPSHOT, {docdate}
 :doctype: book
@@ -45,23 +45,18 @@ commands, PIN ciphering and key loading.
 [discrete]
 == Document Status
 
-[cols="1h,3", grid=rows, frame=ends]
+[cols="1h,3", grid=rows, frame=all]
 |===
 | Specification ID    | {spec-id}
 | Version             | {spec-version}
-| Status              | Working Draft
+| Status              | Working Draft -- submitted to the CNA TC Terminal for validation
 | Editor              | {organization}
 | Reference license   | Eclipse Public License -- v 2.0 (EPL-2.0)
 |===
 
-[discrete]
-== Revision History
-
-[cols="1,2,2,5", options="header"]
-|===
-| Version | Date | Editor | Description
-| {spec-version} | _TBD_ | CNA  | _Initial working draft._
-|===
+NOTE: The present document specifies the {spec-version} of the {spec-name} as an *initial release*, without
+historical reference to earlier drafts. It defines a single, coherent baseline against which conforming
+implementations are evaluated.
 
 // =============================================================================
 == Introduction
@@ -242,7 +237,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [[type_SymmetricCryptoApiProperties]]
 ==== SymmetricCryptoApiProperties
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Final class
 | Package  | `calypso.crypto.symmetric`
@@ -267,7 +262,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 [[type_SvCommandSecurityDataApi]]
 ==== SvCommandSecurityDataApi
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Interface
 | Package  | `calypso.crypto.symmetric`
@@ -277,7 +272,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 
 ===== Operations
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getSvGetRequest() -> byte array`
 | Since       | 0.1.0
@@ -286,7 +281,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getSvGetResponse() -> byte array`
 | Since       | 0.1.0
@@ -295,7 +290,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getSvCommandPartialRequest() -> byte array`
 | Since       | 0.1.0
@@ -304,7 +299,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1.0
@@ -314,7 +309,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1.0
@@ -324,7 +319,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1.0
@@ -334,7 +329,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1.0
@@ -349,7 +344,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 [[type_SymmetricCryptoCardTransactionManagerFactorySpi]]
 ==== SymmetricCryptoCardTransactionManagerFactorySpi
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Interface (SPI)
 | Package  | `calypso.crypto.symmetric.spi`
@@ -359,7 +354,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 
 ===== Operations
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isExtendedModeSupported() -> boolean`
 | Since       | 0.1.0
@@ -368,7 +363,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getMaxCardApduLengthSupported() -> integer`
 | Since       | 0.1.0
@@ -377,7 +372,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 | Throws      | None.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `preInitTerminalSessionContext() -> void`
 | Since       | 0.1.0
@@ -387,7 +382,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature
 | `createCardTransactionManager(cardKeyDiversifier: byte array, useExtendedMode: boolean, transactionAuditData: list<byte array>) -> SymmetricCryptoCardTransactionManagerSpi`
@@ -404,7 +399,7 @@ The `SymmetricCryptoApiProperties` type SHALL NOT be instantiated.
 [[type_SymmetricCryptoCardTransactionManagerSpi]]
 ==== SymmetricCryptoCardTransactionManagerSpi
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Interface (SPI)
 | Package  | `calypso.crypto.symmetric.spi`
@@ -417,7 +412,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 ===== Operations
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `initTerminalSecureSessionContext() -> byte array`
 | Since       | 0.1.0
@@ -426,7 +421,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `initTerminalSessionMac(openSecureSessionDataOut: byte array, kif: byte, kvc: byte) -> void`
 | Since       | 0.1.0
@@ -438,7 +433,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `updateTerminalSessionMac(cardApdu: byte array) -> byte array`
 | Since       | 0.1.0
@@ -450,7 +445,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `finalizeTerminalSessionMac() -> byte array`
 | Since       | 0.1.0
@@ -459,7 +454,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `generateTerminalSessionMac() -> byte array`
 | Since       | 0.1.0
@@ -468,7 +463,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `activateEncryption() -> void`
 | Since       | 0.1.0
@@ -476,7 +471,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `deactivateEncryption() -> void`
 | Since       | 0.1.0
@@ -484,7 +479,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isCardSessionMacValid(cardSessionMac: byte array) -> boolean`
 | Since       | 0.1.0
@@ -494,7 +489,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
 | Since       | 0.1.0
@@ -503,7 +498,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isCardSvMacValid(cardSvMac: byte array) -> boolean`
 | Since       | 0.1.0
@@ -513,7 +508,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForPresentation(cardChallenge: byte array, pin: byte array, kif: byte, kvc: byte) -> byte array`
 | Since       | 0.1.0
@@ -530,7 +525,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForModification(cardChallenge: byte array, currentPin: byte array, newPin: byte array, kif: byte, kvc: byte) -> byte array`
 | Since       | 0.1.0
@@ -548,7 +543,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `generateCipheredCardKey(cardChallenge: byte array, issuerKeyKif: byte, issuerKeyKvc: byte, targetKeyKif: byte, targetKeyKvc: byte) -> byte array`
 | Since       | 0.1.0
@@ -563,7 +558,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
 |===
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `synchronize() -> void`
 | Since       | 0.1.0
@@ -581,7 +576,7 @@ class) and MUST be declared by the operations that may raise them.
 [[type_SymmetricCryptoException]]
 === SymmetricCryptoException
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Checked exception (final)
 | Package  | `calypso.crypto.symmetric`
@@ -597,7 +592,7 @@ class) and MUST be declared by the operations that may raise them.
 [[type_SymmetricCryptoIOException]]
 === SymmetricCryptoIOException
 
-[cols="1h,4", grid=rows, frame=ends]
+[cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Checked exception (final)
 | Package  | `calypso.crypto.symmetric`
