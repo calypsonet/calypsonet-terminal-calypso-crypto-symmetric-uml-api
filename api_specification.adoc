@@ -221,8 +221,6 @@ TCCS --> Mod : implemented by
 
 The following UML class diagram provides a visual representation of the types and relationships defined by this specification:
 
-
-
 [plantuml, target="api_class_diagram", format="svg"]
 ----
 include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diagram, align=center]
@@ -584,11 +582,6 @@ class) and MUST be declared by the operations that may raise them.
 | Purpose  | Indicates that an internal error occurred when processing a command.
 |===
 
-===== Constructors
-
-* `SymmetricCryptoException(message: string)` -- _since 0.1.0_.
-* `SymmetricCryptoException(message: string, cause: throwable)` -- _since 0.1.0_.
-
 [[type_SymmetricCryptoIOException]]
 === SymmetricCryptoIOException
 
@@ -599,11 +592,6 @@ class) and MUST be declared by the operations that may raise them.
 | Since    | 0.1.0
 | Purpose  | Indicates that an IO error occurred when processing a command.
 |===
-
-===== Constructors
-
-* `SymmetricCryptoIOException(message: string)` -- _since 0.1.0_.
-* `SymmetricCryptoIOException(message: string, cause: throwable)` -- _since 0.1.0_.
 
 // =============================================================================
 [[sec_behaviours]]
@@ -626,6 +614,4 @@ class) and MUST be declared by the operations that may raise them.
 
 Copyright (c) {organization}, https://calypsonet.org.
 
-This specification is distributed under the terms of the *Eclipse Public License -- v 2.0* (EPL-2.0). A copy of the
-license is available in the link:LICENSE[`LICENSE`] file alongside this document and at
-https://www.eclipse.org/legal/epl-2.0/.
+This specification is distributed under the terms of the *Eclipse Public License -- v 2.0* (EPL-2.0). See https://www.eclipse.org/legal/epl-2.0/ for the license text.
