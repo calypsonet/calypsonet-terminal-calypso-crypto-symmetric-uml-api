@@ -235,31 +235,6 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 
 === Package calypso.crypto.symmetric
 
-[[type_SymmetricCryptoApiProperties]]
-==== SymmetricCryptoApiProperties
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Kind     | Final class
-| Package  | `calypso.crypto.symmetric`
-| Since    | 0.1.0
-| Purpose  | Exposes the immutable properties of the {spec-name}.
-|===
-
-===== Constants
-
-[cols="1,1,1,4", options="header"]
-|===
-| Name      | Type     | Since  | Description
-
-| `VERSION` | `string` | 0.1.0  | String representation of the version of the API implemented by the conforming binding (e.g. `"0.1"`). The value MUST be a dotted decimal of the form `MAJOR.MINOR`.
-|===
-
-[NOTE]
-====
-The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
-====
-
 [[type_SvCommandSecurityDataApi]]
 ==== SvCommandSecurityDataApi
 
@@ -339,6 +314,31 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Returns     | The current instance.
 | Throws      | None.
 |===
+
+[[type_SymmetricCryptoApiProperties]]
+==== SymmetricCryptoApiProperties
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Kind     | Final class
+| Package  | `calypso.crypto.symmetric`
+| Since    | 0.1.0
+| Purpose  | Exposes the immutable properties of the {spec-name}.
+|===
+
+===== Constants
+
+[cols="1,1,1,4", options="header"]
+|===
+| Name      | Type     | Since  | Description
+
+| `VERSION` | `string` | 0.1.0  | String representation of the version of the API implemented by the conforming binding (e.g. `"0.1"`). The value MUST be a dotted decimal of the form `MAJOR.MINOR`.
+|===
+
+[NOTE]
+====
+The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
+====
 
 === Package calypso.crypto.symmetric.spi
 
