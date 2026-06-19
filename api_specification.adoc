@@ -281,7 +281,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 | Since       | 0.1.0
 | Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `serialNumber` -- the serial number to be used.
-| Returns     | The current instance, to allow fluent composition.
+| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
 | Throws      | None.
 |===
 
@@ -291,7 +291,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 | Since       | 0.1.0
 | Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `transactionNumber` -- the transaction number to be used.
-| Returns     | The current instance.
+| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
 | Throws      | None.
 |===
 
@@ -301,7 +301,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 | Since       | 0.1.0
 | Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalChallenge` -- the terminal challenge to be used.
-| Returns     | The current instance.
+| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
 | Throws      | None.
 |===
 
@@ -311,7 +311,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 | Since       | 0.1.0
 | Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
-| Returns     | The current instance.
+| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
 | Throws      | None.
 |===
 
@@ -419,7 +419,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1.0
 | Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
 | Returns     | The terminal challenge.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -431,7 +433,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | `openSecureSessionDataOut` -- the data out from the card *Open Secure Session* command. +
   `kif` -- the card KIF. +
   `kvc` -- the card KVC.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -443,7 +447,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   when the encryption is active.
 | Parameters  | `cardApdu` -- a `byte array` containing either the input or output data of a card command APDU.
 | Returns     | `null` if the encryption is not active; the ciphered or deciphered command data otherwise.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -452,7 +458,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1.0
 | Description | Finalises the digest computation and returns the terminal part of the session MAC.
 | Returns     | A `byte array` containing the terminal session MAC.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -461,7 +469,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1.0
 | Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
 | Returns     | A `byte array` containing the terminal session MAC.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -469,7 +479,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `activateEncryption() -> void`
 | Since       | 0.1.0
 | Description | Activates the encryption/decryption of the data sent/received during the secure session.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -477,7 +489,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `deactivateEncryption() -> void`
 | Since       | 0.1.0
 | Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -487,7 +501,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Verifies the card part of the session MAC, finalising the mutual authentication process.
 | Parameters  | `cardSessionMac` -- the card session MAC to verify.
 | Returns     | `true` if the card session MAC is validated, `false` otherwise.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -496,7 +512,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1.0
 | Description | Computes the data needed to operate SV card commands and writes it back to the provided container.
 | Parameters  | `data` -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -506,7 +524,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Verifies the SV card MAC.
 | Parameters  | `cardSvMac` -- the card SV MAC to verify.
 | Returns     | `true` if the card SV MAC is validated, `false` otherwise.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -523,7 +543,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -541,7 +563,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -556,7 +580,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `targetKeyKif`  -- the target key KIF. +
   `targetKeyKvc`  -- the target key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 [cols="1h,4", grid=rows, frame=all]
@@ -564,7 +590,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `synchronize() -> void`
 | Since       | 0.1.0
 | Description | Synchronises data of the associated card transaction crypto extension if needed.
-| Throws      | `SymmetricCryptoException`, `SymmetricCryptoIOException`.
+| Throws
+| `SymmetricCryptoException` -- if an internal error occurred. +
+  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
 // =============================================================================
