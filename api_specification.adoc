@@ -391,7 +391,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Description | Returns a new <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Parameters
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
-  `useExtendedMode`      -- requests the use of the extended mode if supported by the crypto module. +
+  `useExtendedMode`      -- requests the use of the extended mode if supported by the crypto service. +
   `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
 | Returns     | A non-`null` <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Throws      | `IllegalStateException` -- if the extended mode is requested but not supported.
@@ -499,7 +499,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `isCardSessionMacValid(cardSessionMac: byte array) -> boolean`
 | Since       | 0.1.0
 | Description | Verifies the card part of the session MAC, finalising the mutual authentication process.
-| Parameters  | `cardSessionMac` -- the card session MAC to verify.
+| Parameters  | `cardSessionMac` -- a `byte array` containing the card session MAC.
 | Returns     | `true` if the card session MAC is validated, `false` otherwise.
 | Throws
 | `SymmetricCryptoException` -- if an internal error occurred. +
@@ -522,7 +522,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `isCardSvMacValid(cardSvMac: byte array) -> boolean`
 | Since       | 0.1.0
 | Description | Verifies the SV card MAC.
-| Parameters  | `cardSvMac` -- the card SV MAC to verify.
+| Parameters  | `cardSvMac` -- a `byte array` containing the card SV MAC.
 | Returns     | `true` if the card SV MAC is validated, `false` otherwise.
 | Throws
 | `SymmetricCryptoException` -- if an internal error occurred. +
@@ -538,8 +538,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
   *Note:* the `kif` and `kvc` parameters MUST be ignored when PIN verification is performed within a Secure Session.
 | Parameters
-| `cardChallenge` -- the card challenge. +
-  `pin`           -- the 4-byte PIN value. +
+| `cardChallenge` -- a `byte array` containing the card challenge. +
+  `pin`           -- a `byte array` containing the 4-byte PIN value. +
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
@@ -557,9 +557,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
   *Note:* the `kif` and `kvc` parameters MUST be ignored when PIN modification is performed within a Secure Session.
 | Parameters
-| `cardChallenge` -- the card challenge. +
-  `currentPin`    -- the 4-byte current PIN value. +
-  `newPin`        -- the 4-byte new PIN value. +
+| `cardChallenge` -- a `byte array` containing the card challenge. +
+  `currentPin`    -- a `byte array` containing the 4-byte current PIN value. +
+  `newPin`        -- a `byte array` containing the 4-byte new PIN value. +
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
@@ -574,7 +574,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1.0
 | Description | Generates an encrypted key data block for loading a key into a card.
 | Parameters
-| `cardChallenge` -- the card challenge. +
+| `cardChallenge` -- a `byte array` containing the card challenge. +
   `issuerKeyKif`  -- the issuer key KIF. +
   `issuerKeyKvc`  -- the issuer key KVC. +
   `targetKeyKif`  -- the target key KIF. +
