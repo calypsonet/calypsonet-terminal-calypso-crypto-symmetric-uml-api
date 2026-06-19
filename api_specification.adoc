@@ -607,7 +607,7 @@ class) and MUST be declared by the operations that may raise them.
 
 [cols="1h,4", grid=rows, frame=all]
 |===
-| Kind     | Checked exception (final)
+| Kind     | Checked exception
 | Package  | `calypso.crypto.symmetric`
 | Since    | 0.1.0
 | Purpose  | Indicates that an internal error occurred when processing a command.
@@ -618,7 +618,7 @@ class) and MUST be declared by the operations that may raise them.
 
 [cols="1h,4", grid=rows, frame=all]
 |===
-| Kind     | Checked exception (final)
+| Kind     | Checked exception
 | Package  | `calypso.crypto.symmetric`
 | Since    | 0.1.0
 | Purpose  | Indicates that an IO error occurred when processing a command.
