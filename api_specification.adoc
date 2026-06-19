@@ -242,7 +242,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 |===
 | Kind     | Interface
 | Package  | `calypso.crypto.symmetric`
-| Since    | 0.1.0
+| Since    | 0.1
 | Purpose  | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
 |===
 
@@ -251,7 +251,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getSvGetRequest() -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Returns the *SV Get* ingoing command data.
 | Returns     | A non-empty `byte array` containing the *SV Get* APDU request data.
 | Throws      | None.
@@ -260,7 +260,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getSvGetResponse() -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Returns the *SV Get* outgoing command data.
 | Returns     | A non-empty `byte array` containing the *SV Get* APDU response data.
 | Throws      | None.
@@ -269,7 +269,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getSvCommandPartialRequest() -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module MUST later be appended.
 | Returns     | A non-empty `byte array` containing the *SV Load/Debit/Undebit* APDU partial request.
 | Throws      | None.
@@ -278,7 +278,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `serialNumber` -- the serial number to be used.
 | Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
@@ -288,7 +288,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `transactionNumber` -- the transaction number to be used.
 | Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
@@ -298,7 +298,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalChallenge` -- the terminal challenge to be used.
 | Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
@@ -308,7 +308,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
 | Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
@@ -322,7 +322,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 |===
 | Kind     | Final class
 | Package  | `calypso.crypto.symmetric`
-| Since    | 0.1.0
+| Since    | 0.1
 | Purpose  | Exposes the immutable properties of the {spec-name}.
 |===
 
@@ -332,7 +332,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 |===
 | Name      | Type     | Since  | Description
 
-| `VERSION` | `string` | 0.1.0  | String representation of the version of the API implemented by the conforming binding (e.g. `"0.1"`). The value MUST be a dotted decimal of the form `MAJOR.MINOR`.
+| `VERSION` | `string` | 0.1  | String representation of the version of the API implemented by the conforming binding (e.g. `"0.1"`). The value MUST be a dotted decimal of the form `MAJOR.MINOR`.
 |===
 
 [NOTE]
@@ -349,7 +349,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 |===
 | Kind     | Interface (SPI)
 | Package  | `calypso.crypto.symmetric.spi`
-| Since    | 0.1.0
+| Since    | 0.1
 | Purpose  | Factory of <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>. Implemented by the crypto module.
 |===
 
@@ -358,7 +358,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isExtendedModeSupported() -> boolean`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Indicates whether the *extended* mode is supported by the crypto module.
 | Returns     | `true` if the extended mode is supported, `false` otherwise.
 | Throws      | None.
@@ -367,7 +367,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `getMaxCardApduLengthSupported() -> integer`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Returns the maximum card APDU length supported by the crypto module.
 | Returns     | A positive `integer`.
 | Throws      | None.
@@ -376,7 +376,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `preInitTerminalSessionContext() -> void`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Retrieves and stores the terminal challenge in the crypto module image for later use.
 | Throws
 | `SymmetricCryptoException` -- if an internal error occurred. +
@@ -387,7 +387,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 |===
 | Signature
 | `createCardTransactionManager(cardKeyDiversifier: byte array, useExtendedMode: boolean, transactionAuditData: list<byte array>) -> SymmetricCryptoCardTransactionManagerSpi`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Returns a new <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Parameters
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
@@ -404,7 +404,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 |===
 | Kind     | Interface (SPI)
 | Package  | `calypso.crypto.symmetric.spi`
-| Since    | 0.1.0
+| Since    | 0.1
 | Purpose  | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<type_SymmetricCryptoCardTransactionManagerFactorySpi,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
 |===
 
@@ -416,7 +416,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `initTerminalSecureSessionContext() -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
 | Returns     | The terminal challenge.
 | Throws
@@ -427,7 +427,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `initTerminalSessionMac(openSecureSessionDataOut: byte array, kif: byte, kvc: byte) -> void`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Stores the data needed to initialise the session MAC computation for a *Secure Session*.
 | Parameters
 | `openSecureSessionDataOut` -- the data out from the card *Open Secure Session* command. +
@@ -441,7 +441,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `updateTerminalSessionMac(cardApdu: byte array) -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description
 | Updates the digest computation with data sent or received from the card. Returns the encrypted/decrypted data
   when the encryption is active.
@@ -455,7 +455,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `finalizeTerminalSessionMac() -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Finalises the digest computation and returns the terminal part of the session MAC.
 | Returns     | A `byte array` containing the terminal session MAC.
 | Throws
@@ -466,7 +466,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `generateTerminalSessionMac() -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
 | Returns     | A `byte array` containing the terminal session MAC.
 | Throws
@@ -477,7 +477,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `activateEncryption() -> void`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Activates the encryption/decryption of the data sent/received during the secure session.
 | Throws
 | `SymmetricCryptoException` -- if an internal error occurred. +
@@ -487,7 +487,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `deactivateEncryption() -> void`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
 | Throws
 | `SymmetricCryptoException` -- if an internal error occurred. +
@@ -497,7 +497,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isCardSessionMacValid(cardSessionMac: byte array) -> boolean`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Verifies the card part of the session MAC, finalising the mutual authentication process.
 | Parameters  | `cardSessionMac` -- a `byte array` containing the card session MAC.
 | Returns     | `true` if the card session MAC is validated, `false` otherwise.
@@ -509,7 +509,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Computes the data needed to operate SV card commands and writes it back to the provided container.
 | Parameters  | `data` -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
 | Throws
@@ -520,7 +520,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isCardSvMacValid(cardSvMac: byte array) -> boolean`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Verifies the SV card MAC.
 | Parameters  | `cardSvMac` -- a `byte array` containing the card SV MAC.
 | Returns     | `true` if the card SV MAC is validated, `false` otherwise.
@@ -532,7 +532,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForPresentation(cardChallenge: byte array, pin: byte array, kif: byte, kvc: byte) -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description
 | Computes a block of encrypted data to be sent to the card for an enciphered PIN presentation.
 
@@ -551,7 +551,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForModification(cardChallenge: byte array, currentPin: byte array, newPin: byte array, kif: byte, kvc: byte) -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description
 | Computes a block of encrypted data to be sent to the card for a PIN modification.
 
@@ -571,7 +571,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `generateCipheredCardKey(cardChallenge: byte array, issuerKeyKif: byte, issuerKeyKvc: byte, targetKeyKif: byte, targetKeyKvc: byte) -> byte array`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Generates an encrypted key data block for loading a key into a card.
 | Parameters
 | `cardChallenge` -- a `byte array` containing the card challenge. +
@@ -588,7 +588,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `synchronize() -> void`
-| Since       | 0.1.0
+| Since       | 0.1
 | Description | Synchronises data of the associated card transaction crypto extension if needed.
 | Throws
 | `SymmetricCryptoException` -- if an internal error occurred. +
@@ -609,7 +609,7 @@ class) and MUST be declared by the operations that may raise them.
 |===
 | Kind     | Checked exception
 | Package  | `calypso.crypto.symmetric`
-| Since    | 0.1.0
+| Since    | 0.1
 | Purpose  | Indicates that an internal error occurred when processing a command.
 |===
 
@@ -620,7 +620,7 @@ class) and MUST be declared by the operations that may raise them.
 |===
 | Kind     | Checked exception
 | Package  | `calypso.crypto.symmetric`
-| Since    | 0.1.0
+| Since    | 0.1
 | Purpose  | Indicates that an IO error occurred when processing a command.
 |===
 
