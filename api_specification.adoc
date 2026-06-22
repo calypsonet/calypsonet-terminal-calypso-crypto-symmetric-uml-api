@@ -129,6 +129,15 @@ diagram (<<sec_class_diagram>>), which provides a visual representation of the s
 | `void`          | Indicates that an operation returns no value.                    | `void`, `Unit`, `None`.
 |===
 
+==== Operation contracts
+
+To avoid repetition, the following rules apply to every operation table in <<sec_specification>> and are therefore
+not restated for each operation:
+
+* *Non-`null` results.* Unless the *Returns* row explicitly states that `null` may be returned, an operation
+  returns a non-`null` value.
+* *Fluent composition.* Builder-style operations return the current instance so that calls can be chained.
+
 === References
 
 [cols="1,1,4", options="header"]
@@ -233,7 +242,8 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [[sec_specification]]
 == API Specification
 
-=== Package calypso.crypto.symmetric
+[[sec_pkg_calypso_crypto_symmetric]]
+=== Shared Types and Properties (`calypso.crypto.symmetric`)
 
 [[type_SvCommandSecurityDataApi]]
 ==== SvCommandSecurityDataApi
@@ -275,43 +285,47 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 | Throws      | None.
 |===
 
+[[op_SvCommandSecurityDataApi_setSerialNumber]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
 | Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `serialNumber` -- the serial number to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
 | Throws      | None.
 |===
 
+[[op_SvCommandSecurityDataApi_setTransactionNumber]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
 | Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `transactionNumber` -- the transaction number to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
 | Throws      | None.
 |===
 
+[[op_SvCommandSecurityDataApi_setTerminalChallenge]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
 | Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalChallenge` -- the terminal challenge to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
 | Throws      | None.
 |===
 
+[[op_SvCommandSecurityDataApi_setTerminalSvMac]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
 | Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`), to allow fluent composition.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
 | Throws      | None.
 |===
 
@@ -340,7 +354,8 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 ====
 
-=== Package calypso.crypto.symmetric.spi
+[[sec_pkg_calypso_crypto_symmetric_spi]]
+=== Symmetric Cryptographic SPI (`calypso.crypto.symmetric.spi`)
 
 [[type_SymmetricCryptoCardTransactionManagerFactorySpi]]
 ==== SymmetricCryptoCardTransactionManagerFactorySpi
@@ -383,6 +398,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature
@@ -393,7 +409,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
   `useExtendedMode`      -- requests the use of the extended mode if supported by the crypto service. +
   `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
-| Returns     | A non-`null` <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
+| Returns     | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Throws      | `IllegalStateException` -- if the extended mode is requested but not supported.
 |===
 
@@ -424,6 +440,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSessionMac]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `initTerminalSessionMac(openSecureSessionDataOut: byte array, kif: byte, kvc: byte) -> void`
@@ -438,6 +455,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_updateTerminalSessionMac]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `updateTerminalSessionMac(cardApdu: byte array) -> byte array`
@@ -494,6 +512,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_isCardSessionMacValid]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isCardSessionMacValid(cardSessionMac: byte array) -> boolean`
@@ -506,6 +525,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_computeSvCommandSecurityData]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
@@ -517,6 +537,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_isCardSvMacValid]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `isCardSvMacValid(cardSvMac: byte array) -> boolean`
@@ -529,6 +550,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForPresentation]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForPresentation(cardChallenge: byte array, pin: byte array, kif: byte, kvc: byte) -> byte array`
@@ -548,6 +570,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForModification]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForModification(cardChallenge: byte array, currentPin: byte array, newPin: byte array, kif: byte, kvc: byte) -> byte array`
@@ -568,6 +591,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_generateCipheredCardKey]]
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Signature   | `generateCipheredCardKey(cardChallenge: byte array, issuerKeyKif: byte, issuerKeyKvc: byte, targetKeyKif: byte, targetKeyKvc: byte) -> byte array`
