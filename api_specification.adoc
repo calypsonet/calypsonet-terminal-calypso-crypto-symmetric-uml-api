@@ -243,7 +243,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 == API Specification
 
 [[sec_pkg_calypso_crypto_symmetric]]
-=== Shared Types and Properties (`calypso.crypto.symmetric`)
+=== Namespace -- calypso.crypto.symmetric
 
 [[type_SvCommandSecurityDataApi]]
 ==== SvCommandSecurityDataApi
@@ -251,7 +251,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Interface
-| Package  | `calypso.crypto.symmetric`
+| Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
 | Purpose  | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
 |===
@@ -335,7 +335,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Final class
-| Package  | `calypso.crypto.symmetric`
+| Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
 | Purpose  | Exposes the immutable properties of the {spec-name}.
 |===
@@ -355,7 +355,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 ====
 
 [[sec_pkg_calypso_crypto_symmetric_spi]]
-=== Symmetric Cryptographic SPI (`calypso.crypto.symmetric.spi`)
+=== Namespace -- calypso.crypto.symmetric.spi
 
 [[type_SymmetricCryptoCardTransactionManagerFactorySpi]]
 ==== SymmetricCryptoCardTransactionManagerFactorySpi
@@ -363,7 +363,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Interface (SPI)
-| Package  | `calypso.crypto.symmetric.spi`
+| Namespace  | `calypso.crypto.symmetric.spi`
 | Since    | 0.1
 | Purpose  | Factory of <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>. Implemented by the crypto module.
 |===
@@ -419,7 +419,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Interface (SPI)
-| Package  | `calypso.crypto.symmetric.spi`
+| Namespace  | `calypso.crypto.symmetric.spi`
 | Since    | 0.1
 | Purpose  | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<type_SymmetricCryptoCardTransactionManagerFactorySpi,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
 |===
@@ -632,7 +632,7 @@ class) and MUST be declared by the operations that may raise them.
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Checked exception
-| Package  | `calypso.crypto.symmetric`
+| Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
 | Purpose  | Indicates that an internal error occurred when processing a command.
 |===
@@ -643,7 +643,7 @@ class) and MUST be declared by the operations that may raise them.
 [cols="1h,4", grid=rows, frame=all]
 |===
 | Kind     | Checked exception
-| Package  | `calypso.crypto.symmetric`
+| Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
 | Purpose  | Indicates that an IO error occurred when processing a command.
 |===
