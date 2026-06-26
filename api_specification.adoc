@@ -242,107 +242,16 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [[sec_specification]]
 == API Specification
 
+The API is organized into the following packages:
+
 [[sec_pkg_calypso_crypto_symmetric]]
-=== Namespace -- calypso.crypto.symmetric
 
-[[type_SvCommandSecurityDataApi]]
-==== SvCommandSecurityDataApi
+[[sec_pkg_calypso_crypto_symmetric_spi]]
 
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Kind     | Interface
-| Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
-|===
-
-===== getSvCommandPartialRequest
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Signature   | `getSvCommandPartialRequest() -> byte array`
-| Since       | 0.1
-| Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module MUST later be appended.
-| Returns     | A non-empty `byte array` containing the *SV Load/Debit/Undebit* APDU partial request.
-| Throws      | None.
-|===
-
-===== getSvGetRequest
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Signature   | `getSvGetRequest() -> byte array`
-| Since       | 0.1
-| Description | Returns the *SV Get* ingoing command data.
-| Returns     | A non-empty `byte array` containing the *SV Get* APDU request data.
-| Throws      | None.
-|===
-
-===== getSvGetResponse
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Signature   | `getSvGetResponse() -> byte array`
-| Since       | 0.1
-| Description | Returns the *SV Get* outgoing command data.
-| Returns     | A non-empty `byte array` containing the *SV Get* APDU response data.
-| Throws      | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setSerialNumber]]
-===== setSerialNumber
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Signature   | `setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `serialNumber` -- the serial number to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
-| Throws      | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setTerminalChallenge]]
-===== setTerminalChallenge
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Signature   | `setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `terminalChallenge` -- the terminal challenge to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
-| Throws      | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setTerminalSvMac]]
-===== setTerminalSvMac
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Signature   | `setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
-| Throws      | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setTransactionNumber]]
-===== setTransactionNumber
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Signature   | `setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `transactionNumber` -- the transaction number to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
-| Throws      | None.
-|===
+=== Classes
 
 [[type_SymmetricCryptoApiProperties]]
-==== SymmetricCryptoApiProperties
+==== Symmetric Crypto API Properties
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -366,11 +275,131 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 ====
 
-[[sec_pkg_calypso_crypto_symmetric_spi]]
-=== Namespace -- calypso.crypto.symmetric.spi
+[[sec_exceptions]]
+=== Exceptions
+
+[[type_SymmetricCryptoException]]
+==== Symmetric Crypto Exception
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Kind     | Checked exception
+| Namespace  | `calypso.crypto.symmetric`
+| Since    | 0.1
+| Purpose  | Indicates that an internal error occurred when processing a command.
+|===
+
+[[type_SymmetricCryptoIOException]]
+==== Symmetric Crypto IO Exception
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Kind     | Checked exception
+| Namespace  | `calypso.crypto.symmetric`
+| Since    | 0.1
+| Purpose  | Indicates that an IO error occurred when processing a command.
+|===
+
+=== Interfaces
+
+[[type_SvCommandSecurityDataApi]]
+==== SV Command Security Data API
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Kind     | Interface
+| Namespace  | `calypso.crypto.symmetric`
+| Since    | 0.1
+| Purpose  | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
+|===
+
+===== Get SV Command Partial Request
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Signature   | `getSvCommandPartialRequest() -> byte array`
+| Since       | 0.1
+| Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module MUST later be appended.
+| Returns     | A non-empty `byte array` containing the *SV Load/Debit/Undebit* APDU partial request.
+| Throws      | None.
+|===
+
+===== Get SV Get Request
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Signature   | `getSvGetRequest() -> byte array`
+| Since       | 0.1
+| Description | Returns the *SV Get* ingoing command data.
+| Returns     | A non-empty `byte array` containing the *SV Get* APDU request data.
+| Throws      | None.
+|===
+
+===== Get SV Get Response
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Signature   | `getSvGetResponse() -> byte array`
+| Since       | 0.1
+| Description | Returns the *SV Get* outgoing command data.
+| Returns     | A non-empty `byte array` containing the *SV Get* APDU response data.
+| Throws      | None.
+|===
+
+[[op_SvCommandSecurityDataApi_setSerialNumber]]
+===== Set Serial Number
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Signature   | `setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1
+| Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `serialNumber` -- the serial number to be used.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Throws      | None.
+|===
+
+[[op_SvCommandSecurityDataApi_setTerminalChallenge]]
+===== Set Terminal Challenge
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Signature   | `setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1
+| Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `terminalChallenge` -- the terminal challenge to be used.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Throws      | None.
+|===
+
+[[op_SvCommandSecurityDataApi_setTerminalSvMac]]
+===== Set Terminal SV Mac
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Signature   | `setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1
+| Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Throws      | None.
+|===
+
+[[op_SvCommandSecurityDataApi_setTransactionNumber]]
+===== Set Transaction Number
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Signature   | `setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi`
+| Since       | 0.1
+| Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters  | `transactionNumber` -- the transaction number to be used.
+| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Throws      | None.
+|===
 
 [[type_SymmetricCryptoCardTransactionManagerFactorySpi]]
-==== SymmetricCryptoCardTransactionManagerFactorySpi
+==== Symmetric Crypto Card Transaction Manager Factory SPI
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -381,7 +410,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager]]
-===== createCardTransactionManager
+===== Create Card Transaction Manager
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -397,7 +426,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Throws      | `IllegalStateException` -- if the extended mode is requested but not supported.
 |===
 
-===== getMaxCardApduLengthSupported
+===== Get Max Card APDU Length Supported
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -408,7 +437,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Throws      | None.
 |===
 
-===== isExtendedModeSupported
+===== Is Extended Mode Supported
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -419,7 +448,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Throws      | None.
 |===
 
-===== preInitTerminalSessionContext
+===== Pre Init Terminal Session Context
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -432,7 +461,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 |===
 
 [[type_SymmetricCryptoCardTransactionManagerSpi]]
-==== SymmetricCryptoCardTransactionManagerSpi
+==== Symmetric Crypto Card Transaction Manager SPI
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -445,7 +474,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 Every operation MUST raise either `SymmetricCryptoException` (internal error) or `SymmetricCryptoIOException`
 (communication-level error) when the cryptographic computation cannot be completed.
 
-===== activateEncryption
+===== Activate Encryption
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -458,7 +487,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForModification]]
-===== cipherPinForModification
+===== Cipher PIN For Modification
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -481,7 +510,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForPresentation]]
-===== cipherPinForPresentation
+===== Cipher PIN For Presentation
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -503,7 +532,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_computeSvCommandSecurityData]]
-===== computeSvCommandSecurityData
+===== Compute SV Command Security Data
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -516,7 +545,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-===== deactivateEncryption
+===== Deactivate Encryption
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -528,7 +557,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-===== finalizeTerminalSessionMac
+===== Finalize Terminal Session Mac
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -542,7 +571,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_generateCipheredCardKey]]
-===== generateCipheredCardKey
+===== Generate Ciphered Card Key
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -561,7 +590,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-===== generateTerminalSessionMac
+===== Generate Terminal Session Mac
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -574,7 +603,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-===== initTerminalSecureSessionContext
+===== Init Terminal Secure Session Context
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -588,7 +617,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSessionMac]]
-===== initTerminalSessionMac
+===== Init Terminal Session Mac
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -605,7 +634,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSessionMacValid]]
-===== isCardSessionMacValid
+===== Is Card Session Mac Valid
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -620,7 +649,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSvMacValid]]
-===== isCardSvMacValid
+===== Is Card SV Mac Valid
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -634,7 +663,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-===== synchronize
+===== Synchronize
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -647,7 +676,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_updateTerminalSessionMac]]
-===== updateTerminalSessionMac
+===== Update Terminal Session Mac
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -663,36 +692,6 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-// =============================================================================
-[[sec_exceptions]]
-== Exceptions
-
-All exception types defined by this specification are *checked* (they extend the language's base `Exception`
-class) and MUST be declared by the operations that may raise them.
-
-[[type_SymmetricCryptoException]]
-=== SymmetricCryptoException
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Kind     | Checked exception
-| Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Indicates that an internal error occurred when processing a command.
-|===
-
-[[type_SymmetricCryptoIOException]]
-=== SymmetricCryptoIOException
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Kind     | Checked exception
-| Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Indicates that an IO error occurred when processing a command.
-|===
-
-// =============================================================================
 [[sec_behaviours]]
 == Behavioural Requirements
 
