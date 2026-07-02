@@ -275,32 +275,7 @@ The API is organized into the following packages:
 The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 ====
 
-[[sec_exceptions]]
-=== Exceptions
-
-[[type_SymmetricCryptoException]]
-==== Symmetric Crypto Exception
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Kind     | Checked exception
-| Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Indicates that an internal error occurred when processing a command.
-|===
-
-[[type_SymmetricCryptoIOException]]
-==== Symmetric Crypto IO Exception
-
-[cols="1h,4", grid=rows, frame=all]
-|===
-| Kind     | Checked exception
-| Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Indicates that an IO error occurred when processing a command.
-|===
-
-=== Interfaces
+=== API Interfaces
 
 [[type_SvCommandSecurityDataApi]]
 ==== SV Command Security Data API
@@ -397,6 +372,8 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Returns     | The current instance (`SvCommandSecurityDataApi`).
 | Throws      | None.
 |===
+
+=== SPI Interfaces
 
 [[type_SymmetricCryptoCardTransactionManagerFactorySpi]]
 ==== Symmetric Crypto Card Transaction Manager Factory SPI
@@ -690,6 +667,31 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Throws
 | `SymmetricCryptoException` -- if an internal error occurred. +
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+|===
+
+[[sec_exceptions]]
+=== Exceptions
+
+[[type_SymmetricCryptoException]]
+==== Symmetric Crypto Exception
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Kind     | Checked exception
+| Namespace  | `calypso.crypto.symmetric`
+| Since    | 0.1
+| Purpose  | Indicates that an internal error occurred when processing a command.
+|===
+
+[[type_SymmetricCryptoIOException]]
+==== Symmetric Crypto IO Exception
+
+[cols="1h,4", grid=rows, frame=all]
+|===
+| Kind     | Checked exception
+| Namespace  | `calypso.crypto.symmetric`
+| Since    | 0.1
+| Purpose  | Indicates that an IO error occurred when processing a command.
 |===
 
 [[sec_behaviours]]
