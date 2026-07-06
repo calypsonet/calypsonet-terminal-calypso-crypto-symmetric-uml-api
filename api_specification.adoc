@@ -122,10 +122,10 @@ diagram (<<sec_class_diagram>>), which provides a visual representation of the s
 | Symbolic type   | Description                                                     | Typical bindings
 | `string`        | Sequence of characters, UTF-8 encoded by default.                | `String`, `string`, `str`.
 | `boolean`       | Two-state truth value.                                           | `boolean`, `bool`.
-| `integer`       | Signed 32-bit integer.                                           | `int`, `Int32`.
 | `byte`          | Signed 8-bit value.                                              | `byte`, `i8`.
+| `integer`       | Signed 32-bit integer.                                           | `int`, `Int32`.
 | `byte array`    | Ordered sequence of octets.                                      | `byte[]`, `[u8]`, `bytes`.
-| `list<T>`       | Ordered collection of `T` values.                                | `List<T>`, `Vec<T>`.
+| `list<T>`       | Ordered collection of `T` values, may contain duplicates.        | `List<T>`, `Vec<T>`.
 | `void`          | Indicates that an operation returns no value.                    | `void`, `Unit`, `None`.
 |===
 
