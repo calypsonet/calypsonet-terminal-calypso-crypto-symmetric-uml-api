@@ -348,7 +348,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 |===
 
 [[op_SvCommandSecurityDataApi_setTerminalSvMac]]
-===== Set Terminal SV Mac
+===== Set Terminal SV MAC
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -534,7 +534,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-===== Finalize Terminal Session Mac
+===== Finalize Terminal Session MAC
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -567,7 +567,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
 |===
 
-===== Generate Terminal Session Mac
+===== Generate Terminal Session MAC
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -594,7 +594,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSessionMac]]
-===== Init Terminal Session Mac
+===== Init Terminal Session MAC
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -611,7 +611,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSessionMacValid]]
-===== Is Card Session Mac Valid
+===== Is Card Session MAC Valid
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -626,7 +626,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSvMacValid]]
-===== Is Card SV Mac Valid
+===== Is Card SV MAC Valid
 
 [cols="1h,4", grid=rows, frame=all]
 |===
@@ -653,7 +653,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_updateTerminalSessionMac]]
-===== Update Terminal Session Mac
+===== Update Terminal Session MAC
 
 [cols="1h,4", grid=rows, frame=all]
 |===
