@@ -673,7 +673,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 [cols="1h,4", grid=rows, frame=all]
 |===
-| Signature   | `updateTerminalSessionMac(cardApdu: byte array) -> byte array`
+| Signature   | `updateTerminalSessionMac(cardApdu: byte array) -> byte array?`
 | Since       | 0.1
 | Description
 | Updates the digest computation with data sent or received from the card. Returns the encrypted/decrypted data
