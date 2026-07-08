@@ -88,7 +88,7 @@ This specification covers:
 
 The following topics are *out of scope*:
 
-* the wire-level dialogue between the terminal and any underlying SAM,
+* the wire-level dialog between the terminal and any underlying SAM,
 * the management of key material,
 * the cryptographic algorithms themselves -- only the input/output contract is normative.
 
