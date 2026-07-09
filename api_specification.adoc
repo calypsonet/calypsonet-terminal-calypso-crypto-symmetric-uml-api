@@ -384,7 +384,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Since       | 0.1
 | Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `serialNumber` -- the serial number to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Throws      | None.
 |===
 
@@ -397,7 +397,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Since       | 0.1
 | Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalChallenge` -- the terminal challenge to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Throws      | None.
 |===
 
@@ -410,7 +410,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Since       | 0.1
 | Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Throws      | None.
 |===
 
@@ -423,7 +423,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Since       | 0.1
 | Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `transactionNumber` -- the transaction number to be used.
-| Returns     | The current instance (`SvCommandSecurityDataApi`).
+| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Throws      | None.
 |===
 
@@ -487,8 +487,8 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Since       | 0.1
 | Description | Retrieves and stores the terminal challenge in the crypto module image for later use.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[type_SymmetricCryptoCardTransactionManagerSpi]]
@@ -513,8 +513,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1
 | Description | Activates the encryption/decryption of the data sent/received during the secure session.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForModification]]
@@ -536,8 +536,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForPresentation]]
@@ -558,8 +558,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_computeSvCommandSecurityData]]
@@ -570,10 +570,10 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
 | Since       | 0.1
 | Description | Computes the data needed to operate SV card commands and writes it back to the provided container.
-| Parameters  | `data` -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
+| Parameters  | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 ===== Deactivate Encryption
@@ -584,8 +584,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1
 | Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 ===== Finalize Terminal Session MAC
@@ -597,8 +597,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Finalises the digest computation and returns the terminal part of the session MAC.
 | Returns     | A `byte array` containing the terminal session MAC.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_generateCipheredCardKey]]
@@ -617,8 +617,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `targetKeyKvc`  -- the target key KVC.
 | Returns     | A `byte array` containing the encrypted data block to send to the card.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 ===== Generate Terminal Session MAC
@@ -630,8 +630,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
 | Returns     | A `byte array` containing the terminal session MAC.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 ===== Init Terminal Secure Session Context
@@ -643,8 +643,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
 | Returns     | The terminal challenge.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSessionMac]]
@@ -660,8 +660,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kif` -- the card KIF. +
   `kvc` -- the card KVC.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSessionMacValid]]
@@ -675,8 +675,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Parameters  | `cardSessionMac` -- a `byte array` containing the card session MAC.
 | Returns     | `true` if the card session MAC is validated, `false` otherwise.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSvMacValid]]
@@ -690,8 +690,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Parameters  | `cardSvMac` -- a `byte array` containing the card SV MAC.
 | Returns     | `true` if the card SV MAC is validated, `false` otherwise.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 ===== Synchronize
@@ -702,8 +702,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1
 | Description | Synchronises data of the associated card transaction crypto extension if needed.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_updateTerminalSessionMac]]
@@ -719,8 +719,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Parameters  | `cardApdu` -- a `byte array` containing either the input or output data of a card command APDU.
 | Returns     | `null` if the encryption is not active; the ciphered or deciphered command data otherwise.
 | Throws
-| `SymmetricCryptoException` -- if an internal error occurred. +
-  `SymmetricCryptoIOException` -- if an IO error occurred when processing a command.
+| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
 [[sec_exceptions]]
