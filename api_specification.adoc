@@ -686,7 +686,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 | Signature   | `isCardSvMacValid(cardSvMac: byte array) -> boolean`
 | Since       | 0.1
-| Description | Verifies the SV card MAC.
+| Description | Verifies the Stored Value (SV) MAC returned by the card, confirming the authenticity of the SV operation.
 | Parameters  | `cardSvMac` -- a `byte array` containing the card SV MAC.
 | Returns     | `true` if the card SV MAC is validated, `false` otherwise.
 | Throws
