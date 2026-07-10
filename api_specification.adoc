@@ -99,7 +99,7 @@ A software product conforms to this specification if and only if:
 . it implements every interface and class defined in <<sec_specification>> with the operations and semantics
   prescribed in this document,
 . it raises exceptions exclusively of the types defined in <<sec_exceptions>> for the situations described,
-. it preserves the structural and behavioural relationships described in <<sec_architecture>> and <<sec_behaviours>>.
+. it preserves the structural relationships described in <<sec_architecture>>.
 
 Throughout this specification, the key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**,
 **MAY** and **OPTIONAL** are to be interpreted as described in <<ref_rfc2119,RFC 2119>> and <<ref_rfc8174,RFC 8174>> when, and only when,
@@ -294,8 +294,6 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 // =============================================================================
 [[sec_specification]]
 == API Specification
-
-Stateful operations are subject to the ordering and lifecycle constraints defined in <<sec_behaviours>>.
 
 === Classes
 
@@ -499,6 +497,9 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 
 Every operation MUST raise either `SymmetricCryptoException` (internal error) or `SymmetricCryptoIOException`
 (communication-level error) when the cryptographic computation cannot be completed.
+
+`finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be invoked only after every
+`updateTerminalSessionMac` call corresponding to the APDUs exchanged during the secure session.
 
 ===== Activate Encryption
 
@@ -743,16 +744,6 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since    | 0.1
 | Purpose  | Indicates that an IO error occurred when processing a command.
 |===
-
-[[sec_behaviours]]
-== Behavioural Requirements
-
-. `finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be called *after* every `updateTerminalSessionMac`
-  call corresponding to APDUs exchanged during the secure session.
-. After `activateEncryption` has been called, every subsequent `updateTerminalSessionMac` invocation MUST return
-  the ciphered or deciphered counterpart of the supplied data.
-. After `deactivateEncryption` has been called, encryption MUST stop and `updateTerminalSessionMac` MUST again
-  return `null`.
 
 // =============================================================================
 [appendix]
