@@ -564,7 +564,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 | Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
 | Since       | 0.1
-| Description | Computes the data needed to operate SV card commands and writes it back to the provided container.
+| Description | Computes the data needed to operate SV card commands and writes it back to the provided container. Every field of the supplied `SvCommandSecurityDataApi` required to assemble the complete SV command APDU MUST be populated.
 | Parameters  | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
@@ -710,7 +710,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1
 | Description
 | Updates the digest computation with data sent or received from the card. Returns the encrypted/decrypted data
-  when the encryption is active.
+  when the encryption is active. The digest is computed *incrementally* and depends on the sequence of inputs:
+  the implementation MUST preserve the order in which this operation is invoked.
 | Parameters  | `cardApdu` -- a `byte array` containing either the input or output data of a card command APDU.
 | Returns     | `null` if the encryption is not active; the ciphered or deciphered command data otherwise.
 | Throws
@@ -746,16 +747,12 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[sec_behaviours]]
 == Behavioural Requirements
 
-. The crypto module MUST preserve the order in which `updateTerminalSessionMac` is invoked: the digest is updated
-  incrementally and depends on the sequence of inputs.
 . `finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be called *after* every `updateTerminalSessionMac`
   call corresponding to APDUs exchanged during the secure session.
 . After `activateEncryption` has been called, every subsequent `updateTerminalSessionMac` invocation MUST return
   the ciphered or deciphered counterpart of the supplied data.
 . After `deactivateEncryption` has been called, encryption MUST stop and `updateTerminalSessionMac` MUST again
   return `null`.
-. `computeSvCommandSecurityData` MUST populate every field of the supplied <<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>
-  required to assemble the complete SV command APDU.
 
 // =============================================================================
 [appendix]
