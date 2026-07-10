@@ -451,7 +451,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 | Description | Returns a new <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Parameters
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
-  `useExtendedMode`      -- requests the use of the extended mode if supported by the crypto service. +
+  `useExtendedMode`      -- a flag requesting the extended mode, if supported by the crypto service. +
   `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
 | Returns     | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Throws      | `IllegalStateException` -- if the extended mode is requested but not supported.
