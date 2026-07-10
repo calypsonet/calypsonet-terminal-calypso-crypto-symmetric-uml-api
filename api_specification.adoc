@@ -260,7 +260,7 @@ skinparam roundCorner 8
 skinparam ArrowColor #2C3E50
 
 component "Terminal Calypso Card API\n[CNA-TCC-API]" as TCC
-component "Terminal Calypso Crypto\nSymmetric API (this spec)" as TCCS
+component "Terminal Calypso Crypto\nSymmetric API (this spec)" as TCCS #LightYellow
 component "Symmetric Crypto Module\n(SAM or equivalent)" as Mod
 
 TCC --> TCCS : delegates crypto
