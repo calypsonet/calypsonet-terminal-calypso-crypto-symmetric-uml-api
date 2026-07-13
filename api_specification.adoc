@@ -314,12 +314,12 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 |===
 | Name      | Type     | Since  | Description
 
-| `VERSION` | `string` | 0.1  | String representation of the version of the API implemented by the conforming binding (e.g. `"0.1"`). The value MUST be a dotted decimal of the form `MAJOR.MINOR`.
+| `VERSION` | `string` | 0.1  | String representation of the version of the API implemented by the conforming binding (e.g. `"0.1"`). The value is a dotted decimal of the form `MAJOR.MINOR`.
 |===
 
 [NOTE]
 ====
-The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
+The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only static properties.
 ====
 
 === API Interfaces
@@ -341,7 +341,7 @@ The `SymmetricCryptoApiProperties` type MUST NOT be instantiated.
 |===
 | Signature   | `getSvCommandPartialRequest() -> byte array`
 | Since       | 0.1
-| Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module MUST later be appended.
+| Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module is later appended.
 | Returns     | A non-empty `byte array` containing the *SV Load/Debit/Undebit* APDU partial request.
 | Throws      | None.
 |===
