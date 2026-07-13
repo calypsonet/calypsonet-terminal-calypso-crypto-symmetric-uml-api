@@ -498,7 +498,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 Every operation MUST raise either `SymmetricCryptoException` (internal error) or `SymmetricCryptoIOException`
 (communication-level error) when the cryptographic computation cannot be completed.
 
-`finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be invoked only after every
+`finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be called only after every
 `updateTerminalSessionMac` call corresponding to the APDUs exchanged during the secure session.
 
 ===== Activate Encryption
@@ -712,7 +712,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description
 | Updates the digest computation with data sent or received from the card. Returns the encrypted/decrypted data
   when the encryption is active. The digest is computed *incrementally* and depends on the sequence of inputs:
-  the implementation MUST preserve the order in which this operation is invoked.
+  the implementation MUST preserve the order in which this operation is called.
 | Parameters  | `cardApdu` -- a `byte array` containing either the input or output data of a card command APDU.
 | Returns     | `null` if the encryption is not active; the ciphered or deciphered command data otherwise.
 | Throws
