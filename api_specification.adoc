@@ -136,6 +136,7 @@ Each interface, class, enumeration and exception defined in this document is des
 
 [cols="1h,4", grid=rows, frame=all]
 |===
+| Name       | The type's normalized name.
 | Kind       | The category of the type (interface, class, enumeration, exception, etc.).
 | Namespace  | The namespace in which the type is defined.
 | Extends    | The type extended by this type, when applicable.
@@ -302,6 +303,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 
 [cols="1h,4", grid=rows, frame=all]
 |===
+| Name     | `SymmetricCryptoApiProperties`
 | Kind     | Final class
 | Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
@@ -329,6 +331,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="1h,4", grid=rows, frame=all]
 |===
+| Name     | `SvCommandSecurityDataApi`
 | Kind     | Interface
 | Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
@@ -427,6 +430,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="1h,4", grid=rows, frame=all]
 |===
+| Name     | `SymmetricCryptoCardTransactionManagerFactorySpi`
 | Kind     | Interface (SPI)
 | Namespace  | `calypso.crypto.symmetric.spi`
 | Since    | 0.1
@@ -489,6 +493,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="1h,4", grid=rows, frame=all]
 |===
+| Name     | `SymmetricCryptoCardTransactionManagerSpi`
 | Kind     | Interface (SPI)
 | Namespace  | `calypso.crypto.symmetric.spi`
 | Since    | 0.1
@@ -728,6 +733,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 [cols="1h,4", grid=rows, frame=all]
 |===
+| Name     | `SymmetricCryptoException`
 | Kind     | Checked exception
 | Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
@@ -739,6 +745,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 [cols="1h,4", grid=rows, frame=all]
 |===
+| Name     | `SymmetricCryptoIOException`
 | Kind     | Checked exception
 | Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
