@@ -221,10 +221,10 @@ is backward-compatible per that API's evolution policy.
 | Term              | Definition
 
 | Crypto Module     | Component capable of performing the cryptographic operations described by this specification. Typically backed by a SAM but not required to be.
-| Extended Mode     | Operating mode that supports additional capabilities (such as larger APDUs or longer challenges) compared to the standard Calypso secure session.
+| Extended Mode     | Operating mode that supports Calypso Prime Extended products capabilities (such as APDU encryption/decryption, pre-open secure session, longer cryptographic data, etc.).
 | Secure Session    | Calypso authenticated and integrity-protected exchange between the terminal and the card.
 | Session MAC       | Message Authentication Code computed over the data exchanged during a Calypso secure session.
-| SV Command        | Stored Value command (Load, Debit, Undebit) operating on a Calypso card SV counter.
+| SV Command        | Stored Value command (Load, Debit, Undebit) operating on a Calypso card.
 | SV MAC            | Message Authentication Code protecting an SV command exchange.
 | SPI               | Service Provider Interface -- an interface designed to be implemented by an extension module.
 |===
@@ -261,7 +261,7 @@ skinparam roundCorner 8
 skinparam ArrowColor #2C3E50
 
 component "Terminal Calypso Card API\n[CNA-TCC-API]" as TCC
-component "Terminal Calypso Crypto\nSymmetric API (this spec)" as TCCS #LightYellow
+component "Terminal Calypso Crypto\nSymmetric API (this specification)" as TCCS #LightYellow
 component "Symmetric Crypto Module\n(SAM or equivalent)" as Mod
 
 TCC --> TCCS : delegates crypto
