@@ -503,7 +503,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Kind     | Interface (SPI)
 | Namespace  | `calypso.crypto.symmetric.spi`
 | Since    | 0.1
-| Purpose  | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<type_SymmetricCryptoCardTransactionManagerFactorySpi,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
+| Purpose  | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
 |===
 
 Every operation MUST raise either `SymmetricCryptoException` (internal error) or `SymmetricCryptoIOException`
