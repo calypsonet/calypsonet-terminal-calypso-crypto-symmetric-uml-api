@@ -338,6 +338,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Purpose  | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
 |===
 
+[[op_SvCommandSecurityDataApi_getSvCommandPartialRequest]]
 ===== Get SV Command Partial Request
 
 [cols="1h,4", grid=rows, frame=all]
@@ -349,6 +350,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Throws      | None.
 |===
 
+[[op_SvCommandSecurityDataApi_getSvGetRequest]]
 ===== Get SV Get Request
 
 [cols="1h,4", grid=rows, frame=all]
@@ -360,6 +362,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Throws      | None.
 |===
 
+[[op_SvCommandSecurityDataApi_getSvGetResponse]]
 ===== Get SV Get Response
 
 [cols="1h,4", grid=rows, frame=all]
@@ -454,6 +457,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Throws      | `IllegalStateException` -- if the extended mode is requested but not supported.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerFactorySpi_getMaxCardApduLengthSupported]]
 ===== Get Max Card APDU Length Supported
 
 [cols="1h,4", grid=rows, frame=all]
@@ -465,6 +469,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Throws      | None.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerFactorySpi_isExtendedModeSupported]]
 ===== Is Extended Mode Supported
 
 [cols="1h,4", grid=rows, frame=all]
@@ -476,6 +481,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Throws      | None.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerFactorySpi_preInitTerminalSessionContext]]
 ===== Pre Init Terminal Session Context
 
 [cols="1h,4", grid=rows, frame=all]
@@ -506,6 +512,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 `finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be called only after every
 `updateTerminalSessionMac` call corresponding to the APDUs exchanged during the secure session.
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_activateEncryption]]
 ===== Activate Encryption
 
 [cols="1h,4", grid=rows, frame=all]
@@ -577,6 +584,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_deactivateEncryption]]
 ===== Deactivate Encryption
 
 [cols="1h,4", grid=rows, frame=all]
@@ -589,6 +597,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_finalizeTerminalSessionMac]]
 ===== Finalize Terminal Session MAC
 
 [cols="1h,4", grid=rows, frame=all]
@@ -622,6 +631,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_generateTerminalSessionMac]]
 ===== Generate Terminal Session MAC
 
 [cols="1h,4", grid=rows, frame=all]
@@ -635,6 +645,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSecureSessionContext]]
 ===== Init Terminal Secure Session Context
 
 [cols="1h,4", grid=rows, frame=all]
@@ -695,6 +706,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
 |===
 
+[[op_SymmetricCryptoCardTransactionManagerSpi_synchronize]]
 ===== Synchronize
 
 [cols="1h,4", grid=rows, frame=all]
