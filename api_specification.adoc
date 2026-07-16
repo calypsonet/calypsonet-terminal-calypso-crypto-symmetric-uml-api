@@ -450,7 +450,10 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Signature
 | `createCardTransactionManager(cardKeyDiversifier: byte array, useExtendedMode: boolean, transactionAuditData: list<byte array>) -> SymmetricCryptoCardTransactionManagerSpi`
 | Since       | 0.1
-| Description | Returns a new <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
+| Description
+| Creates a <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>> providing
+the cryptographic primitives that a Calypso card transaction requires when using symmetric keys, initialised with
+the supplied card key diversifier and mode. Implemented by the crypto module.
 | Parameters
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
   `useExtendedMode`      -- a flag requesting the extended mode, if supported by the crypto service. +
