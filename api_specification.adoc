@@ -542,7 +542,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `newPin`        -- a `byte array` containing the 4-byte new PIN value. +
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
-| Returns     | A `byte array` containing the encrypted data block to send to the card.
+| Returns     | A non-empty `byte array` containing the encrypted data block to send to the card.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
@@ -564,7 +564,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `pin`           -- a `byte array` containing the 4-byte PIN value. +
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
-| Returns     | A `byte array` containing the encrypted data block to send to the card.
+| Returns     | A non-empty `byte array` containing the encrypted data block to send to the card.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
@@ -605,7 +605,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `finalizeTerminalSessionMac() -> byte array`
 | Since       | 0.1
 | Description | Finalises the digest computation and returns the terminal part of the session MAC.
-| Returns     | A `byte array` containing the terminal session MAC.
+| Returns     | A non-empty `byte array` containing the terminal session MAC.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
@@ -625,7 +625,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `issuerKeyKvc`  -- the issuer key KVC. +
   `targetKeyKif`  -- the target key KIF. +
   `targetKeyKvc`  -- the target key KVC.
-| Returns     | A `byte array` containing the encrypted data block to send to the card.
+| Returns     | A non-empty `byte array` containing the encrypted data block to send to the card.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
@@ -639,7 +639,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `generateTerminalSessionMac() -> byte array`
 | Since       | 0.1
 | Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
-| Returns     | A `byte array` containing the terminal session MAC.
+| Returns     | A non-empty `byte array` containing the terminal session MAC.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
@@ -653,7 +653,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Signature   | `initTerminalSecureSessionContext() -> byte array`
 | Since       | 0.1
 | Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
-| Returns     | The terminal challenge.
+| Returns     | The non-empty terminal challenge.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
@@ -731,7 +731,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   when the encryption is active. The digest is computed *incrementally* and depends on the sequence of inputs:
   the implementation MUST preserve the order in which this operation is called.
 | Parameters  | `cardApdu` -- a `byte array` containing either the input or output data of a card command APDU.
-| Returns     | `null` if the encryption is not active; the ciphered or deciphered command data otherwise.
+| Returns     | `null` if the encryption is not active; the non-empty ciphered or deciphered command data otherwise.
 | Throws
 | <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
