@@ -162,7 +162,7 @@ diagram (<<sec_class_diagram>>), which provides a visual representation of the s
 
 Each interface, class, enumeration and exception defined in this document is described by a table of the form:
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name       | The type's normalized name.
 | Kind       | The category of the type (interface, class, enumeration, exception, etc.).
@@ -182,7 +182,7 @@ notes, value tables or examples -- is placed as prose below the table.
 
 Each operation defined in this document is described by a table of the form:
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | The operation's language-agnostic signature.
 | Since       | The version of the API in which the operation was introduced.
@@ -342,7 +342,7 @@ include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 [[type_SymmetricCryptoApiProperties]]
 ==== Symmetric Crypto API Properties
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name     | `SymmetricCryptoApiProperties`
 | Kind     | Final class
@@ -370,7 +370,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[type_SvCommandSecurityDataApi]]
 ==== SV Command Security Data API
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name     | `SvCommandSecurityDataApi`
 | Kind     | Interface
@@ -382,7 +382,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SvCommandSecurityDataApi_getSvCommandPartialRequest]]
 ===== Get SV Command Partial Request
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `getSvCommandPartialRequest() -> byte array`
 | Since       | 0.1
@@ -394,7 +394,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SvCommandSecurityDataApi_getSvGetRequest]]
 ===== Get SV Get Request
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `getSvGetRequest() -> byte array`
 | Since       | 0.1
@@ -406,7 +406,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SvCommandSecurityDataApi_getSvGetResponse]]
 ===== Get SV Get Response
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `getSvGetResponse() -> byte array`
 | Since       | 0.1
@@ -418,7 +418,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SvCommandSecurityDataApi_setSerialNumber]]
 ===== Set Serial Number
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
@@ -431,7 +431,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SvCommandSecurityDataApi_setTerminalChallenge]]
 ===== Set Terminal Challenge
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
@@ -444,7 +444,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SvCommandSecurityDataApi_setTerminalSvMac]]
 ===== Set Terminal SV MAC
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
@@ -457,7 +457,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SvCommandSecurityDataApi_setTransactionNumber]]
 ===== Set Transaction Number
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi`
 | Since       | 0.1
@@ -472,7 +472,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[type_SymmetricCryptoCardTransactionManagerFactorySpi]]
 ==== Symmetric Crypto Card Transaction Manager Factory SPI
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name     | `SymmetricCryptoCardTransactionManagerFactorySpi`
 | Kind     | Interface (SPI)
@@ -484,7 +484,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager]]
 ===== Create Card Transaction Manager
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature
 | `createCardTransactionManager(cardKeyDiversifier: byte array, useExtendedMode: boolean, transactionAuditData: list<byte array>) -> SymmetricCryptoCardTransactionManagerSpi`
@@ -504,7 +504,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_getMaxCardApduLengthSupported]]
 ===== Get Max Card APDU Length Supported
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `getMaxCardApduLengthSupported() -> integer`
 | Since       | 0.1
@@ -516,7 +516,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_isExtendedModeSupported]]
 ===== Is Extended Mode Supported
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `isExtendedModeSupported() -> boolean`
 | Since       | 0.1
@@ -528,7 +528,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_preInitTerminalSessionContext]]
 ===== Pre Init Terminal Session Context
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `preInitTerminalSessionContext() -> void`
 | Since       | 0.1
@@ -541,7 +541,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 [[type_SymmetricCryptoCardTransactionManagerSpi]]
 ==== Symmetric Crypto Card Transaction Manager SPI
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name     | `SymmetricCryptoCardTransactionManagerSpi`
 | Kind     | Interface (SPI)
@@ -559,7 +559,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_activateEncryption]]
 ===== Activate Encryption
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `activateEncryption() -> void`
 | Since       | 0.1
@@ -572,7 +572,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForModification]]
 ===== Cipher PIN For Modification
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForModification(cardChallenge: byte array, currentPin: byte array, newPin: byte array, kif: byte, kvc: byte) -> byte array`
 | Since       | 0.1
@@ -595,7 +595,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForPresentation]]
 ===== Cipher PIN For Presentation
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `cipherPinForPresentation(cardChallenge: byte array, pin: byte array, kif: byte, kvc: byte) -> byte array`
 | Since       | 0.1
@@ -617,7 +617,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_computeSvCommandSecurityData]]
 ===== Compute SV Command Security Data
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
 | Since       | 0.1
@@ -631,7 +631,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_deactivateEncryption]]
 ===== Deactivate Encryption
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `deactivateEncryption() -> void`
 | Since       | 0.1
@@ -644,7 +644,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_finalizeTerminalSessionMac]]
 ===== Finalize Terminal Session MAC
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `finalizeTerminalSessionMac() -> byte array`
 | Since       | 0.1
@@ -658,7 +658,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_generateCipheredCardKey]]
 ===== Generate Ciphered Card Key
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `generateCipheredCardKey(cardChallenge: byte array, issuerKeyKif: byte, issuerKeyKvc: byte, targetKeyKif: byte, targetKeyKvc: byte) -> byte array`
 | Since       | 0.1
@@ -678,7 +678,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_generateTerminalSessionMac]]
 ===== Generate Terminal Session MAC
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `generateTerminalSessionMac() -> byte array`
 | Since       | 0.1
@@ -692,7 +692,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSecureSessionContext]]
 ===== Init Terminal Secure Session Context
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `initTerminalSecureSessionContext() -> byte array`
 | Since       | 0.1
@@ -706,7 +706,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSessionMac]]
 ===== Init Terminal Session MAC
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `initTerminalSessionMac(openSecureSessionDataOut: byte array, kif: byte, kvc: byte) -> void`
 | Since       | 0.1
@@ -723,7 +723,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSessionMacValid]]
 ===== Is Card Session MAC Valid
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `isCardSessionMacValid(cardSessionMac: byte array) -> boolean`
 | Since       | 0.1
@@ -738,7 +738,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSvMacValid]]
 ===== Is Card SV MAC Valid
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `isCardSvMacValid(cardSvMac: byte array) -> boolean`
 | Since       | 0.1
@@ -753,7 +753,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_synchronize]]
 ===== Synchronize
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `synchronize() -> void`
 | Since       | 0.1
@@ -766,7 +766,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[op_SymmetricCryptoCardTransactionManagerSpi_updateTerminalSessionMac]]
 ===== Update Terminal Session MAC
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Signature   | `updateTerminalSessionMac(cardApdu: byte array) -> byte array?`
 | Since       | 0.1
@@ -787,7 +787,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[type_SymmetricCryptoException]]
 ==== Symmetric Crypto Exception
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name     | `SymmetricCryptoException`
 | Kind     | Checked exception
@@ -799,7 +799,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 [[type_SymmetricCryptoIOException]]
 ==== Symmetric Crypto IO Exception
 
-[cols="1h,4", grid=rows, frame=all]
+[cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name     | `SymmetricCryptoIOException`
 | Kind     | Checked exception
