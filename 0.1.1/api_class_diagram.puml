@@ -1,6 +1,6 @@
 @startuml
 title
-    <img:../assets/logo.svg{scale=0.2}>
+    <img:../assets/logo-calypso.svg{scale=0.2}>
 
     Terminal Calypso Crypto Symmetric API 0.1.+ (2023-11-06)
 end title
