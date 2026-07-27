@@ -1,4 +1,4 @@
-= Specification: CNA Terminal API -- Calypso Crypto Symmetric
+= {doc-type}: Calypso Crypto Symmetric
 Calypso Networks Association <https://calypsonet.org>
 //
 // Document identity
