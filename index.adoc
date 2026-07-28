@@ -338,20 +338,9 @@ is backward-compatible per that API's evolution policy.
 === Functional positioning
 
 [plantuml, target=architecture-overview, format=svg]
-....
-@startuml
-skinparam shadowing false
-skinparam roundCorner 8
-skinparam ArrowColor #2C3E50
-
-component "Terminal Calypso Card API\n[CNA-TCC-API]" as TCC
-component "Terminal Calypso Crypto\nSymmetric API (this specification)" as TCCS #LightYellow
-component "Symmetric Crypto Module\n(SAM or equivalent)" as Mod
-
-TCC --> TCCS : delegates crypto
-TCCS --> Mod : implemented by
-@enduml
-....
+----
+include::uml/architecture-overview.puml[]
+----
 
 === Logical namespaces
 
@@ -371,9 +360,9 @@ TCCS --> Mod : implemented by
 
 The following UML class diagram provides a visual representation of the types and relationships defined by this specification:
 
-[plantuml, target="api_class_diagram", format="svg"]
+[plantuml, target="class-diagram", format="svg"]
 ----
-include::api_class_diagram.puml[Terminal Calypso Crypto Symmetric API class diagram, align=center]
+include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diagram, align=center]
 ----
 
 // =============================================================================
