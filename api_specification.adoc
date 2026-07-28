@@ -518,9 +518,9 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 |===
 | Signature
 | `createCardTransactionManager(` +
-`{nbsp}{nbsp}cardKeyDiversifier: byte array,` +
-`{nbsp}{nbsp}useExtendedMode: boolean,` +
-`{nbsp}{nbsp}transactionAuditData: list<byte array>` +
+`{nbsp}{nbsp}{nbsp}{nbsp}cardKeyDiversifier: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}useExtendedMode: boolean,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}transactionAuditData: list<byte array>` +
 `) -> SymmetricCryptoCardTransactionManagerSpi`
 | Since       | 0.1
 | Description
@@ -610,11 +610,11 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 | Signature
 | `cipherPinForModification(` +
-`{nbsp}{nbsp}cardChallenge: byte array,` +
-`{nbsp}{nbsp}currentPin: byte array,` +
-`{nbsp}{nbsp}newPin: byte array,` +
-`{nbsp}{nbsp}kif: byte,` +
-`{nbsp}{nbsp}kvc: byte` +
+`{nbsp}{nbsp}{nbsp}{nbsp}cardChallenge: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}currentPin: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}newPin: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}kif: byte,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}kvc: byte` +
 `) -> byte array`
 | Since       | 0.1
 | Description
@@ -640,10 +640,10 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 | Signature
 | `cipherPinForPresentation(` +
-`{nbsp}{nbsp}cardChallenge: byte array,` +
-`{nbsp}{nbsp}pin: byte array,` +
-`{nbsp}{nbsp}kif: byte,` +
-`{nbsp}{nbsp}kvc: byte` +
+`{nbsp}{nbsp}{nbsp}{nbsp}cardChallenge: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}pin: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}kif: byte,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}kvc: byte` +
 `) -> byte array`
 | Since       | 0.1
 | Description
@@ -709,11 +709,11 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 | Signature
 | `generateCipheredCardKey(` +
-`{nbsp}{nbsp}cardChallenge: byte array,` +
-`{nbsp}{nbsp}issuerKeyKif: byte,` +
-`{nbsp}{nbsp}issuerKeyKvc: byte,` +
-`{nbsp}{nbsp}targetKeyKif: byte,` +
-`{nbsp}{nbsp}targetKeyKvc: byte` +
+`{nbsp}{nbsp}{nbsp}{nbsp}cardChallenge: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}issuerKeyKif: byte,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}issuerKeyKvc: byte,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}targetKeyKif: byte,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}targetKeyKvc: byte` +
 `) -> byte array`
 | Since       | 0.1
 | Description | Generates an encrypted key data block for loading a key into a card.
@@ -764,9 +764,9 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 |===
 | Signature
 | `initTerminalSessionMac(` +
-`{nbsp}{nbsp}openSecureSessionDataOut: byte array,` +
-`{nbsp}{nbsp}kif: byte,` +
-`{nbsp}{nbsp}kvc: byte` +
+`{nbsp}{nbsp}{nbsp}{nbsp}openSecureSessionDataOut: byte array,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}kif: byte,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}kvc: byte` +
 `) -> void`
 | Since       | 0.1
 | Description | Stores the data needed to initialise the session MAC computation for a *Secure Session*.
