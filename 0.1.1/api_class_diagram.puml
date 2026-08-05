@@ -1,6 +1,6 @@
 @startuml
 title
-    <img:../assets/logo.svg{scale=0.2}>
+    <img:../assets/logos/calypso.svg{scale=0.2}>
 
     Terminal Calypso Crypto Symmetric API 0.1.+ (2023-11-06)
 end title
@@ -90,13 +90,9 @@ package "calypso.crypto.symmetric" as api {
             +void synchronize ()
         }
     }
-    +class "<<Exception>>\n**final** SymmetricCryptoException" as SymmetricCryptoException <<green>> {
-        +SymmetricCryptoException (String message)
-        +SymmetricCryptoException (String message, Throwable cause)
+    +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException <<green>> {
     }
-    +class "<<Exception>>\n**final** SymmetricCryptoIOException" as SymmetricCryptoIOException <<green>> {
-        +SymmetricCryptoIOException (String message)
-        +SymmetricCryptoIOException (String message, Throwable cause)
+    +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException <<green>> {
     }
     +interface SvCommandSecurityDataApi {
         +byte[] getSvGetRequest ()
