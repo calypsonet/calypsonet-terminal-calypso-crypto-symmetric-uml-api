@@ -10,4 +10,4 @@ and this specification adheres to [Semantic Versioning](https://semver.org/spec/
 ## [Unreleased]
 
 ### Added
-- Initial baseline (v0.1.0) of the Terminal Calypso Crypto Symmetric API specification.
+- Initial baseline (v0.1.2) of the Terminal Calypso Crypto Symmetric API specification.
