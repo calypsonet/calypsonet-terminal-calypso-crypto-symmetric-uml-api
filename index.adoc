@@ -211,7 +211,7 @@ diagram (<<sec_class_diagram>>), which provides a visual representation of the s
 | `integer`       | Signed 32-bit integer.                                           | `int`, `Int32`.
 | `byte array`    | Ordered sequence of octets.                                      | `byte[]`, `[u8]`, `bytes`.
 | `list<T>`       | Ordered collection of `T` values, may contain duplicates.        | `List<T>`, `Vec<T>`.
-| `void`          | Indicates that an operation returns no value.                    | `void`, `Unit`, `None`.
+| `unit`          | Indicates that an operation returns no value.                    | `void`, `Unit`, `None`.
 |===
 
 ==== Type tables
@@ -581,7 +581,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `preInitTerminalSessionContext() -> void`
+| Signature   | `preInitTerminalSessionContext() -> unit`
 | Since       | 0.1
 | Description | Retrieves and stores the terminal challenge in the crypto module image for later use.
 | Throws
@@ -612,7 +612,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `activateEncryption() -> void`
+| Signature   | `activateEncryption() -> unit`
 | Since       | 0.1
 | Description | Activates the encryption/decryption of the data sent/received during the secure session.
 | Throws
@@ -683,7 +683,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> void`
+| Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> unit`
 | Since       | 0.1
 | Description | Computes the data needed to operate SV card commands and writes it back to the provided container. Every field of the supplied `SvCommandSecurityDataApi` required to assemble the complete SV command APDU MUST be populated.
 | Parameters  | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
@@ -697,7 +697,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `deactivateEncryption() -> void`
+| Signature   | `deactivateEncryption() -> unit`
 | Since       | 0.1
 | Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
 | Throws
@@ -784,7 +784,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 `{nbsp}{nbsp}{nbsp}{nbsp}openSecureSessionDataOut: byte array,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}kif: byte,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}kvc: byte` +
-`) -> void`
+`) -> unit`
 | Since       | 0.1
 | Description | Stores the data needed to initialise the session MAC computation for a *Secure Session*.
 | Parameters
@@ -831,7 +831,7 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `synchronize() -> void`
+| Signature   | `synchronize() -> unit`
 | Since       | 0.1
 | Description | Synchronises data of the associated card transaction crypto extension if needed.
 | Throws

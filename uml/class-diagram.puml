@@ -56,38 +56,38 @@ hide <<grey>> stereotype
 
 package "calypso.crypto.symmetric" as api {
     +class "**final** SymmetricCryptoApiProperties" as ApiProperties <<green>> {
-        +{static} **final** String VERSION
+        +{static} **final** VERSION: string
     }
     package spi {
         +interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
-            +boolean isExtendedModeSupported ()
-            +int getMaxCardApduLengthSupported ()
+            +isExtendedModeSupported() -> boolean
+            +getMaxCardApduLengthSupported() -> integer
 
-            +void preInitTerminalSessionContext ()
+            +preInitTerminalSessionContext() -> unit
     
-            +SymmetricCryptoCardTransactionManagerSpi createCardTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
+            +createCardTransactionManager(cardKeyDiversifier: byte array, useExtendedMode: boolean, transactionAuditData: list<byte array>) -> SymmetricCryptoCardTransactionManagerSpi
         }
         +interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
-            +byte[] initTerminalSessionContext ()
-            +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
-            +byte[] updateTerminalSessionMac (byte[] cardApdu)
-            +byte[] finalizeTerminalSessionMac ()
+            +initTerminalSessionContext() -> byte array
+            +initTerminalSessionMac(openSecureSessionDataOut: byte array, kif: byte, kvc: byte) -> unit
+            +updateTerminalSessionMac(cardApdu: byte array) -> byte array?
+            +finalizeTerminalSessionMac() -> byte array
     
-            +byte[] generateTerminalSessionMac ()
+            +generateTerminalSessionMac() -> byte array
     
-            +void activateEncryption ()
-            +void deactivateEncryption ()
+            +activateEncryption() -> unit
+            +deactivateEncryption() -> unit
     
-            +boolean isCardSessionMacValid (byte[] cardSessionMac)
+            +isCardSessionMacValid(cardSessionMac: byte array) -> boolean
     
-            +void computeSvCommandSecurityData (SvCommandSecurityDataApi data)
-            +boolean isCardSvMacValid (byte[] cardSvMac)
+            +computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> unit
+            +isCardSvMacValid(cardSvMac: byte array) -> boolean
     
-            +byte[] cipherPinForPresentation (byte[] cardChallenge, byte[] pin, Byte kif, Byte kvc)
-            +byte[] cipherPinForModification (byte[] cardChallenge, byte[] currentPin, byte[] newPin, Byte kif, Byte kvc)
-            +byte[] generateCipheredCardKey (byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+            +cipherPinForPresentation(cardChallenge: byte array, pin: byte array, kif: byte, kvc: byte) -> byte array
+            +cipherPinForModification(cardChallenge: byte array, currentPin: byte array, newPin: byte array, kif: byte, kvc: byte) -> byte array
+            +generateCipheredCardKey(cardChallenge: byte array, issuerKeyKif: byte, issuerKeyKvc: byte, targetKeyKif: byte, targetKeyKvc: byte) -> byte array
 
-            +void synchronize ()
+            +synchronize() -> unit
         }
     }
     +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException <<green>> {
@@ -95,14 +95,14 @@ package "calypso.crypto.symmetric" as api {
     +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException <<green>> {
     }
     +interface SvCommandSecurityDataApi {
-        +byte[] getSvGetRequest ()
-        +byte[] getSvGetResponse ()
-        +byte[] getSvCommandPartialRequest ()
+        +getSvGetRequest() -> byte array
+        +getSvGetResponse() -> byte array
+        +getSvCommandPartialRequest() -> byte array
 
-        +SvCommandSecurityDataApi setSerialNumber (byte[] serialNumber)
-        +SvCommandSecurityDataApi setTransactionNumber (byte[] transactionNumber)
-        +SvCommandSecurityDataApi setTerminalChallenge (byte[] terminalChallenge)
-        +SvCommandSecurityDataApi setTerminalSvMac (byte[] terminalSvMac)
+        +setSerialNumber(serialNumber: byte array) -> SvCommandSecurityDataApi
+        +setTransactionNumber(transactionNumber: byte array) -> SvCommandSecurityDataApi
+        +setTerminalChallenge(terminalChallenge: byte array) -> SvCommandSecurityDataApi
+        +setTerminalSvMac(terminalSvMac: byte array) -> SvCommandSecurityDataApi
     }
 }
 
