@@ -250,7 +250,8 @@ Each operation defined in this document is described by a table of the form:
 | Description | A normative description of the operation's behaviour.
 | Parameters  | A description of each input parameter.
 | Returns     | A description of the returned value, if any.
-| Errors      | A list of error conditions, each mapped to a specific error type.
+| Pre-conditions | The conditions the caller MUST satisfy before invoking the operation, each prefixed by its nature. Present only when applicable.
+| Errors      | A list of error conditions a correct caller must handle, each mapped to a specific error type.
 | See also    | Cross-references to related operations or types, each a hyperlink to the corresponding table. Present only when applicable.
 |===
 
@@ -259,10 +260,14 @@ Each operation defined in this document is described by a table of the form:
 To avoid repetition, the following rules apply to every operation table in <<sec_specification>> and are therefore
 not restated for each operation:
 
-* *Non-`null` arguments.* Unless explicitly stated otherwise, every input parameter being non-`null` is an
-  implicit pre-condition of the operation. Checking it is the responsibility of the implementation, and failing
-  to meet that pre-condition MUST raise an illegal argument error. This implicit check is not restated in the
-  *Errors* row, which states `None.` when no other error can occur.
+* *Pre-conditions.* The *Pre-conditions* row states what the caller MUST guarantee before invoking the
+  operation. Violating one is a contract error, never listed in the *Errors* row, which describes only the
+  outcomes a correct caller must handle. Each entry is prefixed by its nature, which determines the error
+  raised when the condition is not met:
+** *Argument* -- an illegal argument error.
+** *Range* -- an index out of bounds error.
+** *State* -- an illegal state error.
+** *Capability* -- an unsupported operation error.
 * *Non-`null` results.* Unless the return type is marked nullable (`T?`) or the *Returns* row states otherwise, an
   operation returns a non-`null` value.
 * *Collections.* Unless the return type is marked nullable (`T?`), an operation whose return type is a collection
@@ -478,6 +483,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `serialNumber` -- the serial number to be used.
 | Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors      | None.
 |===
 
@@ -491,6 +497,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalChallenge` -- the terminal challenge to be used.
 | Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors      | None.
 |===
 
@@ -504,6 +511,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
 | Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors      | None.
 |===
 
@@ -517,6 +525,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters  | `transactionNumber` -- the transaction number to be used.
 | Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors      | None.
 |===
 
@@ -555,7 +564,9 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
   `useExtendedMode`      -- a flag requesting the extended mode, if supported by the crypto service. +
   `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
 | Returns     | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
-| Errors      | `IllegalStateError` -- if the extended mode is requested but not supported.
+| Pre-conditions | *Argument* -- every parameter is non-`null`. +
+  *State* -- the extended mode is supported whenever it is requested.
+| Errors      | None.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_getMaxCardApduLengthSupported]]
@@ -651,6 +662,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -679,6 +691,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -693,6 +706,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Since       | 0.1
 | Description | Computes the data needed to operate SV card commands and writes it back to the provided container. Every field of the supplied `SvCommandSecurityDataApi` required to assemble the complete SV command APDU MUST be populated.
 | Parameters  | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -747,6 +761,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
   `targetKeyKif`  -- the target key KIF. +
   `targetKeyKvc`  -- the target key KVC.
 | Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -797,6 +812,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | `openSecureSessionDataOut` -- the data out from the card *Open Secure Session* command. +
   `kif` -- the card KIF. +
   `kvc` -- the card KVC.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -812,6 +828,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Description | Verifies the card part of the session MAC, finalising the mutual authentication process.
 | Parameters  | `cardSessionMac` -- a `ByteArray` containing the card session MAC.
 | Returns     | `true` if the card session MAC is validated, `false` otherwise.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -827,6 +844,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Description | Verifies the Stored Value (SV) MAC returned by the card, confirming the authenticity of the SV operation.
 | Parameters  | `cardSvMac` -- a `ByteArray` containing the card SV MAC.
 | Returns     | `true` if the card SV MAC is validated, `false` otherwise.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -858,6 +876,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
   the implementation MUST preserve the order in which this operation is called.
 | Parameters  | `cardApdu` -- a `ByteArray` containing either the input or output data of a card command APDU.
 | Returns     | `null` if the encryption is not active; the non-empty ciphered or deciphered command data otherwise.
+| Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
