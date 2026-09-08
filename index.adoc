@@ -99,7 +99,7 @@ include::assets/layout/_colophon.adoc[]
 This document is the official technical specification of the **{doc-name}** standardised
 by the **{organization}** (CNA).
 It defines, in a language-agnostic way (using a notation inspired by the Kotlin language), the interfaces,
-classes, enumerations, exceptions, structural relationships and behavioural requirements that any conforming
+classes, enumerations, errors, structural relationships and behavioural requirements that any conforming
 implementation of the {doc-name} MUST satisfy.
 
 The {doc-name} is part of the broader CNA *Terminal API* family. It is the SPI through which the *Terminal Calypso
@@ -169,7 +169,7 @@ This specification covers:
 * the factory used by the upstream layer to instantiate a transaction-manager SPI,
 * the transaction-manager SPI exposing the cryptographic primitives,
 * the data container used to carry SV security data,
-* the exceptions raised by the SPI.
+* the errors raised by the SPI.
 
 The following topics are *out of scope*:
 
@@ -183,7 +183,7 @@ A software product conforms to this specification if and only if:
 
 . it implements every interface and class defined in <<sec_specification>> with the operations and semantics
   prescribed in this document,
-. it raises exceptions exclusively of the types defined in <<sec_exceptions>> for the situations described,
+. it raises errors exclusively of the types defined in <<sec_errors>> for the situations described,
 . it preserves the structural relationships described in <<sec_architecture>>.
 
 Throughout this specification, the key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**,
@@ -221,12 +221,12 @@ semantic intent rather than the syntactic form.
 
 ==== Type tables
 
-Each interface, class, enumeration and exception defined in this document is described by a table of the form:
+Each interface, class, enumeration and error defined in this document is described by a table of the form:
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
 | Name       | The type's normalized name.
-| Kind       | The category of the type (interface, class, enumeration, exception, etc.).
+| Kind       | The category of the type (interface, class, enumeration, error, etc.).
 | Namespace  | The namespace in which the type is defined.
 | Extends    | The type extended by this type, when applicable.
 | Implements | The interface implemented by this type, when applicable.
@@ -250,7 +250,7 @@ Each operation defined in this document is described by a table of the form:
 | Description | A normative description of the operation's behaviour.
 | Parameters  | A description of each input parameter.
 | Returns     | A description of the returned value, if any.
-| Throws      | A list of exceptional conditions, each mapped to a specific exception type.
+| Throws      | A list of error conditions, each mapped to a specific error type.
 | See also    | Cross-references to related operations or types, each a hyperlink to the corresponding table. Present only when applicable.
 |===
 
@@ -260,8 +260,8 @@ To avoid repetition, the following rules apply to every operation table in <<sec
 not restated for each operation:
 
 * *Non-`null` arguments.* Unless explicitly stated otherwise, every input parameter MUST be non-`null`. An
-  implementation MUST raise `IllegalArgumentException` if a `null` value is supplied. This implicit `null` check is
-  not repeated in the *Throws* row, which states `None.` when no other exception can occur.
+  implementation MUST raise `IllegalArgumentError` if a `null` value is supplied. This implicit `null` check is
+  not repeated in the *Throws* row, which states `None.` when no other error can occur.
 * *Non-`null` results.* Unless the return type is marked nullable (`T?`) or the *Returns* row states otherwise, an
   operation returns a non-`null` value.
 * *Collections.* Unless the return type is marked nullable (`T?`), an operation whose return type is a collection
@@ -368,7 +368,7 @@ include::uml/architecture-overview.puml[]
 | Namespace                                         | Role     | Summary
 
 | `calypso.crypto.symmetric`                      | Public API
-| Properties, data carrier and exceptions consumed by both sides of the SPI.
+| Properties, data carrier and errors consumed by both sides of the SPI.
 
 | `calypso.crypto.symmetric.spi`                  | SPI
 | Interfaces implemented by the symmetric crypto module.
@@ -554,7 +554,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
   `useExtendedMode`      -- a flag requesting the extended mode, if supported by the crypto service. +
   `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
 | Returns     | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
-| Throws      | `IllegalStateException` -- if the extended mode is requested but not supported.
+| Throws      | `IllegalStateError` -- if the extended mode is requested but not supported.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_getMaxCardApduLengthSupported]]
@@ -590,8 +590,8 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | Since       | 0.1
 | Description | Retrieves and stores the terminal challenge in the crypto module image for later use.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[type_SymmetricCryptoCardTransactionManagerSpi]]
@@ -606,7 +606,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | Purpose  | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
 |===
 
-Every operation MUST raise either `SymmetricCryptoException` (internal error) or `SymmetricCryptoIOException`
+Every operation MUST raise either `SymmetricCrypto` (internal error) or `SymmetricCryptoIO`
 (communication-level error) when the cryptographic computation cannot be completed.
 
 `finalizeTerminalSessionMac` and `isCardSessionMacValid` MUST be called only after every
@@ -621,8 +621,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1
 | Description | Activates the encryption/decryption of the data sent/received during the secure session.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForModification]]
@@ -651,8 +651,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_cipherPinForPresentation]]
@@ -679,8 +679,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kvc`           -- the PIN encryption key KVC.
 | Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_computeSvCommandSecurityData]]
@@ -693,8 +693,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Computes the data needed to operate SV card commands and writes it back to the provided container. Every field of the supplied `SvCommandSecurityDataApi` required to assemble the complete SV command APDU MUST be populated.
 | Parameters  | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_deactivateEncryption]]
@@ -706,8 +706,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1
 | Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_finalizeTerminalSessionMac]]
@@ -720,8 +720,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Finalises the digest computation and returns the terminal part of the session MAC.
 | Returns     | A non-empty `ByteArray` containing the terminal session MAC.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_generateCipheredCardKey]]
@@ -747,8 +747,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `targetKeyKvc`  -- the target key KVC.
 | Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_generateTerminalSessionMac]]
@@ -761,8 +761,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
 | Returns     | A non-empty `ByteArray` containing the terminal session MAC.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSecureSessionContext]]
@@ -775,8 +775,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
 | Returns     | The non-empty terminal challenge.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_initTerminalSessionMac]]
@@ -797,8 +797,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
   `kif` -- the card KIF. +
   `kvc` -- the card KVC.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSessionMacValid]]
@@ -812,8 +812,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Parameters  | `cardSessionMac` -- a `ByteArray` containing the card session MAC.
 | Returns     | `true` if the card session MAC is validated, `false` otherwise.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_isCardSvMacValid]]
@@ -827,8 +827,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Parameters  | `cardSvMac` -- a `ByteArray` containing the card SV MAC.
 | Returns     | `true` if the card SV MAC is validated, `false` otherwise.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_synchronize]]
@@ -840,8 +840,8 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Since       | 0.1
 | Description | Synchronises data of the associated card transaction crypto extension if needed.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerSpi_updateTerminalSessionMac]]
@@ -858,32 +858,32 @@ Every operation MUST raise either `SymmetricCryptoException` (internal error) or
 | Parameters  | `cardApdu` -- a `ByteArray` containing either the input or output data of a card command APDU.
 | Returns     | `null` if the encryption is not active; the non-empty ciphered or deciphered command data otherwise.
 | Throws
-| <<type_SymmetricCryptoException,`SymmetricCryptoException`>> -- if an internal error occurred. +
-  <<type_SymmetricCryptoIOException,`SymmetricCryptoIOException`>> -- if an IO error occurred when processing a command.
+| <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
+  <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
 |===
 
-[[sec_exceptions]]
-=== Exceptions
+[[sec_errors]]
+=== Errors
 
-[[type_SymmetricCryptoException]]
-==== Symmetric Crypto Exception
+[[type_SymmetricCrypto]]
+==== Symmetric Crypto
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SymmetricCryptoException`
-| Kind     | Checked exception
+| Name     | `SymmetricCrypto`
+| Kind     | Error
 | Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
 | Purpose  | Indicates that an internal error occurred when processing a command.
 |===
 
-[[type_SymmetricCryptoIOException]]
-==== Symmetric Crypto IO Exception
+[[type_SymmetricCryptoIO]]
+==== Symmetric Crypto IO
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SymmetricCryptoIOException`
-| Kind     | Checked exception
+| Name     | `SymmetricCryptoIO`
+| Kind     | Error
 | Namespace  | `calypso.crypto.symmetric`
 | Since    | 0.1
 | Purpose  | Indicates that an IO error occurred when processing a command.
