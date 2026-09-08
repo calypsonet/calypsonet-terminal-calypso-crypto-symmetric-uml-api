@@ -90,9 +90,9 @@ package "calypso.crypto.symmetric" as api {
             +synchronize() → Unit
         }
     }
-    +class "<<errors>>\nSymmetricCrypto" as SymmetricCrypto <<green>> {
-    }
-    +class "<<errors>>\nSymmetricCryptoIO" as SymmetricCryptoIO <<green>> {
+    +exception "<i>«error»\nSymmetricCrypto\nSymmetricCryptoIO" as errors <<purple>>  {
+        +val message: String
+        +val cause: Any?
     }
     +interface SvCommandSecurityDataApi {
         +getSvGetRequest() → ByteArray
@@ -114,8 +114,7 @@ SymmetricCryptoCardTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE
 
 ' == LAYOUT ==
 
-SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCrypto
-SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCryptoIO
+SymmetricCryptoCardTransactionManagerSpi .[hidden]. errors
 
 ' == STYLE ==
 
