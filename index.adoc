@@ -245,14 +245,14 @@ Each operation defined in this document is described by a table of the form:
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | The operation's signature.
-| Since       | The version of the API in which the operation was introduced.
-| Description | A normative description of the operation's behaviour.
-| Parameters  | A description of each input parameter.
-| Returns     | A description of the returned value, if any.
+| Signature      | The operation's signature.
+| Since          | The version of the API in which the operation was introduced.
+| Description    | A normative description of the operation's behaviour.
+| Parameters     | A description of each input parameter.
+| Returns        | A description of the returned value, if any.
 | Pre-conditions | The conditions the caller MUST satisfy before invoking the operation, each prefixed by its nature.
-| Errors      | A list of error conditions a correct caller must handle, each mapped to a specific error type.
-| See also    | Cross-references to related operations or types, each a hyperlink to the corresponding table. Present only when applicable.
+| Errors         | A list of error conditions a correct caller must handle, each mapped to a specific error type.
+| See also       | Cross-references to related operations or types, each a hyperlink to the corresponding table. Present only when applicable.
 |===
 
 ==== Operation contracts
@@ -442,12 +442,12 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `getSvCommandPartialRequest() -> ByteArray`
-| Since       | 0.1
-| Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module is later appended.
-| Returns     | A non-empty `ByteArray` containing the *SV Load/Debit/Undebit* APDU partial request.
+| Signature      | `getSvCommandPartialRequest() -> ByteArray`
+| Since          | 0.1
+| Description    | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module is later appended.
+| Returns        | A non-empty `ByteArray` containing the *SV Load/Debit/Undebit* APDU partial request.
 | Pre-conditions | None.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SvCommandSecurityDataApi_getSvGetRequest]]
@@ -455,12 +455,12 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `getSvGetRequest() -> ByteArray`
-| Since       | 0.1
-| Description | Returns the *SV Get* ingoing command data.
-| Returns     | A non-empty `ByteArray` containing the *SV Get* APDU request data.
+| Signature      | `getSvGetRequest() -> ByteArray`
+| Since          | 0.1
+| Description    | Returns the *SV Get* ingoing command data.
+| Returns        | A non-empty `ByteArray` containing the *SV Get* APDU request data.
 | Pre-conditions | None.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SvCommandSecurityDataApi_getSvGetResponse]]
@@ -468,12 +468,12 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `getSvGetResponse() -> ByteArray`
-| Since       | 0.1
-| Description | Returns the *SV Get* outgoing command data.
-| Returns     | A non-empty `ByteArray` containing the *SV Get* APDU response data.
+| Signature      | `getSvGetResponse() -> ByteArray`
+| Since          | 0.1
+| Description    | Returns the *SV Get* outgoing command data.
+| Returns        | A non-empty `ByteArray` containing the *SV Get* APDU response data.
 | Pre-conditions | None.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SvCommandSecurityDataApi_setSerialNumber]]
@@ -481,13 +481,13 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `setSerialNumber(serialNumber: ByteArray) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `serialNumber` -- the serial number to be used.
-| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Signature      | `setSerialNumber(serialNumber: ByteArray) -> SvCommandSecurityDataApi`
+| Since          | 0.1
+| Description    | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters     | `serialNumber` -- the serial number to be used.
+| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SvCommandSecurityDataApi_setTerminalChallenge]]
@@ -495,13 +495,13 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `setTerminalChallenge(terminalChallenge: ByteArray) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `terminalChallenge` -- the terminal challenge to be used.
-| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Signature      | `setTerminalChallenge(terminalChallenge: ByteArray) -> SvCommandSecurityDataApi`
+| Since          | 0.1
+| Description    | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters     | `terminalChallenge` -- the terminal challenge to be used.
+| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SvCommandSecurityDataApi_setTerminalSvMac]]
@@ -509,13 +509,13 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `setTerminalSvMac(terminalSvMac: ByteArray) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `terminalSvMac` -- the terminal SV MAC to be used.
-| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Signature      | `setTerminalSvMac(terminalSvMac: ByteArray) -> SvCommandSecurityDataApi`
+| Since          | 0.1
+| Description    | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters     | `terminalSvMac` -- the terminal SV MAC to be used.
+| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SvCommandSecurityDataApi_setTransactionNumber]]
@@ -523,13 +523,13 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `setTransactionNumber(transactionNumber: ByteArray) -> SvCommandSecurityDataApi`
-| Since       | 0.1
-| Description | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters  | `transactionNumber` -- the transaction number to be used.
-| Returns     | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Signature      | `setTransactionNumber(transactionNumber: ByteArray) -> SvCommandSecurityDataApi`
+| Since          | 0.1
+| Description    | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
+| Parameters     | `transactionNumber` -- the transaction number to be used.
+| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors      | None.
+| Errors         | None.
 |===
 
 === SPI Interfaces
@@ -557,7 +557,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 `{nbsp}{nbsp}{nbsp}{nbsp}useExtendedMode: Boolean,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}transactionAuditData: List<ByteArray>` +
 `) -> SymmetricCryptoCardTransactionManagerSpi`
-| Since       | 0.1
+| Since          | 0.1
 | Description
 | Creates a <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>> providing
 the cryptographic primitives that a Calypso card transaction requires when using symmetric keys, initialised with
@@ -566,10 +566,10 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
   `useExtendedMode`      -- a flag requesting the extended mode, if supported by the crypto service. +
   `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
-| Returns     | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
+| Returns        | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Pre-conditions | *Argument* -- every parameter is non-`null`. +
   *State* -- the extended mode is supported whenever it is requested.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_getMaxCardApduLengthSupported]]
@@ -577,12 +577,12 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `getMaxCardApduLengthSupported() -> Int`
-| Since       | 0.1
-| Description | Returns the maximum card APDU length supported by the crypto module.
-| Returns     | A positive `Int`.
+| Signature      | `getMaxCardApduLengthSupported() -> Int`
+| Since          | 0.1
+| Description    | Returns the maximum card APDU length supported by the crypto module.
+| Returns        | A positive `Int`.
 | Pre-conditions | None.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_isExtendedModeSupported]]
@@ -590,12 +590,12 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `isExtendedModeSupported() -> Boolean`
-| Since       | 0.1
-| Description | Indicates whether the *extended* mode is supported by the crypto module.
-| Returns     | `true` if the extended mode is supported, `false` otherwise.
+| Signature      | `isExtendedModeSupported() -> Boolean`
+| Since          | 0.1
+| Description    | Indicates whether the *extended* mode is supported by the crypto module.
+| Returns        | `true` if the extended mode is supported, `false` otherwise.
 | Pre-conditions | None.
-| Errors      | None.
+| Errors         | None.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_preInitTerminalSessionContext]]
@@ -603,9 +603,9 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `preInitTerminalSessionContext() -> Unit`
-| Since       | 0.1
-| Description | Retrieves and stores the terminal challenge in the crypto module image for later use.
+| Signature      | `preInitTerminalSessionContext() -> Unit`
+| Since          | 0.1
+| Description    | Retrieves and stores the terminal challenge in the crypto module image for later use.
 | Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -635,9 +635,9 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `activateEncryption() -> Unit`
-| Since       | 0.1
-| Description | Activates the encryption/decryption of the data sent/received during the secure session.
+| Signature      | `activateEncryption() -> Unit`
+| Since          | 0.1
+| Description    | Activates the encryption/decryption of the data sent/received during the secure session.
 | Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -657,7 +657,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 `{nbsp}{nbsp}{nbsp}{nbsp}kif: Byte,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}kvc: Byte` +
 `) -> ByteArray`
-| Since       | 0.1
+| Since          | 0.1
 | Description
 | Computes a block of encrypted data to be sent to the card for a PIN modification.
 
@@ -668,7 +668,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
   `newPin`        -- a `ByteArray` containing the 4-byte new PIN value. +
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
-| Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
+| Returns        | A non-empty `ByteArray` containing the encrypted data block to send to the card.
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -687,7 +687,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 `{nbsp}{nbsp}{nbsp}{nbsp}kif: Byte,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}kvc: Byte` +
 `) -> ByteArray`
-| Since       | 0.1
+| Since          | 0.1
 | Description
 | Computes a block of encrypted data to be sent to the card for an enciphered PIN presentation.
 
@@ -697,7 +697,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
   `pin`           -- a `ByteArray` containing the 4-byte PIN value. +
   `kif`           -- the PIN encryption key KIF. +
   `kvc`           -- the PIN encryption key KVC.
-| Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
+| Returns        | A non-empty `ByteArray` containing the encrypted data block to send to the card.
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -709,10 +709,10 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> Unit`
-| Since       | 0.1
-| Description | Computes the data needed to operate SV card commands and writes it back to the provided container. Every field of the supplied `SvCommandSecurityDataApi` required to assemble the complete SV command APDU MUST be populated.
-| Parameters  | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
+| Signature      | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> Unit`
+| Since          | 0.1
+| Description    | Computes the data needed to operate SV card commands and writes it back to the provided container. Every field of the supplied `SvCommandSecurityDataApi` required to assemble the complete SV command APDU MUST be populated.
+| Parameters     | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -724,9 +724,9 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `deactivateEncryption() -> Unit`
-| Since       | 0.1
-| Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
+| Signature      | `deactivateEncryption() -> Unit`
+| Since          | 0.1
+| Description    | Deactivates the encryption/decryption of the data sent/received during the secure session.
 | Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -738,10 +738,10 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `finalizeTerminalSessionMac() -> ByteArray`
-| Since       | 0.1
-| Description | Finalises the digest computation and returns the terminal part of the session MAC.
-| Returns     | A non-empty `ByteArray` containing the terminal session MAC.
+| Signature      | `finalizeTerminalSessionMac() -> ByteArray`
+| Since          | 0.1
+| Description    | Finalises the digest computation and returns the terminal part of the session MAC.
+| Returns        | A non-empty `ByteArray` containing the terminal session MAC.
 | Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -761,15 +761,15 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 `{nbsp}{nbsp}{nbsp}{nbsp}targetKeyKif: Byte,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}targetKeyKvc: Byte` +
 `) -> ByteArray`
-| Since       | 0.1
-| Description | Generates an encrypted key data block for loading a key into a card.
+| Since          | 0.1
+| Description    | Generates an encrypted key data block for loading a key into a card.
 | Parameters
 | `cardChallenge` -- a `ByteArray` containing the card challenge. +
   `issuerKeyKif`  -- the issuer key KIF. +
   `issuerKeyKvc`  -- the issuer key KVC. +
   `targetKeyKif`  -- the target key KIF. +
   `targetKeyKvc`  -- the target key KVC.
-| Returns     | A non-empty `ByteArray` containing the encrypted data block to send to the card.
+| Returns        | A non-empty `ByteArray` containing the encrypted data block to send to the card.
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -781,10 +781,10 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `generateTerminalSessionMac() -> ByteArray`
-| Since       | 0.1
-| Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
-| Returns     | A non-empty `ByteArray` containing the terminal session MAC.
+| Signature      | `generateTerminalSessionMac() -> ByteArray`
+| Since          | 0.1
+| Description    | Generates the terminal part of the session MAC used for an *early mutual authentication*.
+| Returns        | A non-empty `ByteArray` containing the terminal session MAC.
 | Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -796,10 +796,10 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `initTerminalSecureSessionContext() -> ByteArray`
-| Since       | 0.1
-| Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
-| Returns     | The non-empty terminal challenge.
+| Signature      | `initTerminalSecureSessionContext() -> ByteArray`
+| Since          | 0.1
+| Description    | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
+| Returns        | The non-empty terminal challenge.
 | Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -817,8 +817,8 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 `{nbsp}{nbsp}{nbsp}{nbsp}kif: Byte,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}kvc: Byte` +
 `) -> Unit`
-| Since       | 0.1
-| Description | Stores the data needed to initialise the session MAC computation for a *Secure Session*.
+| Since          | 0.1
+| Description    | Stores the data needed to initialise the session MAC computation for a *Secure Session*.
 | Parameters
 | `openSecureSessionDataOut` -- the data out from the card *Open Secure Session* command. +
   `kif` -- the card KIF. +
@@ -834,11 +834,11 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `isCardSessionMacValid(cardSessionMac: ByteArray) -> Boolean`
-| Since       | 0.1
-| Description | Verifies the card part of the session MAC, finalising the mutual authentication process.
-| Parameters  | `cardSessionMac` -- a `ByteArray` containing the card session MAC.
-| Returns     | `true` if the card session MAC is validated, `false` otherwise.
+| Signature      | `isCardSessionMacValid(cardSessionMac: ByteArray) -> Boolean`
+| Since          | 0.1
+| Description    | Verifies the card part of the session MAC, finalising the mutual authentication process.
+| Parameters     | `cardSessionMac` -- a `ByteArray` containing the card session MAC.
+| Returns        | `true` if the card session MAC is validated, `false` otherwise.
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -850,11 +850,11 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `isCardSvMacValid(cardSvMac: ByteArray) -> Boolean`
-| Since       | 0.1
-| Description | Verifies the Stored Value (SV) MAC returned by the card, confirming the authenticity of the SV operation.
-| Parameters  | `cardSvMac` -- a `ByteArray` containing the card SV MAC.
-| Returns     | `true` if the card SV MAC is validated, `false` otherwise.
+| Signature      | `isCardSvMacValid(cardSvMac: ByteArray) -> Boolean`
+| Since          | 0.1
+| Description    | Verifies the Stored Value (SV) MAC returned by the card, confirming the authenticity of the SV operation.
+| Parameters     | `cardSvMac` -- a `ByteArray` containing the card SV MAC.
+| Returns        | `true` if the card SV MAC is validated, `false` otherwise.
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -866,9 +866,9 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `synchronize() -> Unit`
-| Since       | 0.1
-| Description | Synchronises data of the associated card transaction crypto extension if needed.
+| Signature      | `synchronize() -> Unit`
+| Since          | 0.1
+| Description    | Synchronises data of the associated card transaction crypto extension if needed.
 | Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
@@ -880,14 +880,14 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature   | `updateTerminalSessionMac(cardApdu: ByteArray) -> ByteArray?`
-| Since       | 0.1
+| Signature      | `updateTerminalSessionMac(cardApdu: ByteArray) -> ByteArray?`
+| Since          | 0.1
 | Description
 | Updates the digest computation with data sent or received from the card. Returns the encrypted/decrypted data
   when the encryption is active. The digest is computed *incrementally* and depends on the sequence of inputs:
   the implementation MUST preserve the order in which this operation is called.
-| Parameters  | `cardApdu` -- a `ByteArray` containing either the input or output data of a card command APDU.
-| Returns     | `null` if the encryption is not active; the non-empty ciphered or deciphered command data otherwise.
+| Parameters     | `cardApdu` -- a `ByteArray` containing either the input or output data of a card command APDU.
+| Returns        | `null` if the encryption is not active; the non-empty ciphered or deciphered command data otherwise.
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
