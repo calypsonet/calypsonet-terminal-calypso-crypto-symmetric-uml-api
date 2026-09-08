@@ -250,7 +250,7 @@ Each operation defined in this document is described by a table of the form:
 | Description | A normative description of the operation's behaviour.
 | Parameters  | A description of each input parameter.
 | Returns     | A description of the returned value, if any.
-| Pre-conditions | The conditions the caller MUST satisfy before invoking the operation, each prefixed by its nature. Present only when applicable.
+| Pre-conditions | The conditions the caller MUST satisfy before invoking the operation, each prefixed by its nature.
 | Errors      | A list of error conditions a correct caller must handle, each mapped to a specific error type.
 | See also    | Cross-references to related operations or types, each a hyperlink to the corresponding table. Present only when applicable.
 |===
@@ -446,6 +446,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Since       | 0.1
 | Description | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module is later appended.
 | Returns     | A non-empty `ByteArray` containing the *SV Load/Debit/Undebit* APDU partial request.
+| Pre-conditions | None.
 | Errors      | None.
 |===
 
@@ -458,6 +459,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Since       | 0.1
 | Description | Returns the *SV Get* ingoing command data.
 | Returns     | A non-empty `ByteArray` containing the *SV Get* APDU request data.
+| Pre-conditions | None.
 | Errors      | None.
 |===
 
@@ -470,6 +472,7 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 | Since       | 0.1
 | Description | Returns the *SV Get* outgoing command data.
 | Returns     | A non-empty `ByteArray` containing the *SV Get* APDU response data.
+| Pre-conditions | None.
 | Errors      | None.
 |===
 
@@ -578,6 +581,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | Since       | 0.1
 | Description | Returns the maximum card APDU length supported by the crypto module.
 | Returns     | A positive `Int`.
+| Pre-conditions | None.
 | Errors      | None.
 |===
 
@@ -590,6 +594,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | Since       | 0.1
 | Description | Indicates whether the *extended* mode is supported by the crypto module.
 | Returns     | `true` if the extended mode is supported, `false` otherwise.
+| Pre-conditions | None.
 | Errors      | None.
 |===
 
@@ -601,6 +606,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | Signature   | `preInitTerminalSessionContext() -> Unit`
 | Since       | 0.1
 | Description | Retrieves and stores the terminal challenge in the crypto module image for later use.
+| Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -632,6 +638,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Signature   | `activateEncryption() -> Unit`
 | Since       | 0.1
 | Description | Activates the encryption/decryption of the data sent/received during the secure session.
+| Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -720,6 +727,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Signature   | `deactivateEncryption() -> Unit`
 | Since       | 0.1
 | Description | Deactivates the encryption/decryption of the data sent/received during the secure session.
+| Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -734,6 +742,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Since       | 0.1
 | Description | Finalises the digest computation and returns the terminal part of the session MAC.
 | Returns     | A non-empty `ByteArray` containing the terminal session MAC.
+| Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -776,6 +785,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Since       | 0.1
 | Description | Generates the terminal part of the session MAC used for an *early mutual authentication*.
 | Returns     | A non-empty `ByteArray` containing the terminal session MAC.
+| Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -790,6 +800,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Since       | 0.1
 | Description | Initialises the crypto module context for operating a *Secure Session* with a card and returns the terminal challenge.
 | Returns     | The non-empty terminal challenge.
+| Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
@@ -858,6 +869,7 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 | Signature   | `synchronize() -> Unit`
 | Since       | 0.1
 | Description | Synchronises data of the associated card transaction crypto extension if needed.
+| Pre-conditions | None.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.
