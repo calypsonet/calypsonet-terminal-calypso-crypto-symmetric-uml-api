@@ -64,30 +64,45 @@ package "calypso.crypto.symmetric" as api {
             +getMaxCardApduLengthSupported() → Int
 
             +preInitTerminalSessionContext() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
             +createCardTransactionManager(cardKeyDiversifier: ByteArray, useExtendedMode: Boolean, transactionAuditData: List<ByteArray>) → SymmetricCryptoCardTransactionManagerSpi
         }
         +interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
-            +initTerminalSessionContext() → ByteArray
+            +initTerminalSecureSessionContext() → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +initTerminalSessionMac(openSecureSessionDataOut: ByteArray, kif: Byte, kvc: Byte) → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +updateTerminalSessionMac(cardApdu: ByteArray) → ByteArray?
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +finalizeTerminalSessionMac() → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
             +generateTerminalSessionMac() → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
             +activateEncryption() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +deactivateEncryption() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
             +isCardSessionMacValid(cardSessionMac: ByteArray) → Boolean
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
             +computeSvCommandSecurityData(data: SvCommandSecurityDataApi) → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +isCardSvMacValid(cardSvMac: ByteArray) → Boolean
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
             +cipherPinForPresentation(cardChallenge: ByteArray, pin: ByteArray, kif: Byte, kvc: Byte) → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +cipherPinForModification(cardChallenge: ByteArray, currentPin: ByteArray, newPin: ByteArray, kif: Byte, kvc: Byte) → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +generateCipheredCardKey(cardChallenge: ByteArray, issuerKeyKif: Byte, issuerKeyKvc: Byte, targetKeyKif: Byte, targetKeyKvc: Byte) → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
 
             +synchronize() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
         }
     }
     +exception "<i>«error»\nSymmetricCrypto\nSymmetricCryptoIO" as errors <<purple>>  {
