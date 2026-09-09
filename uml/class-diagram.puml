@@ -105,7 +105,7 @@ package "calypso.crypto.symmetric" as api {
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
         }
     }
-    +exception "<i>«error»\nSymmetricCrypto\nSymmetricCryptoIO" as errors <<purple>>  {
+    +exception "SymmetricCrypto\nSymmetricCryptoIO" as errors <<purple>> <<error>> {
         +val message: String
         +val cause: Any?
     }
