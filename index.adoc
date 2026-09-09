@@ -402,11 +402,11 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SymmetricCryptoApiProperties`
-| Kind     | Final class
+| Name       | `SymmetricCryptoApiProperties`
+| Kind       | Final class
 | Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Exposes the immutable properties of the {doc-name}.
+| Since      | 0.1
+| Purpose    | Exposes the immutable properties of the {doc-name}.
 |===
 
 ===== Constants
@@ -430,11 +430,11 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SvCommandSecurityDataApi`
-| Kind     | Interface
+| Name       | `SvCommandSecurityDataApi`
+| Kind       | Interface
 | Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
+| Since      | 0.1
+| Purpose    | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
 |===
 
 [[op_SvCommandSecurityDataApi_getSvCommandPartialRequest]]
@@ -539,11 +539,11 @@ The `SymmetricCryptoApiProperties` type cannot be instantiated; it exposes only 
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SymmetricCryptoCardTransactionManagerFactorySpi`
-| Kind     | Interface (SPI)
+| Name       | `SymmetricCryptoCardTransactionManagerFactorySpi`
+| Kind       | Interface (SPI)
 | Namespace  | `calypso.crypto.symmetric.spi`
-| Since    | 0.1
-| Purpose  | Factory of <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>. Implemented by the crypto module.
+| Since      | 0.1
+| Purpose    | Factory of <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>. Implemented by the crypto module.
 |===
 
 [[op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager]]
@@ -617,11 +617,11 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SymmetricCryptoCardTransactionManagerSpi`
-| Kind     | Interface (SPI)
+| Name       | `SymmetricCryptoCardTransactionManagerSpi`
+| Kind       | Interface (SPI)
 | Namespace  | `calypso.crypto.symmetric.spi`
-| Since    | 0.1
-| Purpose  | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
+| Since      | 0.1
+| Purpose    | Defines the cryptographic primitives required by a Calypso card transaction when using symmetric keys. An instance is obtained via <<op_SymmetricCryptoCardTransactionManagerFactorySpi_createCardTransactionManager,`SymmetricCryptoCardTransactionManagerFactorySpi.createCardTransactionManager`>>.
 |===
 
 Every operation MUST raise either `SymmetricCrypto` (internal error) or `SymmetricCryptoIO`
@@ -897,16 +897,20 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 [[sec_errors]]
 === Errors
 
+Every error defined below carries two properties: `message` (`String`), which describes the condition, and
+`cause` (`Any?`), the underlying error that triggered it, `null` when there is none. They are not
+restated for each error.
+
 [[type_SymmetricCrypto]]
 ==== Symmetric Crypto
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SymmetricCrypto`
-| Kind     | Error
+| Name       | `SymmetricCrypto`
+| Kind       | Error
 | Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Indicates that an internal error occurred when processing a command.
+| Since      | 0.1
+| Purpose    | Indicates that an internal error occurred when processing a command.
 |===
 
 [[type_SymmetricCryptoIO]]
@@ -914,9 +918,9 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name     | `SymmetricCryptoIO`
-| Kind     | Error
+| Name       | `SymmetricCryptoIO`
+| Kind       | Error
 | Namespace  | `calypso.crypto.symmetric`
-| Since    | 0.1
-| Purpose  | Indicates that an IO error occurred when processing a command.
+| Since      | 0.1
+| Purpose    | Indicates that an IO error occurred when processing a command.
 |===
