@@ -55,11 +55,11 @@ hide <<grey>> stereotype
 ' == CONTENT ==
 
 package "calypso.crypto.symmetric" as api {
-    +class "**final** SymmetricCryptoApiProperties" as ApiProperties <<green>> {
+    class "**final** SymmetricCryptoApiProperties" as ApiProperties <<green>> {
         +{static} **final** VERSION: String
     }
     package spi {
-        +interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
+        interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
             +isExtendedModeSupported() → Boolean
             +getMaxCardApduLengthSupported() → Int
 
@@ -68,7 +68,7 @@ package "calypso.crypto.symmetric" as api {
     
             +createCardTransactionManager(cardKeyDiversifier: ByteArray, useExtendedMode: Boolean, transactionAuditData: List<ByteArray>) → SymmetricCryptoCardTransactionManagerSpi
         }
-        +interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
+        interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
             +initTerminalSecureSessionContext() → ByteArray
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +initTerminalSessionMac(openSecureSessionDataOut: ByteArray, kif: Byte, kvc: Byte) → Unit
@@ -105,11 +105,11 @@ package "calypso.crypto.symmetric" as api {
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
         }
     }
-    +exception "SymmetricCrypto\nSymmetricCryptoIO" as errors <<purple>> <<error>> {
+    exception "SymmetricCrypto\nSymmetricCryptoIO" as errors <<green>> <<error>> {
         +val message: String
         +val cause: Any?
     }
-    +interface SvCommandSecurityDataApi {
+    interface SvCommandSecurityDataApi {
         +getSvGetRequest() → ByteArray
         +getSvGetResponse() → ByteArray
         +getSvCommandPartialRequest() → ByteArray
