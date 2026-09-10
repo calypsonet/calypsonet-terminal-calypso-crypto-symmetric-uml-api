@@ -55,7 +55,7 @@ hide <<grey>> stereotype
 ' == CONTENT ==
 
 package "calypso.crypto.symmetric" as api {
-    class "SymmetricCryptoApiProperties" as ApiProperties <<green>> <<constants>> {
+    class "SymmetricCryptoApiProperties" as ApiProperties <<constants>> <<green>> {
         +const VERSION: String = "0.1"
     }
     package spi {
@@ -105,7 +105,7 @@ package "calypso.crypto.symmetric" as api {
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
         }
     }
-    exception "SymmetricCrypto\nSymmetricCryptoIO" as errors <<green>> <<error>> {
+    exception "SymmetricCrypto\nSymmetricCryptoIO" as errors <<error>> <<green>> {
         +val message: String
         +val cause: Any?
     }
