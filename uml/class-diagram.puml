@@ -114,10 +114,10 @@ package "calypso.crypto.symmetric" as api {
         +getSvGetResponse() → ByteArray
         +getSvCommandPartialRequest() → ByteArray
 
-        +setSerialNumber(serialNumber: ByteArray) → SvCommandSecurityDataApi
-        +setTransactionNumber(transactionNumber: ByteArray) → SvCommandSecurityDataApi
-        +setTerminalChallenge(terminalChallenge: ByteArray) → SvCommandSecurityDataApi
-        +setTerminalSvMac(terminalSvMac: ByteArray) → SvCommandSecurityDataApi
+        +setSerialNumber(serialNumber: ByteArray) → Self
+        +setTransactionNumber(transactionNumber: ByteArray) → Self
+        +setTerminalChallenge(terminalChallenge: ByteArray) → Self
+        +setTerminalSvMac(terminalSvMac: ByteArray) → Self
     }
 }
 

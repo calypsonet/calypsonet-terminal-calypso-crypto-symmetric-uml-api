@@ -211,16 +211,17 @@ semantic intent rather than the syntactic form.
 
 [cols="^.^1,.^3,.^3", options="header"]
 |===
-| Type        | Description                                                | Typical bindings
-| `String`    | Sequence of characters, UTF-8 encoded by default.          | `String`, `string`, `str`.
-| `Boolean`   | Two-state truth value.                                     | `boolean`, `bool`.
-| `Byte`      | Signed 8-bit value.                                        | `byte`, `i8`.
-| `Int`       | Signed 32-bit integer.                                     | `int`, `Int32`, `i32`.
-| `ByteArray` | Ordered sequence of octets.                                | `byte[]`, `[u8]`, `bytes`.
-| `List<T>`   | Ordered collection of `T` values, may contain duplicates.  | `List<T>`, `Vec<T>`.
-| `T?`        | Nullable value: either a `T` value or `null`.              | `Optional<T>`, `T?`, `Option<T>`.
-| `null`      | Absence of value, the alternative held by a nullable type. | `null`, `nil`, `None`.
-| `Unit`      | Indicates that an operation returns no value.              | `void`, `Unit`, `()`.
+| Type        | Description                                                                         | Typical bindings
+| `String`    | Sequence of characters, UTF-8 encoded by default.                                   | `String`, `string`, `str`.
+| `Boolean`   | Two-state truth value.                                                              | `boolean`, `bool`.
+| `Byte`      | Signed 8-bit value.                                                                 | `byte`, `i8`.
+| `Int`       | Signed 32-bit integer.                                                              | `int`, `Int32`, `i32`.
+| `ByteArray` | Ordered sequence of octets.                                                         | `byte[]`, `[u8]`, `bytes`.
+| `List<T>`   | Ordered collection of `T` values, may contain duplicates.                           | `List<T>`, `Vec<T>`.
+| `T?`        | Nullable value: either a `T` value or `null`.                                       | `Optional<T>`, `T?`, `Option<T>`.
+| `null`      | Absence of value, the alternative held by a nullable type.                          | `null`, `nil`, `None`.
+| `Self`      | Own type of the receiver: a fluent operation returns the instance it was called on. | `Self`, `T` (recursive generic).
+| `Unit`      | Indicates that an operation returns no value.                                       | `void`, `Unit`, `()`.
 |===
 
 ==== Type tables
@@ -479,11 +480,11 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature      | `setSerialNumber(serialNumber: ByteArray) -> SvCommandSecurityDataApi`
+| Signature      | `setSerialNumber(serialNumber: ByteArray) -> Self`
 | Since          | 0.1
 | Description    | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters     | `serialNumber` -- the serial number to be used.
-| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Returns        | The current instance (`Self`).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors         | None.
 |===
@@ -493,11 +494,11 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature      | `setTerminalChallenge(terminalChallenge: ByteArray) -> SvCommandSecurityDataApi`
+| Signature      | `setTerminalChallenge(terminalChallenge: ByteArray) -> Self`
 | Since          | 0.1
 | Description    | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters     | `terminalChallenge` -- the terminal challenge to be used.
-| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Returns        | The current instance (`Self`).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors         | None.
 |===
@@ -507,11 +508,11 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature      | `setTerminalSvMac(terminalSvMac: ByteArray) -> SvCommandSecurityDataApi`
+| Signature      | `setTerminalSvMac(terminalSvMac: ByteArray) -> Self`
 | Since          | 0.1
 | Description    | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters     | `terminalSvMac` -- the terminal SV MAC to be used.
-| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Returns        | The current instance (`Self`).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors         | None.
 |===
@@ -521,11 +522,11 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature      | `setTransactionNumber(transactionNumber: ByteArray) -> SvCommandSecurityDataApi`
+| Signature      | `setTransactionNumber(transactionNumber: ByteArray) -> Self`
 | Since          | 0.1
 | Description    | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
 | Parameters     | `transactionNumber` -- the transaction number to be used.
-| Returns        | The current instance (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>).
+| Returns        | The current instance (`Self`).
 | Pre-conditions | *Argument* -- every parameter is non-`null`.
 | Errors         | None.
 |===
