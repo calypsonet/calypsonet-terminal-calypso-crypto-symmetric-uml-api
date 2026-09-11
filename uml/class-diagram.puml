@@ -54,6 +54,18 @@ hide <<grey>> stereotype
 
 ' == CONTENT ==
 
+legend top
+    * __Text__
+    *** <color:blue><b>New element added since the last version
+    *** <color:red><s><b>Element marked as deprecated since the last version
+    *** <s><b>Element marked as deprecated
+    *** <color:grey><b>Work in progress...
+    * __Object__
+    *** <back:#FEFECE><color:#D4AC0D><b>Interface that cannot be instantiated directly by the factory
+    *** <back:#FDEDEC><color:#E74C3C><b>SPI (Service Provider Interface) to be provided by the end-user
+    *** <back:#E9F7EF><color:#27AE60><b>Class, enum or error
+end legend
+
 package "calypso.crypto.symmetric" as api {
     class "SymmetricCryptoApiProperties" as ApiProperties <<constants>> <<green>> {
         +const VERSION: String = "0.1"
