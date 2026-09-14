@@ -16,10 +16,10 @@ include::assets/logos/_terminal-api.adoc[]
 include::assets/legal/_license-cc-by-nd-4.0.adoc[]
 //
 // Revision (bumped every edition)
-:revnumber: 0.1.2-SNAPSHOT
+:revnumber: 0.2.0-SNAPSHOT
 :revdate: 2026-07-20
 // API version exposed by the VERSION constant: MAJOR.MINOR of revnumber
-:api-version: 0.1
+:api-version: 0.2
 //
 // ============================================================================
 // Document-specific constants (local — differ per spec)
@@ -170,7 +170,7 @@ This specification covers:
 
 * the factory used by the upstream layer to instantiate a transaction-manager SPI,
 * the transaction-manager SPI exposing the cryptographic primitives,
-* the data container used to carry SV security data,
+* the data carrier holding the computed SV security data,
 * the errors raised by the SPI.
 
 The following topics are *out of scope*:
@@ -186,7 +186,20 @@ A software product conforms to this specification if and only if:
 . it implements every interface and class defined in <<sec_specification>> with the operations and semantics
   prescribed in this document,
 . it raises errors exclusively of the types defined in <<sec_errors>> for the situations described,
-. it preserves the structural relationships described in <<sec_architecture>>.
+. it preserves the structural relationships described in <<sec_architecture>>,
+. every object it provides implements the marker interface of <<ref_cna_tcc,CNA-TCC-API>> that corresponds to its
+  type, as described below.
+
+The Calypso Card API (<<ref_cna_tcc,CNA-TCC-API>>) declares marker interfaces through which the objects of a
+symmetric crypto module are handed over to the card API. Those markers declare no operation: their content
+is the one defined by this specification. Every object implementing a type of the right column MUST
+therefore also implement the marker of the left column.
+
+[cols="^.^1,^.^1", options="header"]
+|===
+| CNA-TCC-API marker                             | CNA-TCCS-API type
+| `SymmetricCryptoCardTransactionManagerFactory` | <<type_SymmetricCryptoCardTransactionManagerFactorySpi,`SymmetricCryptoCardTransactionManagerFactorySpi`>>
+|===
 
 Throughout this specification, the key words **MUST**, **MUST NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**,
 **MAY** and **OPTIONAL** are to be interpreted as described in <<ref_rfc2119,RFC 2119>> and <<ref_rfc8174,RFC 8174>> when, and only when,
@@ -211,17 +224,16 @@ semantic intent rather than the syntactic form.
 
 [cols="^.^1,.^3,.^3", options="header"]
 |===
-| Type        | Description                                                                         | Typical bindings
-| `String`    | Sequence of characters, UTF-8 encoded by default.                                   | `String`, `string`, `str`.
-| `Boolean`   | Two-state truth value.                                                              | `boolean`, `bool`.
-| `Byte`      | Signed 8-bit value.                                                                 | `byte`, `i8`.
-| `Int`       | Signed 32-bit integer.                                                              | `int`, `Int32`, `i32`.
-| `ByteArray` | Ordered sequence of octets.                                                         | `byte[]`, `[u8]`, `bytes`.
-| `List<T>`   | Ordered collection of `T` values, may contain duplicates.                           | `List<T>`, `Vec<T>`.
-| `T?`        | Nullable value: either a `T` value or `null`.                                       | `Optional<T>`, `T?`, `Option<T>`.
-| `null`      | Absence of value, the alternative held by a nullable type.                          | `null`, `nil`, `None`.
-| `Self`      | Own type of the receiver: a fluent operation returns the instance it was called on. | `Self`, `T` (recursive generic).
-| `Unit`      | Indicates that an operation returns no value.                                       | `void`, `Unit`, `()`.
+| Type             | Description                                                    | Typical bindings
+| `String`         | Sequence of characters, UTF-8 encoded by default.              | `String`, `string`, `str`.
+| `Boolean`        | Two-state truth value.                                         | `boolean`, `bool`.
+| `Byte`           | Signed 8-bit value.                                            | `byte`, `i8`.
+| `Int`            | Signed 32-bit integer.                                         | `int`, `Int32`, `i32`.
+| `ByteArray`      | Ordered sequence of octets.                                    | `byte[]`, `[u8]`, `bytes`.
+| `MutableList<T>` | Ordered collection of `T` values that the receiver may modify. | `ArrayList<T>`, `MutableList<T>`, `Vec<T>`.
+| `T?`             | Nullable value: either a `T` value or `null`.                  | `Optional<T>`, `T?`, `Option<T>`.
+| `null`           | Absence of value, the alternative held by a nullable type.     | `null`, `nil`, `None`.
+| `Unit`           | Indicates that an operation returns no value.                  | `void`, `Unit`, `()`.
 |===
 
 ==== Type tables
@@ -379,10 +391,10 @@ include::uml/architecture-overview.puml[]
 | Namespace                                         | Role     | Summary
 
 | `calypso.crypto.symmetric`                      | Public API
-| Properties, data carrier and errors consumed by both sides of the SPI.
+| Properties and errors consumed by both sides of the SPI.
 
 | `calypso.crypto.symmetric.spi`                  | SPI
-| Interfaces implemented by the symmetric crypto module.
+| Interfaces implemented by the symmetric crypto module, and the data they return.
 |===
 
 [[sec_class_diagram]]
@@ -422,113 +434,47 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
   The value is a dotted decimal of the form `MAJOR.MINOR`; it is `"{api-version}"` for this revision of the specification.
 |===
 
-=== API Interfaces
+=== Data
 
-[[type_SvCommandSecurityDataApi]]
-==== SV Command Security Data API
+[[type_SvCommandSecurityData]]
+==== SV Command Security Data
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Name       | `SvCommandSecurityDataApi`
-| Kind       | Interface
-| Namespace  | `calypso.crypto.symmetric`
+| Name       | `SvCommandSecurityData`
+| Kind       | Data
+| Namespace  | `calypso.crypto.symmetric.spi`
 | Since      | 0.1
-| Purpose    | Carries the input/output data exchanged during the cryptographic preparation of an SV command (Load / Debit / Undebit).
+| Purpose    | Carries the security data computed by the crypto module for an SV command (Load / Debit / Undebit), returned by <<op_SymmetricCryptoCardTransactionManagerSpi_computeSvCommandSecurityData,`SymmetricCryptoCardTransactionManagerSpi.computeSvCommandSecurityData`>>.
 |===
 
-[[op_SvCommandSecurityDataApi_getSvCommandPartialRequest]]
-===== Get SV Command Partial Request
-
-[cols="^.^1h,.^5", grid=rows, frame=all]
+[cols="^.^1,^.^1,^.^1,^.^1,.^5", options="header"]
 |===
-| Signature      | `getSvCommandPartialRequest() -> ByteArray`
-| Since          | 0.1
-| Description    | Returns the partial *SV Load/Debit/Undebit* ingoing command data, to which the security data computed by the crypto module is later appended.
-| Returns        | A non-empty `ByteArray` containing the *SV Load/Debit/Undebit* APDU partial request.
-| Pre-conditions | None.
-| Errors         | None.
-|===
+| Name | Type | Default | Since | Description
 
-[[op_SvCommandSecurityDataApi_getSvGetRequest]]
-===== Get SV Get Request
+| `serialNumber`
+| `ByteArray`
+| --
+| 0.1
+| Serial number to be placed in the *SV Load/Debit/Undebit* command request.
 
-[cols="^.^1h,.^5", grid=rows, frame=all]
-|===
-| Signature      | `getSvGetRequest() -> ByteArray`
-| Since          | 0.1
-| Description    | Returns the *SV Get* ingoing command data.
-| Returns        | A non-empty `ByteArray` containing the *SV Get* APDU request data.
-| Pre-conditions | None.
-| Errors         | None.
-|===
+| `transactionNumber`
+| `ByteArray`
+| --
+| 0.1
+| Transaction number to be placed in the *SV Load/Debit/Undebit* command request.
 
-[[op_SvCommandSecurityDataApi_getSvGetResponse]]
-===== Get SV Get Response
+| `terminalChallenge`
+| `ByteArray`
+| --
+| 0.1
+| Terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
 
-[cols="^.^1h,.^5", grid=rows, frame=all]
-|===
-| Signature      | `getSvGetResponse() -> ByteArray`
-| Since          | 0.1
-| Description    | Returns the *SV Get* outgoing command data.
-| Returns        | A non-empty `ByteArray` containing the *SV Get* APDU response data.
-| Pre-conditions | None.
-| Errors         | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setSerialNumber]]
-===== Set Serial Number
-
-[cols="^.^1h,.^5", grid=rows, frame=all]
-|===
-| Signature      | `setSerialNumber(serialNumber: ByteArray) -> Self`
-| Since          | 0.1
-| Description    | Sets the serial number to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters     | `serialNumber` -- the serial number to be used.
-| Returns        | The current instance (`Self`).
-| Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors         | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setTerminalChallenge]]
-===== Set Terminal Challenge
-
-[cols="^.^1h,.^5", grid=rows, frame=all]
-|===
-| Signature      | `setTerminalChallenge(terminalChallenge: ByteArray) -> Self`
-| Since          | 0.1
-| Description    | Sets the terminal challenge to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters     | `terminalChallenge` -- the terminal challenge to be used.
-| Returns        | The current instance (`Self`).
-| Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors         | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setTerminalSvMac]]
-===== Set Terminal SV MAC
-
-[cols="^.^1h,.^5", grid=rows, frame=all]
-|===
-| Signature      | `setTerminalSvMac(terminalSvMac: ByteArray) -> Self`
-| Since          | 0.1
-| Description    | Sets the terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters     | `terminalSvMac` -- the terminal SV MAC to be used.
-| Returns        | The current instance (`Self`).
-| Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors         | None.
-|===
-
-[[op_SvCommandSecurityDataApi_setTransactionNumber]]
-===== Set Transaction Number
-
-[cols="^.^1h,.^5", grid=rows, frame=all]
-|===
-| Signature      | `setTransactionNumber(transactionNumber: ByteArray) -> Self`
-| Since          | 0.1
-| Description    | Sets the transaction number to be placed in the *SV Load/Debit/Undebit* command request.
-| Parameters     | `transactionNumber` -- the transaction number to be used.
-| Returns        | The current instance (`Self`).
-| Pre-conditions | *Argument* -- every parameter is non-`null`.
-| Errors         | None.
+| `terminalSvMac`
+| `ByteArray`
+| --
+| 0.1
+| Terminal SV MAC to be placed in the *SV Load/Debit/Undebit* command request.
 |===
 
 === SPI Interfaces
@@ -554,7 +500,7 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 | `createCardTransactionManager(` +
 `{nbsp}{nbsp}{nbsp}{nbsp}cardKeyDiversifier: ByteArray,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}useExtendedMode: Boolean,` +
-`{nbsp}{nbsp}{nbsp}{nbsp}transactionAuditData: List<ByteArray>` +
+`{nbsp}{nbsp}{nbsp}{nbsp}transactionAuditData: MutableList<ByteArray>` +
 `) -> SymmetricCryptoCardTransactionManagerSpi`
 | Since          | 0.1
 | Description
@@ -564,7 +510,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | Parameters
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
   `useExtendedMode`      -- a flag requesting the extended mode, if supported by the crypto service. +
-  `transactionAuditData` -- the reference of the list where the transaction audit data are recorded.
+  `transactionAuditData` -- the list to which the crypto module appends the transaction audit data it records.
 | Returns        | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Pre-conditions | *Argument* -- every parameter is non-`null`. +
   *State* -- the extended mode is supported whenever it is requested.
@@ -708,11 +654,23 @@ Every operation MUST raise either `SymmetricCrypto` (internal error) or `Symmetr
 
 [cols="^.^1h,.^5", grid=rows, frame=all]
 |===
-| Signature      | `computeSvCommandSecurityData(data: SvCommandSecurityDataApi) -> Unit`
+| Signature
+| `computeSvCommandSecurityData(` +
+`{nbsp}{nbsp}{nbsp}{nbsp}svGetRequest: ByteArray,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}svGetResponse: ByteArray,` +
+`{nbsp}{nbsp}{nbsp}{nbsp}svCommandPartialRequest: ByteArray` +
+`) -> SvCommandSecurityData`
 | Since          | 0.1
-| Description    | Computes the data needed to operate SV card commands and writes it back to the provided container. Every field of the supplied `SvCommandSecurityDataApi` required to assemble the complete SV command APDU MUST be populated.
-| Parameters     | `data` (<<type_SvCommandSecurityDataApi,`SvCommandSecurityDataApi`>>) -- the data involved in the preparation of an SV Reload/Debit/Undebit command.
-| Pre-conditions | *Argument* -- every parameter is non-`null`.
+| Description
+| Computes the security data needed to complete an *SV Load/Debit/Undebit* command from the supplied *SV Get*
+  exchange and partial command request.
+| Parameters
+| `svGetRequest`            -- the *SV Get* ingoing command data. +
+  `svGetResponse`           -- the *SV Get* outgoing command data. +
+  `svCommandPartialRequest` -- the partial *SV Load/Debit/Undebit* ingoing command data, to which the computed security data is later appended.
+| Returns        | A <<type_SvCommandSecurityData,`SvCommandSecurityData`>> carrying the security data to place in the *SV Load/Debit/Undebit* command request.
+| Pre-conditions | *Argument* -- every parameter is non-`null`. +
+  *Argument* -- every parameter is non-empty.
 | Errors
 | <<type_SymmetricCrypto,`SymmetricCrypto`>> -- if an internal error occurred. +
   <<type_SymmetricCryptoIO,`SymmetricCryptoIO`>> -- if an IO error occurred when processing a command.

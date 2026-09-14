@@ -2,7 +2,7 @@
 title
     <img:assets/logos/calypso.svg{scale=0.2}>
 
-    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-11-06)
+    Terminal Calypso Crypto Symmetric API 0.2.+ (2026-09-14)
 end title
 
 ' == THEME (class) ==
@@ -78,7 +78,7 @@ package "calypso.crypto.symmetric" as api {
             +preInitTerminalSessionContext() → Unit
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +createCardTransactionManager(cardKeyDiversifier: ByteArray, useExtendedMode: Boolean, transactionAuditData: List<ByteArray>) → SymmetricCryptoCardTransactionManagerSpi
+            +createCardTransactionManager(cardKeyDiversifier: ByteArray, useExtendedMode: Boolean, transactionAuditData: MutableList<ByteArray>) → SymmetricCryptoCardTransactionManagerSpi
         }
         interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
             +initTerminalSecureSessionContext() → ByteArray
@@ -101,7 +101,7 @@ package "calypso.crypto.symmetric" as api {
             +isCardSessionMacValid(cardSessionMac: ByteArray) → Boolean
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +computeSvCommandSecurityData(data: SvCommandSecurityDataApi) → Unit
+            +computeSvCommandSecurityData(<color:blue>svGetRequest: ByteArray, svGetResponse: ByteArray, svCommandPartialRequest: ByteArray</color>) → <color:blue>SvCommandSecurityData</color>
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
             +isCardSvMacValid(cardSvMac: ByteArray) → Boolean
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
@@ -116,20 +116,16 @@ package "calypso.crypto.symmetric" as api {
             +synchronize() → Unit
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
         }
+        class "<color:blue>SvCommandSecurityData" as SvCommandSecurityData <<data>> <<green>> {
+            +val serialNumber: ByteArray
+            +val transactionNumber: ByteArray
+            +val terminalChallenge: ByteArray
+            +val terminalSvMac: ByteArray
+        }
     }
     exception "SymmetricCrypto\nSymmetricCryptoIO" as errors <<error>> <<green>> {
         +val message: String
         +val cause: Any?
-    }
-    interface SvCommandSecurityDataApi {
-        +getSvGetRequest() → ByteArray
-        +getSvGetResponse() → ByteArray
-        +getSvCommandPartialRequest() → ByteArray
-
-        +setSerialNumber(serialNumber: ByteArray) → Self
-        +setTransactionNumber(transactionNumber: ByteArray) → Self
-        +setTerminalChallenge(terminalChallenge: ByteArray) → Self
-        +setTerminalSvMac(terminalSvMac: ByteArray) → Self
     }
 }
 
@@ -137,11 +133,11 @@ package "calypso.crypto.symmetric" as api {
 
 SymmetricCryptoCardTransactionManagerFactorySpi ..> SymmetricCryptoCardTransactionManagerSpi #C_LINK : provide >
 
-SymmetricCryptoCardTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
+SymmetricCryptoCardTransactionManagerSpi ..> SvCommandSecurityData #C_LINK : provide >
 
 ' == LAYOUT ==
 
-SymmetricCryptoCardTransactionManagerSpi .[hidden]. errors
+ApiProperties .[hidden]. errors
 
 ' == STYLE ==
 
