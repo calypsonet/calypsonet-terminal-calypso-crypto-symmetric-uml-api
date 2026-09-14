@@ -68,7 +68,7 @@ end legend
 
 package "calypso.crypto.symmetric" as api {
     class "SymmetricCryptoApiProperties" as ApiProperties <<constants>> <<green>> {
-        +const VERSION: String = "0.1"
+        +const VERSION: String = "0.2"
     }
     package spi {
         interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
