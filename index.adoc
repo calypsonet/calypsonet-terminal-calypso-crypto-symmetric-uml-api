@@ -231,6 +231,7 @@ semantic intent rather than the syntactic form.
 | `Int`            | Signed 32-bit integer.                                         | `int`, `Int32`, `i32`.
 | `ByteArray`      | Ordered sequence of octets.                                    | `byte[]`, `[u8]`, `bytes`.
 | `MutableList<T>` | Ordered collection of `T` values that the receiver may modify. | `ArrayList<T>`, `MutableList<T>`, `Vec<T>`.
+| `Any`            | Value of any type, root of the type hierarchy.                 | `Object`, `Any`, `object`, `Box<dyn Any>`.
 | `T?`             | Nullable value: either a `T` value or `null`.                  | `Optional<T>`, `T?`, `Option<T>`.
 | `null`           | Absence of value, the alternative held by a nullable type.     | `null`, `nil`, `None`.
 | `Unit`           | Indicates that an operation returns no value.                  | `void`, `Unit`, `()`.
