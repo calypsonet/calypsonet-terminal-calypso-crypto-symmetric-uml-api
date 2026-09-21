@@ -2,7 +2,7 @@
 title
     <img:assets/logos/calypso.svg{scale=0.2}>
 
-    Terminal Calypso Crypto Symmetric API 0.1.+ (2023-11-06)
+    Terminal Calypso Crypto Symmetric API 0.2.+ (2026-09-14)
 end title
 
 ' == THEME (class) ==
@@ -22,7 +22,7 @@ end title
 skinparam stereotypeABorderColor #A9DCDF
 skinparam stereotypeIBorderColor #B4A7E5
 skinparam stereotypeCBorderColor #ADD1B2
-skinparam stereotypeEBorderColor #EB93DF
+skinparam stereotypeEBorderColor #EB937F
 ' -- END --
 
 skinparam ClassBorderThickness 2
@@ -54,55 +54,78 @@ hide <<grey>> stereotype
 
 ' == CONTENT ==
 
+legend top
+    * __Text__
+    *** <color:blue><b>New element added since the last version
+    *** <color:red><s><b>Element marked as deprecated since the last version
+    *** <s><b>Element marked as deprecated
+    *** <color:grey><b>Work in progress...
+    * __Object__
+    *** <back:#FEFECE><color:#D4AC0D><b>Interface that cannot be instantiated directly by the factory
+    *** <back:#FDEDEC><color:#E74C3C><b>SPI (Service Provider Interface) to be provided by the end-user
+    *** <back:#E9F7EF><color:#27AE60><b>Data, constants, enumeration or error
+end legend
+
 package "calypso.crypto.symmetric" as api {
-    +class "**final** SymmetricCryptoApiProperties" as ApiProperties <<green>> {
-        +{static} **final** String VERSION
+    class "SymmetricCryptoApiProperties" as ApiProperties <<constants>> <<green>> {
+        +const VERSION: String = "0.2"
     }
     package spi {
-        +interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
-            +boolean isExtendedModeSupported ()
-            +int getMaxCardApduLengthSupported ()
+        interface SymmetricCryptoCardTransactionManagerFactorySpi <<red>> {
+            +isExtendedModeSupported() → Boolean
+            +getMaxCardApduLengthSupported() → Int
 
-            +void preInitTerminalSessionContext ()
+            +preInitTerminalSessionContext() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +SymmetricCryptoCardTransactionManagerSpi createCardTransactionManager (byte[] cardKeyDiversifier, boolean useExtendedMode, List<byte[]> transactionAuditData)
+            +createCardTransactionManager(cardKeyDiversifier: ByteArray, useExtendedMode: Boolean, transactionAuditData: MutableList<ByteArray>) → SymmetricCryptoCardTransactionManagerSpi
         }
-        +interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
-            +byte[] initTerminalSessionContext ()
-            +void initTerminalSessionMac (byte[] openSecureSessionDataOut, byte kif, byte kvc)
-            +byte[] updateTerminalSessionMac (byte[] cardApdu)
-            +byte[] finalizeTerminalSessionMac ()
+        interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
+            +initTerminalSecureSessionContext() → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+            +initTerminalSessionMac(openSecureSessionDataOut: ByteArray, kif: Byte, kvc: Byte) → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+            +updateTerminalSessionMac(cardApdu: ByteArray) → ByteArray?
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+            +finalizeTerminalSessionMac() → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +byte[] generateTerminalSessionMac ()
+            +generateTerminalSessionMac() → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +void activateEncryption ()
-            +void deactivateEncryption ()
+            +activateEncryption() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+            +deactivateEncryption() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +boolean isCardSessionMacValid (byte[] cardSessionMac)
+            +isCardSessionMacValid(cardSessionMac: ByteArray) → Boolean
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +void computeSvCommandSecurityData (SvCommandSecurityDataApi data)
-            +boolean isCardSvMacValid (byte[] cardSvMac)
+            +computeSvCommandSecurityData(<color:blue>svGetRequest: ByteArray, svGetResponse: ByteArray, svCommandPartialRequest: ByteArray</color>) → <color:blue>SvCommandSecurityData</color>
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+            +isCardSvMacValid(cardSvMac: ByteArray) → Boolean
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +byte[] cipherPinForPresentation (byte[] cardChallenge, byte[] pin, Byte kif, Byte kvc)
-            +byte[] cipherPinForModification (byte[] cardChallenge, byte[] currentPin, byte[] newPin, Byte kif, Byte kvc)
-            +byte[] generateCipheredCardKey (byte[] cardChallenge, byte issuerKeyKif, byte issuerKeyKvc, byte targetKeyKif, byte targetKeyKvc)
+            +cipherPinForPresentation(cardChallenge: ByteArray, pin: ByteArray, kif: Byte, kvc: Byte) → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+            +cipherPinForModification(cardChallenge: ByteArray, currentPin: ByteArray, newPin: ByteArray, kif: Byte, kvc: Byte) → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+            +generateCipheredCardKey(cardChallenge: ByteArray, issuerKeyKif: Byte, issuerKeyKvc: Byte, targetKeyKif: Byte, targetKeyKvc: Byte) → ByteArray
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
 
-            +void synchronize ()
+            +synchronize() → Unit
+            {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
+        }
+        class "<color:blue>SvCommandSecurityData" as SvCommandSecurityData <<data>> <<green>> {
+            +val serialNumber: ByteArray
+            +val transactionNumber: ByteArray
+            +val terminalChallenge: ByteArray
+            +val terminalSvMac: ByteArray
         }
     }
-    +class "<<Exception>>\nSymmetricCryptoException" as SymmetricCryptoException <<green>> {
-    }
-    +class "<<Exception>>\nSymmetricCryptoIOException" as SymmetricCryptoIOException <<green>> {
-    }
-    +interface SvCommandSecurityDataApi {
-        +byte[] getSvGetRequest ()
-        +byte[] getSvGetResponse ()
-        +byte[] getSvCommandPartialRequest ()
-
-        +SvCommandSecurityDataApi setSerialNumber (byte[] serialNumber)
-        +SvCommandSecurityDataApi setTransactionNumber (byte[] transactionNumber)
-        +SvCommandSecurityDataApi setTerminalChallenge (byte[] terminalChallenge)
-        +SvCommandSecurityDataApi setTerminalSvMac (byte[] terminalSvMac)
+    exception "SymmetricCrypto\nSymmetricCryptoIO" as errors <<error>> <<green>> {
+        +val message: String
+        +val cause: Any?
     }
 }
 
@@ -110,12 +133,11 @@ package "calypso.crypto.symmetric" as api {
 
 SymmetricCryptoCardTransactionManagerFactorySpi ..> SymmetricCryptoCardTransactionManagerSpi #C_LINK : provide >
 
-SymmetricCryptoCardTransactionManagerSpi .left.> SvCommandSecurityDataApi #C_USE : use >
+SymmetricCryptoCardTransactionManagerSpi ..> SvCommandSecurityData #C_LINK : provide >
 
 ' == LAYOUT ==
 
-SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCryptoException
-SymmetricCryptoCardTransactionManagerSpi .[hidden]. SymmetricCryptoIOException
+ApiProperties .[hidden]. errors
 
 ' == STYLE ==
 
