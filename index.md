@@ -4,18 +4,18 @@ title: "calypsonet-terminal-calypso-crypto-symmetric-uml-api"
 repository: "calypsonet-terminal-calypso-crypto-symmetric-uml-api"
 latest_stable: "0.1.1"
 versions:
-  - version: "0.1.2-SNAPSHOT"
+  - version: "0.2.0-SNAPSHOT"
     status: snapshot
     files:
       diagram:
         name: "class-diagram.svg"
-        size: "35 kB"
+        size: "39 kB"
       html:
-        name: "YYMMDD-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.1.2-SNAPSHOT.html"
+        name: "YYMMDD-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0-SNAPSHOT.html"
         size: "1.4 MB"
       pdf:
-        name: "YYMMDD-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.1.2-SNAPSHOT.pdf"
-        size: "960 kB"
+        name: "YYMMDD-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0-SNAPSHOT.pdf"
+        size: "965 kB"
   - version: "0.1.1"
     status: stable
     files:
