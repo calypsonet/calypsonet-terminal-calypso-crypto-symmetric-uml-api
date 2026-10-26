@@ -501,7 +501,7 @@ include::uml/class-diagram.puml[Terminal Calypso Crypto Symmetric API class diag
 | `createCardTransactionManager(` +
 `{nbsp}{nbsp}{nbsp}{nbsp}cardKeyDiversifier: ByteArray,` +
 `{nbsp}{nbsp}{nbsp}{nbsp}useExtendedMode: Boolean,` +
-`{nbsp}{nbsp}{nbsp}{nbsp}transactionAuditData: MutableList<ByteArray>` +
+`{nbsp}{nbsp}{nbsp}{nbsp}exchangedApdus: MutableList<ByteArray>` +
 `) -> SymmetricCryptoCardTransactionManagerSpi`
 | Since          | 0.1
 | Description
@@ -511,7 +511,7 @@ the supplied card key diversifier and mode. Implemented by the crypto module.
 | Parameters
 | `cardKeyDiversifier`   -- the card key diversifier to use for the coming cryptographic computations. +
   `useExtendedMode`      -- a flag requesting the extended mode, if supported by the crypto service. +
-  `transactionAuditData` -- the list to which the crypto module appends the transaction audit data it records.
+  `exchangedApdus` -- the list to which the crypto module appends the APDU commands and responses it exchanges.
 | Returns        | A <<type_SymmetricCryptoCardTransactionManagerSpi,`SymmetricCryptoCardTransactionManagerSpi`>>.
 | Pre-conditions | *Argument* -- every parameter is non-`null`. +
   *State* -- the extended mode is supported whenever it is requested.
