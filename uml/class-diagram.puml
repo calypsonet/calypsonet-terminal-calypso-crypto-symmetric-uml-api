@@ -85,7 +85,7 @@ package "calypso.crypto.symmetric" as api {
             +preInitTerminalSessionContext() → Unit
             {method} <size:10><color:#7F8C8D>    ⚠ errors: SymmetricCrypto, SymmetricCryptoIO</color></size>
     
-            +createCardTransactionManager(cardKeyDiversifier: ByteArray, useExtendedMode: Boolean, transactionAuditData: MutableList<ByteArray>) → SymmetricCryptoCardTransactionManagerSpi
+            +createCardTransactionManager(cardKeyDiversifier: ByteArray, useExtendedMode: Boolean, <color:blue>exchangedApdus: MutableList<ByteArray></color>) → SymmetricCryptoCardTransactionManagerSpi
         }
         interface SymmetricCryptoCardTransactionManagerSpi <<red>> {
             +initTerminalSecureSessionContext() → ByteArray
