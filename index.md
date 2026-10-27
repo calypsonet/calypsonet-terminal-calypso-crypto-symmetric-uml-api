@@ -2,6 +2,7 @@
 layout: default
 title: "calypsonet-terminal-calypso-crypto-symmetric-api-spec"
 repository: "calypsonet-terminal-calypso-crypto-symmetric-api-spec"
+doc_name: "Terminal Calypso Crypto Symmetric API"
 latest_stable: "0.1.1"
 latest_stable_path: ""
 versions:
