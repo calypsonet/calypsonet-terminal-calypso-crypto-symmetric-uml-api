@@ -1,8 +1,9 @@
 ---
 layout: default
-title: "calypsonet-terminal-calypso-crypto-symmetric-uml-api"
-repository: "calypsonet-terminal-calypso-crypto-symmetric-uml-api"
+title: "calypsonet-terminal-calypso-crypto-symmetric-api-spec"
+repository: "calypsonet-terminal-calypso-crypto-symmetric-api-spec"
 latest_stable: "0.1.1"
+latest_stable_path: ""
 versions:
   - version: "0.2.0-SNAPSHOT"
     status: snapshot
