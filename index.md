@@ -13,10 +13,10 @@ versions:
         name: "class-diagram.svg"
         size: "43 kB"
       html:
-        name: "YYMMDD-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0-SNAPSHOT.html"
+        name: "261028-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0-SNAPSHOT.html"
         size: "1.4 MB"
       pdf:
-        name: "YYMMDD-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0-SNAPSHOT.pdf"
+        name: "261028-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0-SNAPSHOT.pdf"
         size: "967 kB"
   - version: "0.1.1"
     status: stable
