@@ -1,0 +1,12 @@
+  - version: "0.2.0"
+    status: stable
+    files:
+      diagram:
+        name: "261028-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0-class-diagram.svg"
+        size: "43 kB"
+      html:
+        name: "261028-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0.html"
+        size: "1.4 MB"
+      pdf:
+        name: "261028-SP-CNATerminalAPI-CalypsoCryptoSymmetric_v0.2.0.pdf"
+        size: "967 kB"
