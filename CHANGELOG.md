@@ -16,5 +16,9 @@ applied to the specified contract:
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-28
 ### Added
 - Initial baseline (v0.2.0) of the Terminal Calypso Crypto Symmetric API specification.
+
+[unreleased]: https://github.com/calypsonet/calypsonet-terminal-calypso-crypto-symmetric-api-spec/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/calypsonet/calypsonet-terminal-calypso-crypto-symmetric-api-spec/releases/tag/0.2.0
